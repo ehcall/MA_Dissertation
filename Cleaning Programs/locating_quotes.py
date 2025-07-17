@@ -5,21 +5,6 @@ import scripture_references
 from bs4 import BeautifulSoup
 import spacy
 nlp = spacy.load('en_core_web_sm')
-from spacy.tokens import Span
-from difflib import SequenceMatcher
-
-def update_spacy():
-    #might actually want to train this, but I can't do that right now...
-    doc = nlp("14 years old, 8 years old")
-    new_ents = []
-    new_ent = Span(doc, 0, 3, label="AGE")
-    new_ents.append(new_ent)
-    new_ent = Span(doc, 4, 7, label="AGE")
-    new_ents.append(new_ent)
-    doc.set_ents(new_ents)
-    for ent in doc.ents:
-        print(ent.text, ent.label_)
-
 
 def check_quote(to_check):
     no_ellipses = re.sub(' \.','',to_check)
@@ -46,7 +31,8 @@ def find_entity(text_line):
                        'James E. Talmage','Handbook 2','Hymns','John Taylor','The Family: A Proclamation to the World',
                        'Joseph Smith','John H. Groberg','Victor L. Brown','History of the Church','Our Heritage',
                        'James E. Faust','John A. Widtsoe','John K. Carmack','Teaching — No Greater Call',
-                       'Old Testament Student Manual','Elder Holland','Ezra Thayer','President Monson','Hartman Rector Jr.']
+                       'Old Testament Student Manual','Elder Holland','Ezra Thayer','President Monson',
+                       'Hartman Rector Jr.']
 
     for added_entity in adding_entities:
 
@@ -135,9 +121,17 @@ def modify_quote(soup):
             for pq in possible_quotes:
                 if check_quote(pq.group()):
                     possible_citation = re.match(" [\(\[].*?[\)\]]", new_text[pq.end():])
+                    if re.search('\(ChurchofJesusChrist.org\)',new_text) and re.search('The Family: A Proclamation to the World', new_text):
+                        # hardcoded this because I *cannot* figure out what went wrong with this citation
+                        #had to add AttributeError catch
+                        possible_citation = 'The Family: A Proclamation to the World'
                     if possible_citation:
                         quote_citation = ''
-                        grouped_citation = possible_citation.group().split('; ')
+                        try:
+                            pc = re.sub("; italics added",'',possible_citation.group())
+                        except AttributeError:
+                            pc = possible_citation
+                        grouped_citation = pc.split('; ')
                         scripture_ref = False
                         if len(grouped_citation) == 1:
                             # print(len(grouped_citation[0].split(' ')))
@@ -166,7 +160,7 @@ def modify_quote(soup):
                                 citation_2_ref = scripture_references.check_if_scripture(citation_2)
                                 if citation_1_ref and citation_2_ref:
                                     # both scriptures
-                                    pass
+                                    scripture_ref = True
                                 #  print(possible_citation.group())
                                 if not citation_1_ref and not citation_2_ref:
                                     quote_citation = possible_citation.group()
@@ -176,6 +170,11 @@ def modify_quote(soup):
                                         quote_citation = possible_citation.group()
                                     elif not citation_2_ref and re.search('Teaching', citation_2):
                                         quote_citation = possible_citation.group()
+                                    else:
+                                       # print(grouped_citation)
+                                        scripture_ref = True
+                            else:
+                                scripture_ref = True
 
                         if quote_citation != '':
                             quote_citation = re.sub("^ \((in )?", '', quote_citation)
@@ -229,7 +228,7 @@ def modify_quote(soup):
                                 #there is one citation person and no one anywhere
                                 quote_speaker.append(citation_folks.pop())
                                 # print(quote_speaker)
-                            # TODO: multiple people cited
+                            # TODO: multiple people cited, no one elsewhere
                             elif len(citation_folks) > 1 and len(elsewhere_folks) == 0:
                                 # There are multiple people cited, but no one elsewhere
 
@@ -275,12 +274,23 @@ def modify_quote(soup):
                             else:
                                 pass
                                 #print(citation_folks, elsewhere_folks)
+                           # print(pq.group())
+                            #print("\t",quote_speaker)
+                            #print("\t",quote_citation)
 
-                        #TODO: a quote without a citation!
+                            # TODO: add quotation tag
+                            speaker = ', '.join(str(x) for x in quote_speaker)
+                            contents_start = pq.start() - 1
+                            if contents_start < 0:
+                                contents_start = 0
+                            quote_tag = soup.new_tag('quotation',speaker=speaker,citation=quote_citation,string=pq.group())
+                            new_contents = [new_text[:contents_start],quote_tag,new_text[pq.end()+1:]]
+                            text_element.extend(new_contents)
+
                         else:
+                            #don't do anything with this because they're basically all scriptures, except for some
+                            #video narration that I'm ignoring
                             pass
-
-                            #TODO: add quotation tag
 
     return
 
@@ -299,6 +309,8 @@ def main():
             file = f.read()
         soup = BeautifulSoup(file,'xml')
         modified_quotes = modify_quote(soup)
-       # hold = input("wait a sec")
+      #  hold = input("wait a sec")
+        with open(modified_manual, 'w', encoding='utf-8') as modifying_manual:
+            modifying_manual.write(soup.prettify())
 
 main()
