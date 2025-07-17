@@ -49,7 +49,7 @@ def check_if_scripture(line):
         return False
     elif check_book_name(line):
         return True
-    elif re.search("verse [0-9]",line):
+    elif re.search("verses? [0-9]",line):
         return True
     elif re.search("section heading",line):
         return True

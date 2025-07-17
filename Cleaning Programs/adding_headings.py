@@ -52,8 +52,11 @@ def main():
 
             tree.write(cleaned_manual)
         elif re.match("GD", to_modify_manual):
-            #TODO
-            pass
-         #   print(to_modify_manual)
+           # print(to_modify_manual)
+            manual_cleanup = to_modify_dir + "\\" + to_modify_manual
+            cleaned_manual = modified_dir + "\\" + to_modify_manual
+            tree = ET.parse(manual_cleanup)
+            tree.write(cleaned_manual)
+
 
 main()

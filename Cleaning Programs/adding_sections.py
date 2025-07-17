@@ -1,6 +1,6 @@
 import os
 import re
-
+import xml.etree.ElementTree as ET
 
 def main():
     to_modify_dir = "C:\\Users\elena\PycharmProjects\MA_Thesis\Full_Manuals\Headings_XML"
@@ -122,9 +122,9 @@ def main():
 
 
         elif re.match("GD",manual):
-            #TODO
-           # print(to_modify_manual)
-            pass
-            ## deal with "subheadings" and "subsubheadings"
+            manual_cleanup = to_modify_dir + "\\" + manual
+            cleaned_manual = modified_dir + "\\" + manual
+            tree = ET.parse(manual_cleanup)
+            tree.write(cleaned_manual)
 
 main()
