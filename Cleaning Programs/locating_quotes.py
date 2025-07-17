@@ -72,7 +72,7 @@ def find_entity(text_line):
                              'Brigham Young University','Lutheran','Simon','Andrew','Samson','David','Enoch','Peter',
                              'Matt','Gabriel','Mary','Zacchaeus','Martha','Tiny Mary','Old Bob','Tommy','McConnells',
                              'Quorums','Elder King Follett','Quorum','Benbow','Jane','Rachel','Rebekah','Grandfather',
-                             'Grandmother']
+                             'Grandmother','Hannah','Samuel','Alvin','Isaac']
     for entity in doc.ents:
 
         if entity.label_ == "PERSON":
@@ -228,13 +228,11 @@ def modify_quote(soup):
                                 #there is one citation person and no one anywhere
                                 quote_speaker.append(citation_folks.pop())
                                 # print(quote_speaker)
-                            # TODO: multiple people cited, no one elsewhere
                             elif len(citation_folks) > 1 and len(elsewhere_folks) == 0:
                                 # There are multiple people cited, but no one elsewhere
-
-                                pass
-                                # for cfolk in citation_folks:
-                                #    quote_speaker.append(cfolk)
+                                 for cfolk in citation_folks:
+                                     if not re.match('Joseph Smith\'s',cfolk):
+                                        quote_speaker.append(cfolk)
                             elif len(elsewhere_folks) == 1 and len(citation_folks) == 0:
                                 #there is one elsewhere person and no one anywhere
                                 quote_speaker.append(elsewhere_folks.pop())
@@ -272,26 +270,50 @@ def modify_quote(soup):
                                     pass
                             #TODO: Multiple people cited, multiple people elsewhere
                             else:
-                                pass
-                                #print(citation_folks, elsewhere_folks)
+                                #pass
+
+                                #print("\t",citation_folks, elsewhere_folks)
+                                if 'Joseph Fielding Smith' in citation_folks:
+                                    quote_speaker.append(elsewhere_folks.pop())
+                                elif 'Edward L. Kimball' in citation_folks:
+                                    quote_speaker.append(elsewhere_folks.pop())
+                                elif 'Bruce R. McConkie' in citation_folks:
+                                    quote_speaker.append(elsewhere_folks.pop())
+                                elif 'History of the Church' in citation_folks:
+                                    if len(elsewhere_folks) == 1:
+                                        #This isn't foolproof, but it's the best I'm gonna get
+                                        quote_speaker.append(elsewhere_folks.pop())
+                                    else:
+                                        print(new_text)
+                                        print("\t", elsewhere_folks)
+                                else:
+                                  #  print(new_text)
+                                 #   print("\t", elsewhere_folks)
+                                    combined_folks = citation_folks.union(elsewhere_folks)
+                                    #print("\t",combined_folks)
                            # print(pq.group())
                             #print("\t",quote_speaker)
                             #print("\t",quote_citation)
 
-                            # TODO: add quotation tag
+                            #adds the quotation tag
                             speaker = ', '.join(str(x) for x in quote_speaker)
                             contents_start = pq.start() - 1
                             if contents_start < 0:
                                 contents_start = 0
                             quote_tag = soup.new_tag('quotation',speaker=speaker,citation=quote_citation,string=pq.group())
+                            try:
+                                text_element.clear()
+                            except AttributeError:
+                                print(text_element)
                             new_contents = [new_text[:contents_start],quote_tag,new_text[pq.end()+1:]]
                             text_element.extend(new_contents)
-
                         else:
                             #don't do anything with this because they're basically all scriptures, except for some
                             #video narration that I'm ignoring
                             pass
-
+                    #TODO: What if it's a quote that doesn't have a citation?
+                    else:
+                        pass
     return
 
 
