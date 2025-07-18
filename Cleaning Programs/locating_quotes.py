@@ -330,7 +330,7 @@ def main():
         with open(to_modify_manual,'r', encoding='utf-8') as f:
             file = f.read()
         soup = BeautifulSoup(file,'xml')
-        modified_quotes = modify_quote(soup)
+        modify_quote(soup)
       #  hold = input("wait a sec")
         with open(modified_manual, 'w', encoding='utf-8') as modifying_manual:
             modifying_manual.write(soup.prettify())
