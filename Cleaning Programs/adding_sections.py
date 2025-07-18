@@ -127,4 +127,4 @@ def main():
             tree = ET.parse(manual_cleanup)
             tree.write(cleaned_manual)
 
-main()
+#main()

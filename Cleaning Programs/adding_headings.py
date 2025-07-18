@@ -6,6 +6,7 @@ def main():
     to_modify_dir = "C:\\Users\elena\PycharmProjects\MA_Thesis\Full_Manuals\Basic_XML"
     modified_dir = "C:\\Users\elena\PycharmProjects\MA_Thesis\Full_Manuals\Headings_XML"
     for to_modify_manual in os.listdir(to_modify_dir):
+       # print(to_modify_manual)
         if re.match("CFM", to_modify_manual):
           #  print(to_modify_manual)
             manual_cleanup = to_modify_dir + "\\" + to_modify_manual
@@ -52,11 +53,11 @@ def main():
 
             tree.write(cleaned_manual)
         elif re.match("GD", to_modify_manual):
-           # print(to_modify_manual)
+
             manual_cleanup = to_modify_dir + "\\" + to_modify_manual
             cleaned_manual = modified_dir + "\\" + to_modify_manual
             tree = ET.parse(manual_cleanup)
             tree.write(cleaned_manual)
 
 
-main()
+#main()

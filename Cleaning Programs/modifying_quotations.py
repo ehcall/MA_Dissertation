@@ -89,7 +89,8 @@ def standardize_names(soup):
                 gender = 'X - Mixed'
         else:
             gender = genders.pop()
-
+        if updated_speakers[0] == '':
+            print(quotation.text)
         quotation['speaker'] = updated_speakers
         quotation['gender'] = gender
         #print(quotation['speaker'])

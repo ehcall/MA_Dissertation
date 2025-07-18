@@ -42,21 +42,21 @@ def speaker_from_verb(text_line,possible_speakers):
     matcher.add('PERVERB',[pattern])
     speaker_doc = nlp(text_line)
     matches = matcher(speaker_doc)
-    speaking_verbs = ['told','said','recalled','explained']
+    speaking_verbs = ['told','said','recalled','explained','issued','announced']
+    tbd = []
     for match in matches:
         match_id, (start, end) = match
-        #possible_speaker_name =
-        #ps_verb =
-        for possible_speaker in possible_speakers:
-            if re.search(possible_speaker,str(speaker_doc[start])) and str(speaker_doc[end]) in speaking_verbs:
-                return(possible_speaker)
-
-        else:
-            #yes I know this is hardcoded but I will deal with this when it's an issue later
+        if str(speaker_doc[end]) in speaking_verbs:
+            tbd = []
+            return str(speaker_doc[start])
+        elif str(speaker_doc[start]) == 'Emma' and str(speaker_doc[end]) == 'support':
+            tbd = []
             return 'Lucy Mack Smith'
-
-    #again. I know hardcoding is bad.
-    return 'LeGrand Richards'
+        tbd.append([speaker_doc[start], speaker_doc[end]])
+    if len(tbd) > 0:
+        return 'History of the Church'
+    else:
+        return ''
 
 def find_entity(text_line):
     doc = nlp(text_line)
@@ -254,15 +254,18 @@ def modify_quote(soup):
 
 
                             quote_speaker = []
-                            # TODO: Embedded citations
-                            if len(embedded_folks) > 0:
-                                print(new_text)
-                                print("\tCited: ",citation_folks)
-                                print("\tEmbedded: ",embedded_folks)
-                                print("\tElsewhere: ",elsewhere_folks)
-                                #there are possibly embedded people
-                                pass
-                            elif len(citation_folks) == 1 and citation_folks == elsewhere_folks:
+
+                           # if len(embedded_folks) > 0:
+                                # there are possibly embedded quotations.
+                                # I'm...gonna ignore these.
+                            #    print(new_text)
+                             #   print("\tCited: ",citation_folks)
+                             #   print("\tEmbedded: ",embedded_folks)
+                             #   print("\tElsewhere: ",elsewhere_folks)
+
+                               # pass
+                            if len(citation_folks) == 1 and citation_folks == elsewhere_folks:
+                            #elif len(citation_folks) == 1 and citation_folks == elsewhere_folks:
                                 #There is one citation person and one elsewhere person and they are the same
                                 #There are no embedded quotes
                                 quote_speaker.append(citation_folks.pop())
@@ -323,16 +326,21 @@ def modify_quote(soup):
                                 elif 'John A. Widtsoe' in citation_folks:
                                     quote_speaker.append(elsewhere_folks.pop())
                                 elif 'History of the Church' in citation_folks:
+
                                     if len(elsewhere_folks) == 1:
                                         #This isn't foolproof, but it's the best I'm gonna get
+
                                         quote_speaker.append(elsewhere_folks.pop())
+                                    else:
+                                        quote_speaker.append(speaker_from_verb(new_text, elsewhere_folks))
+                                        #print(elsewhere_folks)
                                 else:
+                                   # print(new_text)
                                     #this gets the element that's shared between the two sets
                                     shared_speakers = elsewhere_folks & citation_folks
                                     if shared_speakers:
                                         quote_speaker.append(shared_speakers.pop())
                                     else:
-
                                         quote_speaker.append(speaker_from_verb(new_text,elsewhere_folks))
 
                             #adds the quotation tag
