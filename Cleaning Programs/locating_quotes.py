@@ -19,6 +19,15 @@ def check_quote(to_check):
     #    print(to_check)
     return True
 
+def speaker_from_verb(text_line,possible_speakers):
+    #TODO: This whole function
+    speaker = ''
+    for possible_speaker in possible_speakers:
+    #figure out which one said the thing
+        speaker = possible_speaker
+
+    return speaker
+
 def find_entity(text_line):
     doc = nlp(text_line)
     #this is bad code for right now. I'm so sorry, but this has to get done.
@@ -237,9 +246,10 @@ def modify_quote(soup):
                                 #there is one elsewhere person and no one anywhere
                                 quote_speaker.append(elsewhere_folks.pop())
 
-                            elif len(elsewhere_folks) > 0 and len(citation_folks) == 0:
+                            elif (len(elsewhere_folks) > 0 and len(citation_folks) == 0) or \
+                                    (len(elsewhere_folks) > 0 and re.search('quoted',possible_citation.group())):
                                 #there are more than one elsewhere people and no citation people
-                                #print(not_quote_citation_text)
+                                #orrrr there are citation people, but there's a 'quoted by/in' in the citation
                                 temp_not_quote_citation_text = re.sub(r'([A-Z])\.',r'\1',not_quote_citation_text)
                                 temp_not_quote_citation_text = re.sub(r'(Jr)\.',r'\1',temp_not_quote_citation_text)
                                 split_nqct = re.split('[\.\?]',temp_not_quote_citation_text)
@@ -255,25 +265,24 @@ def modify_quote(soup):
                                             if re.search(ef,line):
                                                 more_possible_speakers.append(ef)
                                                # print("Possible speaker: ",ef)
-                                #TODO: multiple people mentioned in sentence before quote
                                 if len(more_possible_speakers) > 1:
                                     #In these remaining cases, there's usually two people mentioned in the sentence
                                     #and in some cases, it might be easy-ish to figure out who said it
                                     #i.e. "Person --of the Q12-- said"
-                                    pass
+                                    quote_speaker.append(speaker_from_verb(more_possible_speakers))
                                 elif len(more_possible_speakers) == 1:
                                     #One person mentioned in sentence before quote
+
                                     quote_speaker.append(more_possible_speakers[0])
                                 else:
                                     #so, the thing going wrong is one of two things: the speaker is mentioned elsewhere
                                     #ORRRR there's a split quote. which I've got to deal with anyways.
                                     pass
-                            #TODO: Multiple people cited, multiple people elsewhere
+                            elif len(citation_folks) == 1 and len(elsewhere_folks) == 1:
+                                quote_speaker.append(elsewhere_folks.pop())
                             else:
-                                #pass
-
-                                #print("\t",citation_folks, elsewhere_folks)
                                 if 'Joseph Fielding Smith' in citation_folks:
+                                   # print('JFS')
                                     quote_speaker.append(elsewhere_folks.pop())
                                 elif 'Edward L. Kimball' in citation_folks:
                                     quote_speaker.append(elsewhere_folks.pop())
@@ -283,17 +292,15 @@ def modify_quote(soup):
                                     if len(elsewhere_folks) == 1:
                                         #This isn't foolproof, but it's the best I'm gonna get
                                         quote_speaker.append(elsewhere_folks.pop())
-                                    else:
-                                        print(new_text)
-                                        print("\t", elsewhere_folks)
                                 else:
-                                  #  print(new_text)
-                                 #   print("\t", elsewhere_folks)
-                                    combined_folks = citation_folks.union(elsewhere_folks)
-                                    #print("\t",combined_folks)
-                           # print(pq.group())
-                            #print("\t",quote_speaker)
-                            #print("\t",quote_citation)
+                                    #this gets the element that's shared between the two sets
+                                    shared_speakers = elsewhere_folks & citation_folks
+                                    if shared_speakers:
+                                        quote_speaker.append(shared_speakers.pop())
+                                    else:
+
+                                        quote_speaker.append(speaker_from_verb(elsewhere_folks))
+
 
                             #adds the quotation tag
                             speaker = ', '.join(str(x) for x in quote_speaker)
