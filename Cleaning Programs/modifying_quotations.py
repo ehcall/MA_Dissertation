@@ -112,4 +112,4 @@ def main():
         with open(modified_manual, 'w', encoding='utf-8') as modifying_manual:
             modifying_manual.write(soup.prettify())
 
-main()
+#main()

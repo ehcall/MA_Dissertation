@@ -157,6 +157,8 @@ def modify_quote(soup):
             text_element.string = new_text
             possible_quotes = re.finditer('\"[\s\S]*?\"',text_element.string)
 
+            citationless_behavior = []
+            print(re.findall('\"[\s\S]*?\"',text_element.string))
             for pq in possible_quotes:
                 if check_quote(pq.group()):
                     possible_citation = re.match(" [\(\[].*?[\)\]]", new_text[pq.end():])
@@ -358,10 +360,17 @@ def modify_quote(soup):
                         else:
                             #don't do anything with this because they're basically all scriptures,
                             #except for some video narration that I'm ignoring
+
                             pass
                     #TODO: What if it's a quote that doesn't have a citation?
                     else:
-                        pass
+                        citationless_behavior.append(pq.group())
+                        #print(pq.group())
+                       # pass
+          #  if len(citationless_behavior) > 0:
+           #     print("\n\n")
+           #     for cq in sorted(citationless_behavior,key=len):
+           #         print(cq)
     return
 
 
