@@ -11,7 +11,8 @@ def add_gender(speaker_name):
                'Janette Hales Beckham','Jean B. Bingham','Joy D. Jones','Julie B. Beck','Laura Russell Bunker',
                'Linda S. Reeves','Margaret D. Nadauld','Mary Ellen Smoot','Mary Isabella Horne','Michelle Craig',
                'Serepta M. Heywood','Sharon Eubank','Sheri L. Dew','Vicki F. Matsumori','Virginia H. Pearce',
-               'Virginia U. Jensen', 'Chieko Okazaki','Wendy Nelson']
+               'Virginia U. Jensen', 'Chieko Okazaki','Wendy Nelson','Belle S. Spafford','Cori Christensen',
+               'Eliza R. Snow','Lucy Mack Smith',]
     if speaker_name in supp_mats:
         #Hymns could probably be adjusted based on who wrote the hymn, but they're kind of treated as gender neutral
         gender = 'S - Supp Mats'
@@ -48,6 +49,9 @@ def lengthen_name(speaker_name):
         new_speaker_name = 'Thomas S. Monson'
     elif speaker_name == 'Talmage':
         new_speaker_name = 'James E. Talmage'
+    #may not work for all cases
+    elif speaker_name == 'Smith':
+        new_speaker_name = 'Joseph F. Smith'
     elif speaker_name == 'Wirthlin':
         new_speaker_name = 'Joseph B. Wirthlin'
     elif speaker_name == 'Young':
@@ -81,11 +85,11 @@ def standardize_names(soup):
             if 'S - Supp Mats' in genders and 'M - Male':
                 gender = 'M - Male'
             else:
-                print(genders, speakers)
+              #  print(genders, speakers)
                 gender = 'X - Mixed'
         else:
             gender = genders.pop()
-       # print(updated_speakers)
+
         quotation['speaker'] = updated_speakers
         quotation['gender'] = gender
         #print(quotation['speaker'])

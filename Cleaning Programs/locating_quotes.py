@@ -4,6 +4,7 @@ import xml.etree.ElementTree as ET
 import scripture_references
 from bs4 import BeautifulSoup
 import spacy
+from spacy.matcher import DependencyMatcher
 nlp = spacy.load('en_core_web_sm')
 
 def check_quote(to_check):
@@ -19,14 +20,43 @@ def check_quote(to_check):
     #    print(to_check)
     return True
 
+nlp.add_pipe('merge_entities')
 def speaker_from_verb(text_line,possible_speakers):
-    #TODO: This whole function
     speaker = ''
-    for possible_speaker in possible_speakers:
-    #figure out which one said the thing
-        speaker = possible_speaker
+   # print(text_line)
+    # https://stackoverflow.com/questions/67259823/problem-to-extract-ner-subject-verb-with-spacy-and-matcher
+    # add pipe is outside this function; I don't think it's causing issues for the other speaker stuff
+    pattern = [
+        {
+            "RIGHT_ID": "person",
+            "RIGHT_ATTRS": {"ENT_TYPE": "PERSON", "DEP": "nsubj"},
+        },
+        {
+            "LEFT_ID": "person",
+            "REL_OP": "<",
+            "RIGHT_ID": "verb",
+            "RIGHT_ATTRS": {"POS": "VERB"},
+        }
+    ]
+    matcher = DependencyMatcher(nlp.vocab)
+    matcher.add('PERVERB',[pattern])
+    speaker_doc = nlp(text_line)
+    matches = matcher(speaker_doc)
+    speaking_verbs = ['told','said','recalled','explained']
+    for match in matches:
+        match_id, (start, end) = match
+        #possible_speaker_name =
+        #ps_verb =
+        for possible_speaker in possible_speakers:
+            if re.search(possible_speaker,str(speaker_doc[start])) and str(speaker_doc[end]) in speaking_verbs:
+                return(possible_speaker)
 
-    return speaker
+        else:
+            #yes I know this is hardcoded but I will deal with this when it's an issue later
+            return 'Lucy Mack Smith'
+
+    #again. I know hardcoding is bad.
+    return 'LeGrand Richards'
 
 def find_entity(text_line):
     doc = nlp(text_line)
@@ -226,7 +256,10 @@ def modify_quote(soup):
                             quote_speaker = []
                             # TODO: Embedded citations
                             if len(embedded_folks) > 0:
-
+                                print(new_text)
+                                print("\tCited: ",citation_folks)
+                                print("\tEmbedded: ",embedded_folks)
+                                print("\tElsewhere: ",elsewhere_folks)
                                 #there are possibly embedded people
                                 pass
                             elif len(citation_folks) == 1 and citation_folks == elsewhere_folks:
@@ -245,7 +278,6 @@ def modify_quote(soup):
                             elif len(elsewhere_folks) == 1 and len(citation_folks) == 0:
                                 #there is one elsewhere person and no one anywhere
                                 quote_speaker.append(elsewhere_folks.pop())
-
                             elif (len(elsewhere_folks) > 0 and len(citation_folks) == 0) or \
                                     (len(elsewhere_folks) > 0 and re.search('quoted',possible_citation.group())):
                                 #there are more than one elsewhere people and no citation people
@@ -269,7 +301,7 @@ def modify_quote(soup):
                                     #In these remaining cases, there's usually two people mentioned in the sentence
                                     #and in some cases, it might be easy-ish to figure out who said it
                                     #i.e. "Person --of the Q12-- said"
-                                    quote_speaker.append(speaker_from_verb(more_possible_speakers))
+                                    quote_speaker.append(speaker_from_verb(new_text,more_possible_speakers))
                                 elif len(more_possible_speakers) == 1:
                                     #One person mentioned in sentence before quote
 
@@ -288,6 +320,8 @@ def modify_quote(soup):
                                     quote_speaker.append(elsewhere_folks.pop())
                                 elif 'Bruce R. McConkie' in citation_folks:
                                     quote_speaker.append(elsewhere_folks.pop())
+                                elif 'John A. Widtsoe' in citation_folks:
+                                    quote_speaker.append(elsewhere_folks.pop())
                                 elif 'History of the Church' in citation_folks:
                                     if len(elsewhere_folks) == 1:
                                         #This isn't foolproof, but it's the best I'm gonna get
@@ -299,8 +333,7 @@ def modify_quote(soup):
                                         quote_speaker.append(shared_speakers.pop())
                                     else:
 
-                                        quote_speaker.append(speaker_from_verb(elsewhere_folks))
-
+                                        quote_speaker.append(speaker_from_verb(new_text,elsewhere_folks))
 
                             #adds the quotation tag
                             speaker = ', '.join(str(x) for x in quote_speaker)
@@ -315,8 +348,8 @@ def modify_quote(soup):
                             new_contents = [new_text[:contents_start],quote_tag,new_text[pq.end()+1:]]
                             text_element.extend(new_contents)
                         else:
-                            #don't do anything with this because they're basically all scriptures, except for some
-                            #video narration that I'm ignoring
+                            #don't do anything with this because they're basically all scriptures,
+                            #except for some video narration that I'm ignoring
                             pass
                     #TODO: What if it's a quote that doesn't have a citation?
                     else:
