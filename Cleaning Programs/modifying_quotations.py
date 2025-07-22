@@ -21,7 +21,7 @@ def add_gender(speaker_name):
     #print(speaker_name)
     return gender
 
-def lengthen_name(speaker_name):
+def lengthen_name(speaker_name, quotation):
     new_speaker_name = ''
     if speaker_name == 'Ballard':
         new_speaker_name = 'M. Russell Ballard'
@@ -56,11 +56,51 @@ def lengthen_name(speaker_name):
         new_speaker_name = 'Joseph B. Wirthlin'
     elif speaker_name == 'Young':
         new_speaker_name = 'Brigham Young'
+    elif speaker_name == 'Chi Hong':
+        new_speaker_name = 'Chi Hong (Sam) Wong'
+    elif speaker_name == 'First Presidency':
+        new_speaker_name = 'The First Presidency'
+    elif speaker_name == 'Richards':
+        #This one is tricky because it's a 'Richards recalled that Joseph Smith told him' situation
+        new_speaker_name = 'Willard Richards'
+    elif speaker_name == 'Joseph':
+        new_speaker_name = 'Joseph Smith'
+    elif speaker_name == 'Woodruff':
+        new_speaker_name = 'Wilford Woodruff'
     else:
         new_speaker_name = speaker_name
     return new_speaker_name
 
-def standardize_names(soup):
+def fix_empty_speaker(quotation):
+    speaker = ''
+    if re.search('Being More Diligent', quotation.text) \
+            or re.search('Strong Modeling in the Home', quotation.text) \
+            or re.search('we need to avoid any tradition', quotation.text):
+        speaker = 'Valeri V. Cordón'
+    elif re.search('a small house', quotation.text):
+        speaker = 'Wilford Woodruff'
+    elif re.search('Brethren I have been very', quotation.text) \
+            or re.search('I could pray in my heart',quotation.text)\
+            or re.search('I teach the people correct principles',quotation.text):
+        speaker = 'Joseph Smith'
+    elif re.search('As far as our records show', quotation.text):
+        speaker = 'LeGrand Richards'
+        quotation['citation'] = 'Conference Report, Apr. 1981, 43; or Ensign, May 1981, 33'
+    elif re.search('I began to awake', quotation.text)\
+            or re.search('The Lord could get along',quotation.text):
+        speaker = 'Thomas B. Marsh'
+    elif re.search('You shall even live',quotation.text):
+        speaker = 'Joseph Smith, Sr.'
+    elif re.search('I have been happy in the privilege',quotation.text):
+        speaker = 'Ezra Taft Benson'
+    elif re.search('Born in poverty but nurtured in faith',quotation.text) \
+        or re.search('with a twinkle in his eye and a smile on his face',quotation.text):
+        speaker = 'Thomas S. Monson'
+    #else:
+     #   print(quotation.text)
+     #   print(quotation['citation'])
+    return speaker
+def standardize_names(soup, all_speakers):
     quotations = soup.find_all('quotation')
     for quotation in quotations:
         speakers = quotation['speaker'].split(', ')
@@ -77,9 +117,11 @@ def standardize_names(soup):
                 speaker = re.sub('\'s','',speaker)
             if len(speaker.split(' ')) == 1 and speaker != '' and speaker != 'Hymns':
                 #print(speaker," ; ",quotation.string)
-                speaker = lengthen_name(speaker)
-               # print(speaker)
+                speaker = lengthen_name(speaker, quotation)
+            if speaker == '':
+                speaker = fix_empty_speaker(quotation)
             updated_speakers.append(speaker)
+            all_speakers.add(speaker)
             genders.add(add_gender(speaker))
         if len(genders) > 1:
             if 'S - Supp Mats' in genders and 'M - Male':
@@ -89,8 +131,6 @@ def standardize_names(soup):
                 gender = 'X - Mixed'
         else:
             gender = genders.pop()
-        #if updated_speakers[0] == '':
-        #    print(quotation.text)
         quotation['speaker'] = updated_speakers
         quotation['gender'] = gender
         #print(quotation['speaker'])
@@ -99,7 +139,7 @@ def standardize_names(soup):
 def main():
     to_modify_dir = "C:\\Users\elena\PycharmProjects\MA_Thesis\Full_Manuals\Quotations_XML"
     modified_dir = "C:\\Users\elena\PycharmProjects\MA_Thesis\Full_Manuals\Sources_XML"
-
+    all_speakers = set()
     for manual in os.listdir(to_modify_dir):
       #  hold_up = input("wait a sec")
         to_modify_manual = to_modify_dir + "\\" + manual
@@ -108,8 +148,10 @@ def main():
         with open(to_modify_manual, 'r', encoding='utf-8') as f:
             file = f.read()
         soup = BeautifulSoup(file, 'xml')
-        standardize_names(soup)
+        standardize_names(soup, all_speakers)
         with open(modified_manual, 'w', encoding='utf-8') as modifying_manual:
             modifying_manual.write(soup.prettify())
 
+    #for speaker_name in all_speakers:
+       # print(speaker_name)
 #main()

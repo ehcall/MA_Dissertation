@@ -351,13 +351,6 @@ def modify_quote(soup):
                             new_contents = []
                             start_quote = 0
                             if len(needs_citation) > 0:
-                                pass
-                                '''
-                                I need it to go from the start of line, to the beginning of the first NC quote
-                                then, add the quote tag
-                                then, add the text from the end of the first NC quote to the start of the next quote
-                                '''
-
                                 for quote_section in needs_citation:
                                     new_contents.append(new_text[start_quote:quote_section.start()-1])
                                     quote_tag = soup.new_tag('quotation', speaker=speaker, citation=quote_citation,
@@ -462,7 +455,7 @@ def main():
     modified_dir = "C:\\Users\elena\PycharmProjects\MA_Thesis\Full_Manuals\Quotations_XML"
 
     for manual in os.listdir(to_modify_dir):
-        print('\n',manual)
+       # print('\n',manual)
         to_modify_manual = to_modify_dir + "\\" + manual
         modified_manual = modified_dir + "\\" + manual
         with open(to_modify_manual,'r', encoding='utf-8') as f:
