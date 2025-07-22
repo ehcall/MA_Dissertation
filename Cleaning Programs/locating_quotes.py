@@ -1,6 +1,5 @@
 import os
 import re
-import xml.etree.ElementTree as ET
 import scripture_references
 from bs4 import BeautifulSoup
 import spacy
@@ -21,9 +20,8 @@ def check_quote(to_check):
     return True
 
 nlp.add_pipe('merge_entities')
-def speaker_from_verb(text_line,possible_speakers):
+def speaker_from_verb(text_line):
     speaker = ''
-   # print(text_line)
     # https://stackoverflow.com/questions/67259823/problem-to-extract-ner-subject-verb-with-spacy-and-matcher
     # add pipe is outside this function; I don't think it's causing issues for the other speaker stuff
     pattern = [
@@ -227,19 +225,12 @@ def modify_quote(soup):
                             character_folks = set()
                             embedded_folks = set()
                             if len(people) > 0:
-                                #print(new_text)
-                                #print(pq.start())
                                 quote_start = pq.start()-1
-                               # print(quote_start,pq.start())
-
                                 if quote_start < 0:
                                     quote_start = 0
                                 not_quote_citation_text = new_text[:quote_start] + " {QUOTED TEXT} {CITATION}" \
                                                           + new_text[pq.end()+possible_citation.end():]
                                 not_quote_citation_text = re.sub('\{CITATION\}.*?\)\.$','{CITATION}',not_quote_citation_text)
-                                #not_quote_citation_text = re.sub('\r\n',' ',not_quote_citation_text)
-                               # print(not_quote_citation_text)
-
                                 for person in people:
                                     if re.search(person, pq.group()):
                                         if re.search('«',pq.group()):
@@ -256,17 +247,13 @@ def modify_quote(soup):
 
 
                             quote_speaker = []
-
-                               # pass
+                            # We are ignoring embedded quotes
                             if len(citation_folks) == 1 and citation_folks == elsewhere_folks:
-                            #elif len(citation_folks) == 1 and citation_folks == elsewhere_folks:
                                 #There is one citation person and one elsewhere person and they are the same
-                                #There are no embedded quotes
                                 quote_speaker.append(citation_folks.pop())
                             elif len(citation_folks) == 1 and len(elsewhere_folks) == 0:
                                 #there is one citation person and no one anywhere
                                 quote_speaker.append(citation_folks.pop())
-                                # print(quote_speaker)
                             elif len(citation_folks) > 1 and len(elsewhere_folks) == 0:
                                 # There are multiple people cited, but no one elsewhere
                                  for cfolk in citation_folks:
@@ -286,22 +273,16 @@ def modify_quote(soup):
                                 for line in split_nqct:
 
                                     if re.search('\{QUOTED TEXT\}',line):
-                                        #print(line)
                                         line = re.sub(r' ([A-Z]) ',r' \1. ',line)
                                         line = re.sub(r' (Jr) ',r' \1. ',line)
-                                        #print(line)
                                         for ef in elsewhere_folks:
                                             if re.search(ef,line):
                                                 more_possible_speakers.append(ef)
-                                               # print("Possible speaker: ",ef)
                                 if len(more_possible_speakers) > 1:
                                     #In these remaining cases, there's usually two people mentioned in the sentence
-                                    #and in some cases, it might be easy-ish to figure out who said it
-                                    #i.e. "Person --of the Q12-- said"
-                                    quote_speaker.append(speaker_from_verb(new_text,more_possible_speakers))
+                                    quote_speaker.append(speaker_from_verb(new_text))
                                 elif len(more_possible_speakers) == 1:
                                     #One person mentioned in sentence before quote
-
                                     quote_speaker.append(more_possible_speakers[0])
                                 else:
                                     #so, the thing going wrong is one of two things: the speaker is mentioned elsewhere
@@ -326,16 +307,15 @@ def modify_quote(soup):
 
                                         quote_speaker.append(elsewhere_folks.pop())
                                     else:
-                                        quote_speaker.append(speaker_from_verb(new_text, elsewhere_folks))
+                                        quote_speaker.append(speaker_from_verb(new_text))
                                         #print(elsewhere_folks)
                                 else:
-                                   # print(new_text)
                                     #this gets the element that's shared between the two sets
                                     shared_speakers = elsewhere_folks & citation_folks
                                     if shared_speakers:
                                         quote_speaker.append(shared_speakers.pop())
                                     else:
-                                        quote_speaker.append(speaker_from_verb(new_text,elsewhere_folks))
+                                        quote_speaker.append(speaker_from_verb(new_text))
 
                             #adds the quotation tag
                             speaker = ', '.join(str(x) for x in quote_speaker)
@@ -363,7 +343,6 @@ def modify_quote(soup):
                                 new_contents.append(new_text[start_quote:contents_start])
                                 new_contents.append(quote_tag)
                                 new_contents.append(new_text[pq.end() + 1:])
-                                #print(new_contents)
                             else:
                                 quote_tag = soup.new_tag('quotation', speaker=speaker, citation=quote_citation,
                                                          string=pq.group())
@@ -374,7 +353,6 @@ def modify_quote(soup):
                         else:
                             #don't do anything with this because they're basically all scriptures,
                             #except for some video narration that I'm ignoring
-                            #print(pq.group())
                             pass
                     else:
                         #Quotes without citations, but there's only one of it in the paragraph
@@ -415,12 +393,10 @@ def modify_quote(soup):
                                 speaker = 'Joseph Smith'
                                 citation = 'Lectures on Faith [1985], 38'
                             else:
-                               # print(pq.group())
                                 pass
 
                             #I mean, if I can clean this up, I can make it a function
                             if not (speaker == '' and citation == ''):
-                                #print(pq.group())
                                 try:
                                     text_element.clear()
                                 except AttributeError:
@@ -435,16 +411,6 @@ def modify_quote(soup):
                         #Quotes without citations that are part of a bigger paragraph
                         else:
                             needs_citation.append(pq)
-
-                       # if paragraph_level_citation != '':
-                        #    print(pq.group())
-                       # citationless_behavior.append(pq.group())
-                        #print(pq.group())
-                       # pass
-          #  if len(citationless_behavior) > 0:
-           #     print("\n\n")
-           #     for cq in sorted(citationless_behavior,key=len):
-           #         print(cq)
     return
 
 
