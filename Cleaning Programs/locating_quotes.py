@@ -156,12 +156,12 @@ def modify_quote(soup):
             new_text = re.sub(r'([^:])\n\"', r'\1 ¶ ', current_text)
             text_element.string = new_text
             possible_quotes = re.finditer('\"[\s\S]*?\"',text_element.string)
+            pq_count = re.findall('\"[\s\S]*?\"',text_element.string)
 
-            citationless_behavior = []
-            print(re.findall('\"[\s\S]*?\"',text_element.string))
+            needs_citation = []
             for pq in possible_quotes:
                 if check_quote(pq.group()):
-                    possible_citation = re.match(" [\(\[].*?[\)\]]", new_text[pq.end():])
+                    possible_citation = re.match("\?? [\(\[].*?[\)\]]", new_text[pq.end():])
                     if re.search('\(ChurchofJesusChrist.org\)',new_text) and re.search('The Family: A Proclamation to the World', new_text):
                         # hardcoded this because I *cannot* figure out what went wrong with this citation
                         #had to add AttributeError catch
@@ -257,14 +257,6 @@ def modify_quote(soup):
 
                             quote_speaker = []
 
-                           # if len(embedded_folks) > 0:
-                                # there are possibly embedded quotations.
-                                # I'm...gonna ignore these.
-                            #    print(new_text)
-                             #   print("\tCited: ",citation_folks)
-                             #   print("\tEmbedded: ",embedded_folks)
-                             #   print("\tElsewhere: ",elsewhere_folks)
-
                                # pass
                             if len(citation_folks) == 1 and citation_folks == elsewhere_folks:
                             #elif len(citation_folks) == 1 and citation_folks == elsewhere_folks:
@@ -350,21 +342,110 @@ def modify_quote(soup):
                             contents_start = pq.start() - 1
                             if contents_start < 0:
                                 contents_start = 0
-                            quote_tag = soup.new_tag('quotation',speaker=speaker,citation=quote_citation,string=pq.group())
+
                             try:
                                 text_element.clear()
                             except AttributeError:
                                 print(text_element)
-                            new_contents = [new_text[:contents_start],quote_tag,new_text[pq.end()+1:]]
+
+                            new_contents = []
+                            start_quote = 0
+                            if len(needs_citation) > 0:
+                                pass
+                                '''
+                                I need it to go from the start of line, to the beginning of the first NC quote
+                                then, add the quote tag
+                                then, add the text from the end of the first NC quote to the start of the next quote
+                                '''
+
+                                for quote_section in needs_citation:
+                                    new_contents.append(new_text[start_quote:quote_section.start()-1])
+                                    quote_tag = soup.new_tag('quotation', speaker=speaker, citation=quote_citation,
+                                                             string=quote_section.group())
+                                    new_contents.append(quote_tag)
+                                    start_quote = quote_section.end() + 1
+
+                                quote_tag = soup.new_tag('quotation', speaker=speaker, citation=quote_citation,
+                                                         string=pq.group())
+                                new_contents.append(new_text[start_quote:contents_start])
+                                new_contents.append(quote_tag)
+                                new_contents.append(new_text[pq.end() + 1:])
+                                #print(new_contents)
+                            else:
+                                quote_tag = soup.new_tag('quotation', speaker=speaker, citation=quote_citation,
+                                                         string=pq.group())
+                                new_contents = [new_text[:contents_start], quote_tag, new_text[pq.end() + 1:]]
+
                             text_element.extend(new_contents)
+
                         else:
                             #don't do anything with this because they're basically all scriptures,
                             #except for some video narration that I'm ignoring
-
+                            #print(pq.group())
                             pass
-                    #TODO: What if it's a quote that doesn't have a citation?
                     else:
-                        citationless_behavior.append(pq.group())
+                        #Quotes without citations, but there's only one of it in the paragraph
+                        if len(pq_count) < 2:
+                            speaker = ''
+                            citation = ''
+                            if re.search("A man would get nearer to God",pq.group()):
+                                speaker = 'Joseph Smith'
+                                citation = ''
+                            elif re.search("appeared within viewing distance", pq.group()):
+                                speaker = 'Frederick G. Williams'
+                                citation = 'The Revelations of the Prophet Joseph Smith, comp. Lyndon W. Cook [1981], 198.'
+                            elif re.search("A power went through me at that moment", pq.group()):
+                                speaker = 'A missionary'
+                                citation = ''
+                            elif re.search("the sound of the voice of the", pq.group()):
+                                speaker = 'Spencer W. Kimball'
+                                citation = 'Conference Report, Apr. 1977, 115; or Ensign, May 1977, 78'
+                            elif re.search("I always want to be with my own family",pq.group()):
+                                speaker = 'Children\'s Songbook'
+                                citation = 'Families Can Be Together Forever'
+                            elif re.search("happiness in family life is most likely to be achieved",pq.group()) \
+                                    or re.search("successful marriages and families are established",pq.group()):
+                                speaker = 'The First Presidency'
+                                citation = 'The Family: A Proclamation to the World'
+                            elif re.search("When an enemy had told a scandalous story", pq.group()):
+                                speaker = 'Joseph Smith'
+                                citation = 'Jesse W. Crosby, quoted in Hyrum L. Andrus and Helen Mae Andrus, comps., They Knew the Prophet [1974], 144.'
+                            elif re.search("Perhaps Jesus felt not only a sense",pq.group()) \
+                                    or re.search("He took His three apostles with Him",pq.group()) \
+                                    or re.search("The three chosen apostles were taught",pq.group()):
+                                speaker = 'David B. Haight'
+                                citation = 'Conference Report, Apr. 1977, 9–10; or Ensign, May 1977, 7–9'
+                            elif re.search("grow varieties of corn and beans that", pq.group()):
+                                speaker = 'Joseph B. Wirthlin'
+                                citation = 'Conference Report, Apr. 1989, 7; or Ensign, May 1989, 7'
+                            elif re.search("a correct idea of",pq.group()):
+                                speaker = 'Joseph Smith'
+                                citation = 'Lectures on Faith [1985], 38'
+                            else:
+                               # print(pq.group())
+                                pass
+
+                            #I mean, if I can clean this up, I can make it a function
+                            if not (speaker == '' and citation == ''):
+                                #print(pq.group())
+                                try:
+                                    text_element.clear()
+                                except AttributeError:
+                                    print(text_element)
+                                contents_start = pq.start() - 1
+                                if contents_start < 0:
+                                    contents_start = 0
+                                quote_tag = soup.new_tag('quotation', speaker=speaker, citation=citation,
+                                                         string=pq.group())
+                                new_contents = [new_text[:contents_start], quote_tag, new_text[pq.end() + 1:]]
+                                text_element.extend(new_contents)
+                        #Quotes without citations that are part of a bigger paragraph
+                        else:
+                            needs_citation.append(pq)
+
+                       # if paragraph_level_citation != '':
+                        #    print(pq.group())
+                       # citationless_behavior.append(pq.group())
                         #print(pq.group())
                        # pass
           #  if len(citationless_behavior) > 0:
@@ -392,4 +473,4 @@ def main():
         with open(modified_manual, 'w', encoding='utf-8') as modifying_manual:
             modifying_manual.write(soup.prettify())
 
-main()
+#main()

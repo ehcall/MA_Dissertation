@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<text>
-<header
-		manual-title="Book of Mormon 2020 Come, Follow Me—For Sunday School"
+<text manual-title="Book of Mormon 2020 Come, Follow Me—For Sunday School"
 		audience="adult-teacher"
 		copyright="2019"
 		usage-years="2020"
 		standard-work="book-of-mormon"
 		edition="original"
 		era="come-follow-me">
-	</header>
+
 <chapter type="cover">
 <heading>BOOK OF MORMON 2020</heading>
 <heading>Come, Follow Me—For Sunday School</heading>
@@ -123,7 +121,7 @@ Many other resources are available for you to use as you prepare, including idea
 <heading>The Book of Mormon can help us "get nearer to God."</heading>
 <ul>
 <li>The introduction to the Book of Mormon provides information that is important for readers to understand. Your class members might benefit from scanning the introduction and identifying three to five points that would be helpful to share with someone reading the Book of Mormon for the first time. Class members could then share what they find. They may even want to role-play introducing the Book of Mormon to someone. The videos suggested in "Additional Resources" might also help.</li>
-<li>Some members of your class may have had experiences that confirmed the truth of Joseph Smith's words: "A man would get nearer to God by abiding by [the Book of Mormon's] precepts, than by any other book." You might ask class members to share how living the truths they've learned in the Book of Mormon has helped them get nearer to God. You could also invite class members to share answers to these three questions suggested by President Russell M. Nelson: "First, what would your life be like without the Book of Mormon? Second, what would you not know? And third, what would you not have?" ("The Book of Mormon: What Would Your Life Be Like without It?" Ensign or Liahona, Nov. 2017, 61).</li>
+<li note="this is all one paragraph in the manual, but I'm breaking it up so I can treat quotes separately"><p>Some members of your class may have had experiences that confirmed the truth of Joseph Smith's words: "A man would get nearer to God by abiding by [the Book of Mormon's] precepts, than by any other book." You might ask class members to share how living the truths they've learned in the Book of Mormon has helped them get nearer to God.</p><p> You could also invite class members to share answers to these three questions suggested by President Russell M. Nelson: "First, what would your life be like without the Book of Mormon? Second, what would you not know? And third, what would you not have?" ("The Book of Mormon: What Would Your Life Be Like without It?" Ensign or Liahona, Nov. 2017, 61).</p></li>
 <li>Did anyone in your class read Book of Mormon passages that contain different names for the plan of salvation, as suggested in Come, Follow Me—For Individuals and Families? If so, invite them to share what they learned.</li>
 </ul>
 <graphics-caption>The Three Witnesses bore testimony of the Book of Mormon.</graphics-caption>
@@ -1071,16 +1069,13 @@ The teacher smiled and spoke to the children in Samoan. They nodded their heads 
 <p>To inspire class members to read Mosiah 25–28, ask them to think about someone they know who has strayed from the gospel. Tell them that as they read these chapters, they might find insights on how to help that person return.</p>
 <heading>Additional Resources</heading>
 <heading>Why do we need the Church?</heading>
-<p note="list in here doesn't currently have unordered list tags due to XML parser">Elder D. Todd Christofferson said: "I realize that there are those who consider themselves religious or spiritual and yet reject participation in a church or even the need for such an institution. Religious practice is for them purely personal. Yet the Church is the creation of Him in whom our spirituality is centered — Jesus Christ. It is worth pausing to consider why He chooses to use a church, His Church, The Church of Jesus Christ of Latter-day Saints, to carry out His and His Father's work."
+<p note="list in here doesn't currently have unordered list tags">Elder D. Todd Christofferson said: "I realize that there are those who consider themselves religious or spiritual and yet reject participation in a church or even the need for such an institution. Religious practice is for them purely personal. Yet the Church is the creation of Him in whom our spirituality is centered — Jesus Christ. It is worth pausing to consider why He chooses to use a church, His Church, The Church of Jesus Christ of Latter-day Saints, to carry out His and His Father's work."
 Elder Christofferson then shared reasons the Lord has organized a Church (see "Why the Church," Ensign or Liahona, Nov. 2015, 108–11):
-<ul>
-<li>"To preach the good news of the gospel of Jesus Christ and administer the ordinances of salvation — in other words, to bring people to Christ."</li>
-<li>"To create a community of Saints that will sustain one another in the «strait and narrow path which leads to eternal life» [2 Nephi 31:18]. . . . Joined in faith, we teach and edify one another and strive to approach the full measure of discipleship."</li>
-<li>To "offer a weekly gathering of respite and renewal, a time and place to leave the world behind — the Sabbath."</li>
-<li>"To achieve needful things that cannot be accomplished by individuals or smaller groups [including] dealing with poverty, . . . [taking] the gospel to all the world. . . [building and operating] temples, houses of the Lord, where vital ordinances and covenants may be administered."</li>
-<li>To make available priesthood keys, with which "the Church's priesthood officers preserve the purity of the Savior's doctrine and the integrity of His saving ordinances, . . . help prepare those who wish to receive them, judge the qualification and worthiness of those who apply, and then perform them . . . . [and] identify both truth and falsehood."</li>
-</ul>
-</p>
+"To preach the good news of the gospel of Jesus Christ and administer the ordinances of salvation — in other words, to bring people to Christ."
+"To create a community of Saints that will sustain one another in the «strait and narrow path which leads to eternal life» [2 Nephi 31:18]. . . . Joined in faith, we teach and edify one another and strive to approach the full measure of discipleship."
+To "offer a weekly gathering of respite and renewal, a time and place to leave the world behind — the Sabbath."
+"To achieve needful things that cannot be accomplished by individuals or smaller groups [including] dealing with poverty, . . . [taking] the gospel to all the world. . . [building and operating] temples, houses of the Lord, where vital ordinances and covenants may be administered."
+To make available priesthood keys, with which "the Church's priesthood officers preserve the purity of the Savior's doctrine and the integrity of His saving ordinances, . . . help prepare those who wish to receive them, judge the qualification and worthiness of those who apply, and then perform them . . . . [and] identify both truth and falsehood."</p>
 </chapter>
 <chapter type="lesson">
 <graphics-caption>Conversion of Alma the Younger, by Gary L. Kapp</graphics-caption>
@@ -1750,13 +1745,11 @@ After quoting Alma 23:6–8, Elder Bednar went on to explain:
 ". . . A third key to helping children become sin-resistant is to begin at very early ages to lovingly infuse them with basic gospel doctrines and principles from the scriptures, the Articles of Faith, the For the Strength of Youth booklet, Primary songs, hymns, and our own personal testimonies — that will lead children to the Savior. . . . 
 ". . . Helping children understand, make, and keep sacred covenants is another key. . . . Teaching children to keep simple promises when they are young will empower them to keep holy covenants later in life" ("A Sin-Resistant Generation," Ensign or Liahona, May 2017, 88–89).</p>
 <heading>How to avoid taking offense.</heading>
-<p>In his message "And Nothing Shall Offend Them" (Ensign or Liahona, Nov. 2006, 89–92), Elder David A. Bednar gave the following counsel:</p>
-<ul>
-<li>Recognize that being offended is a choice. "To believe that someone or something can<i>make</i>us feel offended, angry, hurt, or bitter diminishes our moral agency and transforms us into objects to be acted upon. As agents, however, you and I have the power to act and to choose how we will respond to an offensive or hurtful situation."</li>
-<li>Look to the Savior. "The Savior is the greatest example of how we should respond to potentially offensive events or situations [see 1 Nephi 19:9]."</li>
-<li>Be understanding of others' weaknesses. "One of the greatest indicators of our own spiritual maturity is revealed in how we respond to the weaknesses, the inexperience, and the potentially offensive actions of others."</li>
-<li>Communicate directly. "If a person says or does something that we consider offensive, our first obligation is to refuse to take offense and then communicate privately, honestly, and directly with that individual. Such an approach invites inspiration from the Holy Ghost and permits misperceptions to be clarified and true intent to be understood."</li>
-</ul>
+<p>In his message "And Nothing Shall Offend Them" (Ensign or Liahona, Nov. 2006, 89–92), Elder David A. Bednar gave the following counsel:
+Recognize that being offended is a choice. "To believe that someone or something can<i>make</i>us feel offended, angry, hurt, or bitter diminishes our moral agency and transforms us into objects to be acted upon. As agents, however, you and I have the power to act and to choose how we will respond to an offensive or hurtful situation."
+Look to the Savior. "The Savior is the greatest example of how we should respond to potentially offensive events or situations [see 1 Nephi 19:9]."
+Be understanding of others' weaknesses. "One of the greatest indicators of our own spiritual maturity is revealed in how we respond to the weaknesses, the inexperience, and the potentially offensive actions of others."
+Communicate directly. "If a person says or does something that we consider offensive, our first obligation is to refuse to take offense and then communicate privately, honestly, and directly with that individual. Such an approach invites inspiration from the Holy Ghost and permits misperceptions to be clarified and true intent to be understood."</p>
 <heading>Improving Our Teaching</heading>
 <p><b>Draw on experiences in the home.</b>Since the home is the center of gospel learning, consider how your classroom experiences can draw on what is happening there. For instance, you can modify many activities in Come, Follow Me—For Individuals and Families to use in your class to reinforce class members' personal and family study.</p>
 </chapter>
@@ -1959,12 +1952,12 @@ How can we keep our conversion strong despite opposition?</li>
 <heading>Additional Resources</heading>
 <heading>Helping build faith in the rising generation.</heading>
 <p>Elder Valeri V. Cordón of the Seventy suggested three ways to help the rising generation stay true to the gospel:
-<ol>
-<li>1. <i>"Being More Diligent and Concerned at Home. . . .</i>Powerful teaching is extremely important to preserve the gospel in our families, and it requires diligence and effort. We have been invited many times to acquire the practice of daily family and personal scripture study. Many families that are doing this are blessed each day with greater unity and a closer relationship with the Lord.</li>
-<li> 2. <i>"Strong Modeling in the Home. . . .</i>It is not enough just to talk to our children about the importance of temple marriage, fasting, and keeping the Sabbath day holy. They must see us making room in our schedules to attend the temple as frequently as we can. They need to see our commitment to fasting regularly and keeping the entire Sabbath day holy. </li>
-<li> 3. <i>"Traditions. . . .</i>As families, we need to avoid any tradition that will prevent us from keeping the Sabbath day holy or having daily scripture study and prayer at home. We need to close the digital doors of our home to pornography and all other evil influences. To combat the worldly traditions of our day, we need to use the scriptures and the voice of our modern prophets to teach our children about their divine identity, their purpose in life, and the divine mission of Jesus Christ"</li> </ol> ("The Language of the Gospel," Ensign or Liahona, May 2017, 56–57; italics added). </p>
+1. <i>"Being More Diligent and Concerned at Home. . . .</i>Powerful teaching is extremely important to preserve the gospel in our families, and it requires diligence and effort. We have been invited many times to acquire the practice of daily family and personal scripture study. Many families that are doing this are blessed each day with greater unity and a closer relationship with the Lord.
+2. <i>"Strong Modeling in the Home. . . .</i>It is not enough just to talk to our children about the importance of temple marriage, fasting, and keeping the Sabbath day holy. They must see us making room in our schedules to attend the temple as frequently as we can. They need to see our commitment to fasting regularly and keeping the entire Sabbath day holy. 
+3. <i>"Traditions. . . .</i>As families, we need to avoid any tradition that will prevent us from keeping the Sabbath day holy or having daily scripture study and prayer at home. We need to close the digital doors of our home to pornography and all other evil influences. To combat the worldly traditions of our day, we need to use the scriptures and the voice of our modern prophets to teach our children about their divine identity, their purpose in life, and the divine mission of Jesus Christ" ("The Language of the Gospel," Ensign or Liahona, May 2017, 56–57; italics added). </p>
 
 <heading>Improving Our Teaching</heading>
+<p><b>Include those who are struggling.</b>Sometimes struggling class members need to be included to feel loved. Consider asking them to play a role in an upcoming lesson or making sure they have a ride to church. Don't give up if they don't respond to your efforts at first. (See Teaching in the Savior's Way, 8–9.)</p>
 <p><b>Include those who are struggling.</b>Sometimes struggling class members need to be included to feel loved. Consider asking them to play a role in an upcoming lesson or making sure they have a ride to church. Don't give up if they don't respond to your efforts at first. (See Teaching in the Savior's Way, 8–9.)</p>
 </chapter>
 <chapter type="lesson">
