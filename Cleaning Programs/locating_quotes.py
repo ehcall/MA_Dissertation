@@ -117,7 +117,7 @@ def find_entity(text_line):
             if not scripture_references.check_if_scripture(entity.text):
                 if not re.match('[a-z]', entity.text):
                     if entity.text not in not_relevant_entities:
-                        if len(re.findall('Brigham Young',text_line)) > 0 and len(re.findall('Brigham Young University', text_line)) > 0:
+                        if len(re.findall('Brigham Young',entity.text)) > 0 and len(re.findall('Brigham Young University', text_line)) > 0:
                             pass
                         else:
                             people.add(entity.text)
@@ -188,6 +188,7 @@ def modify_quote(soup):
                                 else:
                                     quote_citation = possible_citation.group()
                         else:
+
                             if re.search('Conference Report', possible_citation.group()) or re.search('Ensign',
                                                                                                       possible_citation.group()):
                                 quote_citation = possible_citation.group()
@@ -247,6 +248,7 @@ def modify_quote(soup):
 
 
                             quote_speaker = []
+
                             # We are ignoring embedded quotes
                             if len(citation_folks) == 1 and citation_folks == elsewhere_folks:
                                 #There is one citation person and one elsewhere person and they are the same
@@ -319,6 +321,7 @@ def modify_quote(soup):
 
                             #adds the quotation tag
                             speaker = ', '.join(str(x) for x in quote_speaker)
+
                             contents_start = pq.start() - 1
                             if contents_start < 0:
                                 contents_start = 0
@@ -330,25 +333,34 @@ def modify_quote(soup):
 
                             new_contents = []
                             start_quote = 0
-                            if len(needs_citation) > 0:
-                                for quote_section in needs_citation:
-                                    new_contents.append(new_text[start_quote:quote_section.start()-1])
+                            if not (re.match('\?',quote_citation) and speaker == 'Neal A. Maxwell'):
+                                if len(needs_citation) > 0:
+                                    if re.search('Why We Are Organized',quote_citation):
+                                        speaker = 'Julie B. Beck'
+                                    for quote_section in needs_citation:
+                                        new_contents.append(new_text[start_quote:quote_section.start()-1])
+                                        quote_tag = soup.new_tag('quotation', speaker=speaker, citation=quote_citation,
+                                                                 string=quote_section.group(), partial_quote="True")
+                                        new_contents.append(quote_tag)
+                                        start_quote = quote_section.end() + 1
+
                                     quote_tag = soup.new_tag('quotation', speaker=speaker, citation=quote_citation,
-                                                             string=quote_section.group())
+                                                             string=pq.group(), partial_quote="True")
+                                    new_contents.append(new_text[start_quote:contents_start])
                                     new_contents.append(quote_tag)
-                                    start_quote = quote_section.end() + 1
+                                    new_contents.append(new_text[pq.end() + 1:])
+                                else:
+                                    #Hardcoded thing I had to fix
+                                    if re.search('the most important preparation is of yourself', new_text):
+                                        speaker = 'Boyd K. Packer'
+                                        quote_citation = 'Boyd K. Packer, Teach Ye Diligently [1975], 219'
+                                    if re.search('Elders\' Journal', quote_citation) and speaker == 'Neal A. Maxwell':
+                                        speaker = 'Joseph Smith'
+                                    quote_tag = soup.new_tag('quotation', speaker=speaker, citation=quote_citation,
+                                                             string=pq.group(), partial_quote="False")
+                                    new_contents = [new_text[:contents_start], quote_tag, new_text[pq.end() + 1:]]
 
-                                quote_tag = soup.new_tag('quotation', speaker=speaker, citation=quote_citation,
-                                                         string=pq.group())
-                                new_contents.append(new_text[start_quote:contents_start])
-                                new_contents.append(quote_tag)
-                                new_contents.append(new_text[pq.end() + 1:])
-                            else:
-                                quote_tag = soup.new_tag('quotation', speaker=speaker, citation=quote_citation,
-                                                         string=pq.group())
-                                new_contents = [new_text[:contents_start], quote_tag, new_text[pq.end() + 1:]]
-
-                            text_element.extend(new_contents)
+                                text_element.extend(new_contents)
 
                         else:
                             #don't do anything with this because they're basically all scriptures,
@@ -393,6 +405,7 @@ def modify_quote(soup):
                                 speaker = 'Joseph Smith'
                                 citation = 'Lectures on Faith [1985], 38'
                             else:
+
                                 pass
 
                             #I mean, if I can clean this up, I can make it a function
@@ -405,7 +418,7 @@ def modify_quote(soup):
                                 if contents_start < 0:
                                     contents_start = 0
                                 quote_tag = soup.new_tag('quotation', speaker=speaker, citation=citation,
-                                                         string=pq.group())
+                                                         string=pq.group(), partial_quote="False")
                                 new_contents = [new_text[:contents_start], quote_tag, new_text[pq.end() + 1:]]
                                 text_element.extend(new_contents)
                         #Quotes without citations that are part of a bigger paragraph

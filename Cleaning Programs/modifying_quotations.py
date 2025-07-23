@@ -5,14 +5,15 @@ from bs4 import BeautifulSoup
 def add_gender(speaker_name):
     gender = 'M - Male'
     supp_mats = ['Old Testament Student Manual','Hymns','Teaching — No Greater Call','Church Handbook','Gospel Topics',
-                 'Handbook 2','History of the Church','Our Heritage','Teaching in the Savior\'s Way','True to the Faith']
+                 'Handbook 2','History of the Church','Our Heritage','Teaching in the Savior\'s Way','True to the Faith',
+                 'Children\'s Songbook']
 
     females = ['Ann M. Dibb','Bonnie H. Cordon','Bonnie L. Oscarson','Elaine S. Dalton','Elmina S. Taylor',
                'Janette Hales Beckham','Jean B. Bingham','Joy D. Jones','Julie B. Beck','Laura Russell Bunker',
                'Linda S. Reeves','Margaret D. Nadauld','Mary Ellen Smoot','Mary Isabella Horne','Michelle Craig',
                'Serepta M. Heywood','Sharon Eubank','Sheri L. Dew','Vicki F. Matsumori','Virginia H. Pearce',
                'Virginia U. Jensen', 'Chieko Okazaki','Wendy Nelson','Belle S. Spafford','Cori Christensen',
-               'Eliza R. Snow','Lucy Mack Smith',]
+               'Eliza R. Snow','Lucy Mack Smith','Linda K. Burton']
     if speaker_name in supp_mats:
         #Hymns could probably be adjusted based on who wrote the hymn, but they're kind of treated as gender neutral
         gender = 'S - Supp Mats'
@@ -96,6 +97,8 @@ def fix_empty_speaker(quotation):
     elif re.search('Born in poverty but nurtured in faith',quotation.text) \
         or re.search('with a twinkle in his eye and a smile on his face',quotation.text):
         speaker = 'Thomas S. Monson'
+    elif re.search('The prestigious Scientific American',quotation.text):
+        speaker = 'Jeffrey R. Holland'
     #else:
      #   print(quotation.text)
      #   print(quotation['citation'])
@@ -113,13 +116,21 @@ def standardize_names(soup, all_speakers):
             speaker = re.sub('President ','',speaker)
             speaker = re.sub('Prophet ','',speaker)
             speaker = re.sub('Bishop ','',speaker)
-            if speaker != 'Teaching in the Savior\'s Way':
+            if speaker == 'The Family: A Proclamation to the World':
+                speaker = 'First Presidency'
+            if speaker == 'Stanley B. Kimball':
+                speaker = 'Heber C. Kimball'
+            speaker = re.sub('The ','',speaker)
+            if speaker != 'Teaching in the Savior\'s Way' and speaker != 'Children\'s Songbook':
                 speaker = re.sub('\'s','',speaker)
+            if speaker == 'Albert L. Zobell Jr.':
+                speaker = 'James E. Talmage'
             if len(speaker.split(' ')) == 1 and speaker != '' and speaker != 'Hymns':
                 #print(speaker," ; ",quotation.string)
                 speaker = lengthen_name(speaker, quotation)
             if speaker == '':
                 speaker = fix_empty_speaker(quotation)
+
             updated_speakers.append(speaker)
             all_speakers.add(speaker)
             genders.add(add_gender(speaker))
@@ -131,7 +142,10 @@ def standardize_names(soup, all_speakers):
                 gender = 'X - Mixed'
         else:
             gender = genders.pop()
-        quotation['speaker'] = updated_speakers
+        if len(updated_speakers) > 1:
+            quotation['speaker'] = ', '.join(updated_speakers)
+        else:
+            quotation['speaker'] = updated_speakers
         quotation['gender'] = gender
         #print(quotation['speaker'])
 
@@ -154,4 +168,4 @@ def main():
 
     #for speaker_name in all_speakers:
        # print(speaker_name)
-#main()
+main()

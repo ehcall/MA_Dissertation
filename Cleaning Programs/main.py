@@ -2,6 +2,7 @@ import adding_headings
 import adding_sections
 import locating_quotes
 import modifying_quotations
+import quote_data
 
 print("...Adding headings")
 adding_headings.main()
@@ -15,3 +16,5 @@ locating_quotes.main()
 print("...Modifying quotations")
 modifying_quotations.main()
 #wait = input("Hold on")
+print("...Fetching quote data")
+quote_data.main()

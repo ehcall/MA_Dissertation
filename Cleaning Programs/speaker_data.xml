@@ -1,0 +1,2545 @@
+<?xml version="1.0"?>
+<text>
+  <person>
+    <name> Ann M. Dibb </name>
+    <person-id>1</person-id>
+    <gender>F</gender>
+    <religion>LDS</religion>
+    <birthdate>1954-06-30</birthdate>
+    <deathdate>NA</deathdate>
+    <calling>
+      <calling-title>YW - GP - 2nd Counselor</calling-title>
+      <calling-start>2008-04-05</calling-start>
+      <calling-end>2013-04-06</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Asael Smith </name>
+    <person-id>2</person-id>
+    <gender>M</gender>
+    <religion>LDS</religion>
+    <birthdate>1743-03-07</birthdate>
+    <deathdate>1830-10-30</deathdate>
+  </person>
+  <person>
+    <name> B. H. Roberts </name>
+    <person-id>3</person-id>
+    <gender>M</gender>
+    <religion>LDS</religion>
+    <birthdate>1857-03-13</birthdate>
+    <deathdate>1933-09-27</deathdate>
+    <calling>
+      <calling-title>Seventy</calling-title>
+      <calling-start>1888-10-7</calling-start>
+      <calling-end>1933-09-27</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Belle S. Spafford </name>
+    <person-id>4</person-id>
+    <gender>F</gender>
+    <religion>LDS</religion>
+    <birthdate>1895-10-08</birthdate>
+    <deathdate>1982-02-02</deathdate>
+    <calling>
+      <calling-title>RS - GP - President</calling-title>
+      <calling-start>1945-04-06</calling-start>
+      <calling-end>1974-10-03</calling-end>
+    </calling>
+    <calling>
+      <calling-title>RS - GP - 2nd Counselor</calling-title>
+      <calling-start>1942</calling-start>
+      <calling-end>1945</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Bonnie H. Cordon </name>
+    <person-id>5</person-id>
+    <gender>F</gender>
+    <religion>LDS</religion>
+    <birthdate>1964-03-11</birthdate>
+    <deathdate>NA</deathdate>
+    <calling>
+      <calling-title>YW - GP - President</calling-title>
+      <calling-start>2018-03-31</calling-start>
+      <calling-end>2023-08-01</calling-end>
+    </calling>
+    <calling>
+      <calling-title>SVU President</calling-title>
+      <calling-start>2023-10-13</calling-start>
+      <calling-end>NA</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Bonnie L. Oscarson </name>
+    <person-id>6</person-id>
+    <gender>F</gender>
+    <religion>LDS</religion>
+    <birthdate>1950-10-23</birthdate>
+    <deathdate>NA</deathdate>
+    <calling>
+      <calling-title>YW - GP - President</calling-title>
+      <calling-start>2013-04-06</calling-start>
+      <calling-end>2018-03-31</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Boyd K. Packer </name>
+    <person-id>7</person-id>
+    <gender>M</gender>
+    <religion>LDS</religion>
+    <birthdate>1924-09-10</birthdate>
+    <deathdate>2015-07-03</deathdate>
+    <calling>
+      <calling-title>Q12 - Pres</calling-title>
+      <calling-start>2008-02-03</calling-start>
+      <calling-end>2015-07-03</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Q12 - Acting Pres</calling-title>
+      <calling-start>1994-06-05</calling-start>
+      <calling-end>2008-01-27</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Q12</calling-title>
+      <calling-start>1970-04-06</calling-start>
+      <calling-end>2015-07-03</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Assistant to the Q12</calling-title>
+      <calling-start>1961-09-30</calling-start>
+      <calling-end>1970-04-06</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Brigham Young </name>
+    <person-id>8</person-id>
+    <gender>M</gender>
+    <religion>LDS</religion>
+    <birthdate>1801-06-01</birthdate>
+    <deathdate>1877-08-29</deathdate>
+    <calling>
+      <calling-title>President</calling-title>
+      <calling-start>1847-12-27</calling-start>
+      <calling-end>1877-08-29</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Q12 - Pres</calling-title>
+      <calling-start>1840-04-14</calling-start>
+      <calling-end>1847-12-27</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Q12</calling-title>
+      <calling-start>1835-02-12</calling-start>
+      <calling-end>1840-04-14</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Bruce D. Porter </name>
+    <person-id>9</person-id>
+    <gender>M</gender>
+    <religion>LDS</religion>
+    <birthdate>1952-09-18</birthdate>
+    <deathdate>2016-12-28</deathdate>
+    <calling>
+      <calling-title>Seventy</calling-title>
+      <calling-start>1995-04-01</calling-start>
+      <calling-end>2016-12-28</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Bruce R. McConkie </name>
+    <person-id>10</person-id>
+    <gender>M</gender>
+    <religion>LDS</religion>
+    <birthdate>1915-07-29</birthdate>
+    <deathdate>1985-04-19</deathdate>
+    <calling>
+      <calling-title>Q12</calling-title>
+      <calling-start>1972-10-12</calling-start>
+      <calling-end>1985-04-19</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Seventy</calling-title>
+      <calling-start>1946-10-06</calling-start>
+      <calling-end>1972-10-12</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> C. S. Lewis </name>
+    <person-id>11</person-id>
+    <gender>M</gender>
+    <religion>Not LDS</religion>
+    <birthdate>1898-11-29</birthdate>
+    <deathdate>1963-11-22</deathdate>
+  </person>
+  <person>
+    <name> Carl B. Pratt </name>
+    <person-id>12</person-id>
+    <gender>M</gender>
+    <religion>LDS</religion>
+    <birthdate>1941-10-20</birthdate>
+    <deathdate>NA</deathdate>
+    <calling>
+      <calling-title>Seventy</calling-title>
+      <calling-start>1997-04-05</calling-start>
+      <calling-end>2011-10-01</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Carlos E. Asay </name>
+    <person-id>13</person-id>
+    <gender>M</gender>
+    <religion>LDS</religion>
+    <birthdate>1926-06-12</birthdate>
+    <deathdate>1999-04-10</deathdate>
+    <calling>
+      <calling-title>Seventy</calling-title>
+      <calling-start>1976-04-03</calling-start>
+      <calling-end>1980-02-22</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Seventy - Presidency</calling-title>
+      <calling-start>1980-02-22</calling-start>
+      <calling-end>1986-08-15</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Seventy</calling-title>
+      <calling-start>1986-08-15</calling-start>
+      <calling-end>1989-10-01</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Seventy - Presidency</calling-title>
+      <calling-start>1989-10-01</calling-start>
+      <calling-end>1996-08-15</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Seventy</calling-title>
+      <calling-start>1996-08-15</calling-start>
+      <calling-end>1996-10-05</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Charles A. Callis </name>
+    <person-id>14</person-id>
+    <gender>M</gender>
+    <religion>LDS</religion>
+    <birthdate>1865-05-04</birthdate>
+    <deathdate>1947-01-21</deathdate>
+    <calling>
+      <calling-title>Q12</calling-title>
+      <calling-start>1933-10-12</calling-start>
+      <calling-end>1947-01-21</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Charles W. Penrose </name>
+    <person-id>15</person-id>
+    <gender>M</gender>
+    <religion>LDS</religion>
+    <birthdate>1832-02-04</birthdate>
+    <deathdate>1925-05-16</deathdate>
+    <calling>
+      <calling-title>FP - 1st Counselor</calling-title>
+      <calling-start>1921-03-10</calling-start>
+      <calling-end>1925-05-16</calling-end>
+    </calling>
+    <calling>
+      <calling-title>FP - 2nd Counselor</calling-title>
+      <calling-start>1918-11-23</calling-start>
+      <calling-end>1921-03-10</calling-end>
+    </calling>
+    <calling>
+      <calling-title>FP - 2nd Counselor</calling-title>
+      <calling-start>1911-12-07</calling-start>
+      <calling-end>1918-11-19</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Q12</calling-title>
+      <calling-start>1904-07-07</calling-start>
+      <calling-end>1911-12-07</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Chi Hong (Sam) Wong </name>
+    <person-id>16</person-id>
+    <gender>M</gender>
+    <religion>LDS</religion>
+    <birthdate>1962-05-25</birthdate>
+    <deathdate>NA</deathdate>
+    <calling>
+      <calling-title>Seventy</calling-title>
+      <calling-start>2014-04-05</calling-start>
+    </calling>
+  </person>
+  <person>
+    <name> Cori Christensen </name>
+    <person-id>17</person-id>
+    <gender>F</gender>
+    <religion>LDS</religion>
+    <birthdate>UNKNOWN</birthdate>
+    <deathdate>UNKNOWN</deathdate>
+  </person>
+  <person>
+    <name> D. Todd Christofferson </name>
+    <person-id>18</person-id>
+    <gender>M</gender>
+    <religion>LDS</religion>
+    <birthdate>1945-01-24</birthdate>
+    <deathdate>NA</deathdate>
+    <calling>
+      <calling-title>Seventy</calling-title>
+      <calling-start>1993-04-03</calling-start>
+      <calling-end>1998-08-15</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Seventy - Presidency</calling-title>
+      <calling-start>1998-08-15</calling-start>
+      <calling-end>2008-04-05</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Q12</calling-title>
+      <calling-start>2008-04-05</calling-start>
+      <calling-end>NA</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Dale G. Renlund </name>
+    <person-id>19</person-id>
+    <gender>M</gender>
+    <religion>LDS</religion>
+    <birthdate>1952-11-13</birthdate>
+    <deathdate>NA</deathdate>
+    <calling>
+      <calling-title>Seventy</calling-title>
+      <calling-start>2009-04-04</calling-start>
+      <calling-end>2015-10-03</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Q12</calling-title>
+      <calling-start>2015-10-03</calling-start>
+      <calling-end>NA</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Dallin H. Oaks </name>
+    <person-id>20</person-id>
+    <gender>M</gender>
+    <religion>LDS</religion>
+    <birthdate>1932-08-12</birthdate>
+    <deathdate>NA</deathdate>
+    <calling>
+      <calling-title>BYU President</calling-title>
+      <calling-start>1971-08</calling-start>
+      <calling-end>1980-08</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Justice of the Utah Supreme Court</calling-title>
+      <calling-start>1980-08</calling-start>
+      <calling-end>1984-05-03</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Q12</calling-title>
+      <calling-start>1984-05-03</calling-start>
+      <calling-end>2018-01-14</calling-end>
+    </calling>
+    <calling>
+      <calling-title>FP - 1st Counselor</calling-title>
+      <calling-start>2018-01-14</calling-start>
+      <calling-end>NA</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Dan Dipty </name>
+    <person-id>21</person-id>
+    <gender>M</gender>
+    <religion>LDS</religion>
+    <birthdate>UNKNOWN</birthdate>
+    <deathdate>UNKNOWN</deathdate>
+  </person>
+  <person>
+    <name> David A. Bednar </name>
+    <person-id>22</person-id>
+    <gender>M</gender>
+    <religion>LDS</religion>
+    <birthdate>1952-06-15</birthdate>
+    <deathdate>NA</deathdate>
+    <calling>
+      <calling-title>BYU-I President</calling-title>
+      <calling-start>1997-07-01</calling-start>
+      <calling-end>2004-12-01</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Q12</calling-title>
+      <calling-start>2004-10-02</calling-start>
+      <calling-end>NA</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> David B. Haight </name>
+    <person-id>23</person-id>
+    <gender>M</gender>
+    <religion>LDS</religion>
+    <birthdate>1906-09-02</birthdate>
+    <deathdate>2004-07-31</deathdate>
+    <calling>
+      <calling-title>Assistant to the Q12</calling-title>
+      <calling-start>1970-06-06</calling-start>
+      <calling-end>1976-01-08</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Q12</calling-title>
+      <calling-start>1976-01-08</calling-start>
+      <calling-end>2004-07-31</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> David O. McKay </name>
+    <person-id>24</person-id>
+    <gender>M</gender>
+    <religion>LDS</religion>
+    <birthdate>1873-09-08</birthdate>
+    <deathdate>1970-01-18</deathdate>
+    <calling>
+      <calling-title>Q12</calling-title>
+      <calling-start>1906-04-09</calling-start>
+      <calling-end>1934-10-11</calling-end>
+    </calling>
+    <calling>
+      <calling-title>FP - 2nd Counselor</calling-title>
+      <calling-start>1934-10-11</calling-start>
+      <calling-end>1945-05-14</calling-end>
+    </calling>
+    <calling>
+      <calling-title>FP - 2nd Counselor</calling-title>
+      <calling-start>1945-05-21</calling-start>
+      <calling-end>1951-04-04</calling-end>
+    </calling>
+    <calling>
+      <calling-title>President</calling-title>
+      <calling-start>1951-04-09</calling-start>
+      <calling-end>1970-01-18</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> David Whitmer </name>
+    <person-id>25</person-id>
+    <gender>M</gender>
+    <religion>LDS</religion>
+    <birthdate>1805-01-07</birthdate>
+    <deathdate>1888-01-25</deathdate>
+  </person>
+  <person>
+    <name> Dennis B. Neuenschwander </name>
+    <person-id>26</person-id>
+    <gender>M</gender>
+    <religion>LDS</religion>
+    <birthdate>1939-10-06</birthdate>
+    <deathdate>NA</deathdate>
+    <calling>
+      <calling-title>Seventy</calling-title>
+      <calling-start>1991-04-06</calling-start>
+      <calling-end>2000-08-15</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Seventy - Presidency</calling-title>
+      <calling-start>2000-08-15</calling-start>
+      <calling-end>2004-04-03</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Seventy</calling-title>
+      <calling-start>2004-04-03</calling-start>
+      <calling-end>2009-10-03</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Dieter F. Uchtdorf </name>
+    <person-id>27</person-id>
+    <gender>M</gender>
+    <religion>LDS</religion>
+    <birthdate>1940-11-06</birthdate>
+    <deathdate>NA</deathdate>
+    <calling>
+      <calling-title>Seventy</calling-title>
+      <calling-start>1994-04-02</calling-start>
+      <calling-end>2002-08-15</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Seventy - Presidency</calling-title>
+      <calling-start>2002-08-15</calling-start>
+      <calling-end>2004-10-02</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Q12</calling-title>
+      <calling-start>2004-10-02</calling-start>
+      <calling-end>2008-02-03</calling-end>
+    </calling>
+    <calling>
+      <calling-title>FP - 2nd Counselor</calling-title>
+      <calling-start>2008-02-03</calling-start>
+      <calling-end>2018-01-02</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Q12</calling-title>
+      <calling-start>2018-01-02</calling-start>
+      <calling-end>NA</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Donald L. Hallstrom </name>
+    <person-id>28</person-id>
+    <gender>M</gender>
+    <religion>LDS</religion>
+    <birthdate>1949-07-27</birthdate>
+    <deathdate>NA</deathdate>
+    <calling>
+      <calling-title>Seventy</calling-title>
+      <calling-start>2000-04-01</calling-start>
+      <calling-end>2009-04-04</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Seventy - Presidency</calling-title>
+      <calling-start>2009-04-04</calling-start>
+      <calling-end>2017-08-01</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Seventy</calling-title>
+      <calling-start>2017-08-01</calling-start>
+      <calling-end>2019-10-05</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Donald S. Conkey </name>
+    <person-id>29</person-id>
+    <gender>M</gender>
+    <religion>LDS</religion>
+    <birthdate>1927-12-26</birthdate>
+    <deathdate>2022-02-02</deathdate>
+  </person>
+  <person>
+    <name> E. Cecil McGavin </name>
+    <person-id>30</person-id>
+    <gender>M</gender>
+    <religion>LDS</religion>
+    <birthdate>1900-02-10</birthdate>
+    <deathdate>1975-07-28</deathdate>
+  </person>
+  <person>
+    <name> Edwin F. Parry </name>
+    <person-id>31</person-id>
+    <gender>M</gender>
+    <religion>LDS</religion>
+    <birthdate>1882-10-16</birthdate>
+    <deathdate>1918-11-25</deathdate>
+  </person>
+  <person>
+    <name> Elaine S. Dalton </name>
+    <person-id>32</person-id>
+    <gender>F</gender>
+    <religion>LDS</religion>
+    <birthdate>1946-11-01</birthdate>
+    <deathdate>NA</deathdate>
+    <calling>
+      <calling-title>YW - GP - 2nd Counselor</calling-title>
+      <calling-start>2002-10-02</calling-start>
+      <calling-end>2007-03-31</calling-end>
+    </calling>
+    <calling>
+      <calling-title>YW - GP - 1st Counselor</calling-title>
+      <calling-start>2007-03-31</calling-start>
+      <calling-end>2008-04-05</calling-end>
+    </calling>
+    <calling>
+      <calling-title>YW - GP - President</calling-title>
+      <calling-start>2008-04-05</calling-start>
+      <calling-end>2013-04-06</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Eliza R. Snow </name>
+    <person-id>33</person-id>
+    <gender>F</gender>
+    <religion>LDS</religion>
+    <birthdate>1804-01-21</birthdate>
+    <deathdate>1887-12-05</deathdate>
+    <calling>
+      <calling-title>RS - GP - President</calling-title>
+      <calling-start>1866-12</calling-start>
+      <calling-end>1887-12-05</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Elmina S. Taylor </name>
+    <person-id>34</person-id>
+    <gender>F</gender>
+    <religion>LDS</religion>
+    <birthdate>1830-09-12</birthdate>
+    <deathdate>1904-12-06</deathdate>
+    <calling>
+      <calling-title>YW - GP - President</calling-title>
+      <calling-start>1880-06-19</calling-start>
+      <calling-end>1904-12-06</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Erich W. Kopischke </name>
+    <person-id>35</person-id>
+    <gender>M</gender>
+    <religion>LDS</religion>
+    <birthdate>1956-10-20</birthdate>
+    <deathdate>NA</deathdate>
+    <calling>
+      <calling-title>Seventy</calling-title>
+      <calling-start>2007-03-31</calling-start>
+      <calling-end>NA</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Ezra Taft Benson </name>
+    <person-id>36</person-id>
+    <gender>M</gender>
+    <religion>LDS</religion>
+    <birthdate>1989-08-04</birthdate>
+    <deathdate>1994-05-30</deathdate>
+    <calling>
+      <calling-title>Q12</calling-title>
+      <calling-start>1943-10-07</calling-start>
+      <calling-end>1973-12-30</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Q12 - Pres</calling-title>
+      <calling-start>1973-12-30</calling-start>
+      <calling-end>1985-11-10</calling-end>
+    </calling>
+    <calling>
+      <calling-title>President</calling-title>
+      <calling-start>1985-11-10</calling-start>
+      <calling-end>1994-05-30</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Ezra Thayer </name>
+    <person-id>37</person-id>
+    <gender>M</gender>
+    <religion>LDS</religion>
+    <birthdate>1791-10-14</birthdate>
+    <deathdate>1862-09-06</deathdate>
+  </person>
+  <person>
+    <name> Frederick G. Williams </name>
+    <person-id>38</person-id>
+    <gender>M</gender>
+    <religion>LDS</religion>
+    <birthdate>1787-10-28</birthdate>
+    <deathdate>1842-10-10</deathdate>
+    <calling>
+      <calling-title>FP - 2nd Counselor</calling-title>
+      <calling-start>1833-02-18</calling-start>
+      <calling-end>1837-11-7</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Frederick William Hurst </name>
+    <person-id>39</person-id>
+    <gender>M</gender>
+    <religion>LDS</religion>
+    <birthdate>1833-06-30</birthdate>
+    <deathdate>1918-10-31</deathdate>
+  </person>
+  <person>
+    <name> Gary E. Stevenson </name>
+    <person-id>40</person-id>
+    <gender>M</gender>
+    <religion>LDS</religion>
+    <birthdate>1955-08-06</birthdate>
+    <deathdate>NA</deathdate>
+    <calling>
+      <calling-title>Seventy</calling-title>
+      <calling-start>2008-04-05</calling-start>
+      <calling-end>2012-03-31</calling-end>
+    </calling>
+    <calling>
+      <calling-title>PB - Bishop</calling-title>
+      <calling-start>2012-03-31</calling-start>
+      <calling-end>2015-10-09</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Q12</calling-title>
+      <calling-start>2015-10-09</calling-start>
+      <calling-end>NA</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Gene R. Cook </name>
+    <person-id>41</person-id>
+    <gender>M</gender>
+    <religion>LDS</religion>
+    <birthdate>1941-09-01</birthdate>
+    <deathdate>NA</deathdate>
+    <calling>
+      <calling-title>Seventy</calling-title>
+      <calling-start>1975-10-03</calling-start>
+      <calling-end>2007-10-06</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> George A. Smith </name>
+    <person-id>43</person-id>
+    <gender>M</gender>
+    <religion>LDS</religion>
+    <birthdate>1817-06-26</birthdate>
+    <deathdate>1875-09-01</deathdate>
+    <calling>
+      <calling-title>Q12</calling-title>
+      <calling-start>1839-04-26</calling-start>
+      <calling-end>1868-10-07</calling-end>
+    </calling>
+    <calling>
+      <calling-title>FP - 1st Counselor</calling-title>
+      <calling-start>1868-10-07</calling-start>
+      <calling-end>1875-09-01</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> George Albert Smith </name>
+    <person-id>42</person-id>
+    <gender>M</gender>
+    <religion>LDS</religion>
+    <birthdate>1870-04-04</birthdate>
+    <deathdate>1951-04-04</deathdate>
+    <calling>
+      <calling-title>Q12</calling-title>
+      <calling-start>1903-10-08</calling-start>
+      <calling-end>1943-06-21</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Q12 - Pres</calling-title>
+      <calling-start>1943-06-21</calling-start>
+      <calling-end>1945-05-21</calling-end>
+    </calling>
+    <calling>
+      <calling-title>President</calling-title>
+      <calling-start>1945-05-21</calling-start>
+      <calling-end>1951-04-04</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> George Q. Cannon </name>
+    <person-id>44</person-id>
+    <gender>M</gender>
+    <religion>LDS</religion>
+    <birthdate>1827-01-11</birthdate>
+    <deathdate>1901-04-12</deathdate>
+    <calling>
+      <calling-title>Q12</calling-title>
+      <calling-start>1860-08-26</calling-start>
+      <calling-end>1873-06-08</calling-end>
+    </calling>
+    <calling>
+      <calling-title>FP - Counselor</calling-title>
+      <calling-start>1873-06-08</calling-start>
+      <calling-end>1877-08-29</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Q12</calling-title>
+      <calling-start>1877-08-29</calling-start>
+      <calling-end>1880-10-10</calling-end>
+    </calling>
+    <calling>
+      <calling-title>FP - 1st Counselor</calling-title>
+      <calling-start>1880-10-10</calling-start>
+      <calling-end>1887-07-25</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Q12</calling-title>
+      <calling-start>1887-07-25</calling-start>
+      <calling-end>1889-04-07</calling-end>
+    </calling>
+    <calling>
+      <calling-title>FP - 1st Counselor</calling-title>
+      <calling-start>1889-04-07</calling-start>
+      <calling-end>1901-04-12</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> George Reynolds </name>
+    <person-id>45</person-id>
+    <gender>M</gender>
+    <religion>LDS</religion>
+    <birthdate>1842-01-01</birthdate>
+    <deathdate>1909-08-09</deathdate>
+    <calling>
+      <calling-title>Seventy</calling-title>
+      <calling-start>1890-04-05</calling-start>
+      <calling-end>1909-08-09</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> George Washington </name>
+    <person-id>46</person-id>
+    <gender>M</gender>
+    <religion>Not LDS</religion>
+    <birthdate>1732-02-22</birthdate>
+    <deathdate>1799-12-14</deathdate>
+  </person>
+  <person>
+    <name> Gordon B. Hinckley </name>
+    <person-id>47</person-id>
+    <gender>M</gender>
+    <religion>LDS</religion>
+    <birthdate>1910-06-26</birthdate>
+    <deathdate>2008-01-27</deathdate>
+    <calling>
+      <calling-title>Assistant to the Q12</calling-title>
+      <calling-start>1958-04-06</calling-start>
+      <calling-end>1961-10-05</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Q12</calling-title>
+      <calling-start>1961-10-05</calling-start>
+      <calling-end>1981-07-23</calling-end>
+    </calling>
+    <calling>
+      <calling-title>FP - Counselor</calling-title>
+      <calling-start>1981-07-23</calling-start>
+      <calling-end>1982-12-02</calling-end>
+    </calling>
+    <calling>
+      <calling-title>FP - 2nd Counselor</calling-title>
+      <calling-start>1982-12-02</calling-start>
+      <calling-end>1985-11-5</calling-end>
+    </calling>
+    <calling>
+      <calling-title>FP - 1st Counselor</calling-title>
+      <calling-start>1985-11-5</calling-start>
+      <calling-end>1995-03-12</calling-end>
+    </calling>
+    <calling>
+      <calling-title>President</calling-title>
+      <calling-start>1995-03-12</calling-start>
+      <calling-end>2008-01-27</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> H. David Burton </name>
+    <person-id>48</person-id>
+    <gender>M</gender>
+    <religion>LDS</religion>
+    <birthdate>1938-04-25</birthdate>
+    <deathdate>NA</deathdate>
+    <calling>
+      <calling-title>PB - 1st Counselor</calling-title>
+      <calling-start>1992-10-03</calling-start>
+      <calling-end>1995-12-27</calling-end>
+    </calling>
+    <calling>
+      <calling-title>PB - Bishop</calling-title>
+      <calling-start>1995-12-27</calling-start>
+      <calling-end>2012-03-31</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Harold B. Lee </name>
+    <person-id>49</person-id>
+    <gender>M</gender>
+    <religion>LDS</religion>
+    <birthdate>1899-03-28</birthdate>
+    <deathdate>1973-12-26</deathdate>
+    <calling>
+      <calling-title>Q12</calling-title>
+      <calling-start>1941-04-10</calling-start>
+      <calling-end>1970-01-23</calling-end>
+    </calling>
+    <calling>
+      <calling-title>FP - 1st Counselor</calling-title>
+      <calling-start>1970-01-23</calling-start>
+      <calling-end>1972-07-07</calling-end>
+    </calling>
+    <calling>
+      <calling-title>President</calling-title>
+      <calling-start>1972-07-07</calling-start>
+      <calling-end>1973-12-26</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Hartman Rector Jr. </name>
+    <person-id>50</person-id>
+    <gender>M</gender>
+    <religion>LDS</religion>
+    <birthdate>1924-08-20</birthdate>
+    <deathdate>2018-11-06</deathdate>
+    <calling>
+      <calling-title>Seventy</calling-title>
+      <calling-start>1968-04-06</calling-start>
+      <calling-end>1994-10-01</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Heber C. Kimball </name>
+    <person-id>51</person-id>
+    <gender>M</gender>
+    <religion>LDS</religion>
+    <birthdate>1801-06-14</birthdate>
+    <deathdate>1868-06-22</deathdate>
+    <calling>
+      <calling-title>Q12</calling-title>
+      <calling-start>1835-02-14</calling-start>
+      <calling-end>1847-12-27</calling-end>
+    </calling>
+    <calling>
+      <calling-title>FP - 1st Counselor</calling-title>
+      <calling-start>1847-12-27</calling-start>
+      <calling-end>1868-06-22</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Heber J. Grant </name>
+    <person-id>52</person-id>
+    <gender>M</gender>
+    <religion>LDS</religion>
+    <birthdate>1856-11-22</birthdate>
+    <deathdate>1945-05-14</deathdate>
+    <calling>
+      <calling-title>Q12</calling-title>
+      <calling-start>1882-10-16</calling-start>
+      <calling-end>1916-11-18</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Q12 - Pres</calling-title>
+      <calling-start>1916-11-18</calling-start>
+      <calling-end>1918-11-23</calling-end>
+    </calling>
+    <calling>
+      <calling-title>President</calling-title>
+      <calling-start>1918-11-23</calling-start>
+      <calling-end>1945-05-14</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Henry B. Eyring </name>
+    <person-id>53</person-id>
+    <gender>M</gender>
+    <religion>LDS</religion>
+    <birthdate>1933-05-31</birthdate>
+    <deathdate>NA</deathdate>
+    <calling>
+      <calling-title>BYU-I President</calling-title>
+      <calling-start>1971</calling-start>
+      <calling-end>1977</calling-end>
+    </calling>
+    <calling>
+      <calling-title>PB - 1st Counselor</calling-title>
+      <calling-start>1985-04-01</calling-start>
+      <calling-end>1992-10-03</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Seventy</calling-title>
+      <calling-start>1992-10-03</calling-start>
+      <calling-end>1995-04-01</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Q12</calling-title>
+      <calling-start>1995-04-01</calling-start>
+      <calling-end>2007-10-06</calling-end>
+    </calling>
+    <calling>
+      <calling-title>FP - 2nd Counselor</calling-title>
+      <calling-start>2007-10-06</calling-start>
+      <calling-end>2008-01-27</calling-end>
+    </calling>
+    <calling>
+      <calling-title>FP - 1st Counselor</calling-title>
+      <calling-start>2008-01-27</calling-start>
+      <calling-end>2018-01-02</calling-end>
+    </calling>
+    <calling>
+      <calling-title>FP - 2nd Counselor</calling-title>
+      <calling-start>2018-01-14</calling-start>
+      <calling-end>NA</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Hermas </name>
+    <person-id>54</person-id>
+    <gender>M</gender>
+    <religion>Not LDS</religion>
+    <birthdate>UNKNOWN</birthdate>
+    <deathdate>UNKNOWN</deathdate>
+  </person>
+  <person>
+    <name> Howard W. Hunter </name>
+    <person-id>55</person-id>
+    <gender>M</gender>
+    <religion>LDS</religion>
+    <birthdate>1907-11-14</birthdate>
+    <deathdate>1995-03-03</deathdate>
+    <calling>
+      <calling-title>Q12</calling-title>
+      <calling-start>1959-10-15</calling-start>
+      <calling-end>1985-11-10</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Q12 - Acting Pres</calling-title>
+      <calling-start>1985-11-10</calling-start>
+      <calling-end>1988-05-20</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Q12 - Pres</calling-title>
+      <calling-start>1988-05-20</calling-start>
+      <calling-end>1994-06-05</calling-end>
+    </calling>
+    <calling>
+      <calling-title>President</calling-title>
+      <calling-start>1994-06-05</calling-start>
+      <calling-end>1995-03-03</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Hugh B. Brown </name>
+    <person-id>56</person-id>
+    <gender>M</gender>
+    <religion>LDS</religion>
+    <birthdate>1883-10-24</birthdate>
+    <deathdate>1975-12-02</deathdate>
+    <calling>
+      <calling-title>Assistant to the Q12</calling-title>
+      <calling-start>1953-10-4</calling-start>
+      <calling-end>1958-04-10</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Q12</calling-title>
+      <calling-start>1958-04-10</calling-start>
+      <calling-end>1961-06-22</calling-end>
+    </calling>
+    <calling>
+      <calling-title>FP - 3rd Counselor</calling-title>
+      <calling-start>1961-06-22</calling-start>
+      <calling-end>1961-10-12</calling-end>
+    </calling>
+    <calling>
+      <calling-title>FP - 2nd Counselor</calling-title>
+      <calling-start>1961-10-12</calling-start>
+      <calling-end>1963-10-04</calling-end>
+    </calling>
+    <calling>
+      <calling-title>FP - 1st Counselor</calling-title>
+      <calling-start>1963-10-04</calling-start>
+      <calling-end>1970-01-18</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Q12</calling-title>
+      <calling-start>1970-01-18</calling-start>
+      <calling-end>1975-12-02</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Hyrum Smith </name>
+    <person-id>57</person-id>
+    <gender>M</gender>
+    <religion>LDS</religion>
+    <birthdate>1800-02-09</birthdate>
+    <deathdate>1844-06-27</deathdate>
+  </person>
+  <person>
+    <name> J Ballard Washburn </name>
+    <person-id>58</person-id>
+    <gender>M</gender>
+    <religion>LDS</religion>
+    <birthdate>1929-01-18</birthdate>
+    <deathdate>NA</deathdate>
+    <calling>
+      <calling-title>Seventy</calling-title>
+      <calling-start>1990-03-31</calling-start>
+      <calling-end>1994-08-15</calling-end>
+    </calling>
+    <calling>
+      <calling-title>SS - GP - 1st Counselor</calling-title>
+      <calling-start>1994-08-15</calling-start>
+      <calling-end>1995-09-30</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> J. Reuben Clark Jr. </name>
+    <person-id>59</person-id>
+    <gender>M</gender>
+    <religion>LDS</religion>
+    <birthdate>1871-09-01</birthdate>
+    <deathdate>1961-10-06</deathdate>
+    <calling>
+      <calling-title>FP - 2nd Counselor</calling-title>
+      <calling-start>1933-04-06</calling-start>
+      <calling-end>1934-10-06</calling-end>
+    </calling>
+    <calling>
+      <calling-title>FP - 1st Counselor</calling-title>
+      <calling-start>1934-10-06</calling-start>
+      <calling-end>1951-04-04</calling-end>
+    </calling>
+    <calling>
+      <calling-title>FP - 2nd Counselor</calling-title>
+      <calling-start>1951-04-04</calling-start>
+      <calling-end>1959-06-12</calling-end>
+    </calling>
+    <calling>
+      <calling-title>FP - 1st Counselor</calling-title>
+      <calling-start>1959-06-12</calling-start>
+      <calling-end>1961-10-06</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> James E. Faust </name>
+    <person-id>60</person-id>
+    <gender>M</gender>
+    <religion>LDS</religion>
+    <birthdate>1920-07-31</birthdate>
+    <deathdate>2007-08-10</deathdate>
+    <calling>
+      <calling-title>Assistant to the Q12</calling-title>
+      <calling-start>1972-10-06</calling-start>
+      <calling-end>1976-10-01</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Seventy - Presidency</calling-title>
+      <calling-start>1976-10-01</calling-start>
+      <calling-end>1978-09-30</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Q12</calling-title>
+      <calling-start>1978-09-30</calling-start>
+      <calling-end>1995-03-12</calling-end>
+    </calling>
+    <calling>
+      <calling-title>FP - 2nd Counselor</calling-title>
+      <calling-start>1995-03-12</calling-start>
+      <calling-end>2007-08-10</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> James E. Talmage </name>
+    <person-id>61</person-id>
+    <gender>M</gender>
+    <religion>LDS</religion>
+    <birthdate>1862-11-21</birthdate>
+    <deathdate>1933-06-27</deathdate>
+    <calling>
+      <calling-title>Q12</calling-title>
+      <calling-start>1911-12-08</calling-start>
+      <calling-end>1933-06-27</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Janette Hales Beckham </name>
+    <person-id>62</person-id>
+    <gender>F</gender>
+    <religion>LDS</religion>
+    <birthdate>1933-06-07</birthdate>
+    <deathdate>2022-03-04</deathdate>
+    <calling>
+      <calling-title>YW - GP - 2nd Counselor</calling-title>
+      <calling-start>1990-03-31</calling-start>
+      <calling-end>1992-04-04</calling-end>
+    </calling>
+    <calling>
+      <calling-title>YW - GP - President</calling-title>
+      <calling-start>1992-04-04</calling-start>
+      <calling-end>1997-10-04</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Jay E. Jensen </name>
+    <person-id>63</person-id>
+    <gender>M</gender>
+    <religion>LDS</religion>
+    <birthdate>1942-02-05</birthdate>
+    <deathdate>NA</deathdate>
+    <calling>
+      <calling-title>Seventy</calling-title>
+      <calling-start>1992-06-06</calling-start>
+      <calling-end>2008-08-01</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Seventy - Presidency</calling-title>
+      <calling-start>2008-08-01</calling-start>
+      <calling-end>2012-08-01</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Seventy</calling-title>
+      <calling-start>2012-08-01</calling-start>
+      <calling-end>2012-10-06</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Jean B. Bingham </name>
+    <person-id>64</person-id>
+    <gender>F</gender>
+    <religion>LDS</religion>
+    <birthdate>1952-06-10</birthdate>
+    <deathdate>NA</deathdate>
+    <calling>
+      <calling-title>RS - GP - President</calling-title>
+      <calling-start>2017-04-01</calling-start>
+      <calling-end>2022-08-01</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Jeffrey R. Holland </name>
+    <person-id>65</person-id>
+    <gender>M</gender>
+    <religion>LDS</religion>
+    <birthdate>1940-12-03</birthdate>
+    <deathdate>NA</deathdate>
+    <calling>
+      <calling-title>BYU President</calling-title>
+      <calling-start>1980-09</calling-start>
+      <calling-end>1989-04</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Seventy</calling-title>
+      <calling-start>1989-04-01</calling-start>
+      <calling-end>1994-06-23</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Q12</calling-title>
+      <calling-start>1994-06-23</calling-start>
+      <calling-end>2023-11-15</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Q12 -  Acting Pres</calling-title>
+      <calling-start>2023-11-15</calling-start>
+      <calling-end>NA</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Joe J. Christensen </name>
+    <person-id>66</person-id>
+    <gender>M</gender>
+    <religion> LDS </religion>
+    <birthdate>1929-07-21</birthdate>
+    <deathdate>2021-05-18</deathdate>
+    <calling>
+      <calling-title>BYU-I President</calling-title>
+      <calling-start>1985</calling-start>
+      <calling-end>1989</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Seventy</calling-title>
+      <calling-start>1989-04-01</calling-start>
+      <calling-end>1993-08-15</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Seventy - Presidency</calling-title>
+      <calling-start>1993-08-15</calling-start>
+      <calling-end>1999-08-15</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Seventy</calling-title>
+      <calling-start>1999-08-15</calling-start>
+      <calling-end>1999-10-02</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> John A. Widtsoe </name>
+    <person-id>67</person-id>
+    <gender>M</gender>
+    <religion> LDS </religion>
+    <birthdate>1872-01-31</birthdate>
+    <deathdate>1952-11-29</deathdate>
+    <calling>
+      <calling-title>Q12</calling-title>
+      <calling-start>1921-03-17</calling-start>
+      <calling-end>1952-11-29</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> John H. Groberg </name>
+    <person-id>68</person-id>
+    <gender>M</gender>
+    <religion> LDS </religion>
+    <birthdate>1934-06-17</birthdate>
+    <deathdate>NA</deathdate>
+    <calling>
+      <calling-title>Seventy</calling-title>
+      <calling-start>1976-04-03</calling-start>
+      <calling-end>2004-04-03</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Seventy - Presidency</calling-title>
+      <calling-start>2004-04-03</calling-start>
+      <calling-end>2005-08-15</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Seventy</calling-title>
+      <calling-start>2005-08-15</calling-start>
+      <calling-end>2005-10-01</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> John K. Carmack </name>
+    <person-id>69</person-id>
+    <gender>M</gender>
+    <religion> LDS </religion>
+    <birthdate>1931-05-10</birthdate>
+    <deathdate>NA</deathdate>
+    <calling>
+      <calling-title>Seventy</calling-title>
+      <calling-start>1984-04-07</calling-start>
+      <calling-end>2001-10-06</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> John Taylor </name>
+    <person-id>70</person-id>
+    <gender>M</gender>
+    <religion> LDS </religion>
+    <birthdate>1808-11-01</birthdate>
+    <deathdate>1887-07-25</deathdate>
+    <calling>
+      <calling-title>Q12</calling-title>
+      <calling-start>1838-12-19</calling-start>
+      <calling-end>1875-04-10</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Q12 - Pres</calling-title>
+      <calling-start>1875-04-10</calling-start>
+      <calling-end>1880-10-10</calling-end>
+    </calling>
+    <calling>
+      <calling-title>President</calling-title>
+      <calling-start>1880-10-10</calling-start>
+      <calling-end>1887-07-25</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Joseph B. Wirthlin </name>
+    <person-id>71</person-id>
+    <gender>M</gender>
+    <religion> LDS </religion>
+    <birthdate>1917-06-11</birthdate>
+    <deathdate>2008-12-01</deathdate>
+    <calling>
+      <calling-title>Assistant to the Q12</calling-title>
+      <calling-start>1975-04-04</calling-start>
+      <calling-end>1976-10-01</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Seventy</calling-title>
+      <calling-start>1976-10-01</calling-start>
+      <calling-end>1986-08-28</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Seventy - Presidency</calling-title>
+      <calling-start>1986-08-28</calling-start>
+      <calling-end>1986-10-04</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Q12</calling-title>
+      <calling-start>1986-10-04</calling-start>
+      <calling-end>2008-12-01</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Joseph F. Smith </name>
+    <person-id>72</person-id>
+    <gender>M</gender>
+    <religion> LDS </religion>
+    <birthdate>1838-11-13</birthdate>
+    <deathdate>1918-11-19</deathdate>
+    <calling>
+      <calling-title>FP - Counselor</calling-title>
+      <calling-start>1866-07-01</calling-start>
+      <calling-end>1877-08-29</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Q12</calling-title>
+      <calling-start>1877-08-29</calling-start>
+      <calling-end>1880-10-10</calling-end>
+    </calling>
+    <calling>
+      <calling-title>FP - 2nd Counselor</calling-title>
+      <calling-start>1880-10-10</calling-start>
+      <calling-end>1887-07-25</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Q12</calling-title>
+      <calling-start>1887-07-25</calling-start>
+      <calling-end>1889-04-07</calling-end>
+    </calling>
+    <calling>
+      <calling-title>FP - 2nd Counselor</calling-title>
+      <calling-start>1889-04-07</calling-start>
+      <calling-end>1901-10-06</calling-end>
+    </calling>
+    <calling>
+      <calling-title>FP - 1st Counselor</calling-title>
+      <calling-start>1901-10-06</calling-start>
+      <calling-end>1901-10-10</calling-end>
+    </calling>
+    <calling>
+      <calling-title>President</calling-title>
+      <calling-start>1901-10-10</calling-start>
+      <calling-end>1918-11-19</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Joseph Fielding Smith </name>
+    <person-id>73</person-id>
+    <gender>M</gender>
+    <religion>LDS</religion>
+    <birthdate>
+</birthdate>
+    <deathdate>
+</deathdate>
+  </person>
+  <person>
+    <name> Joseph Fielding Smith Jr. </name>
+    <person-id>74</person-id>
+    <gender>M</gender>
+    <religion> LDS </religion>
+    <birthdate>1876-07-19</birthdate>
+    <deathdate>1972-07-02</deathdate>
+    <calling>
+      <calling-title>Q12</calling-title>
+      <calling-start>1910-04-07</calling-start>
+      <calling-end>1950-08-08</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Q12 - Acting Pres</calling-title>
+      <calling-start>1950-08-08</calling-start>
+      <calling-end>1951-04-04</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Q12 - Pres</calling-title>
+      <calling-start>1951-04-04</calling-start>
+      <calling-end>1965-10-29</calling-end>
+    </calling>
+    <calling>
+      <calling-title>FP - Counselor</calling-title>
+      <calling-start>1965-10-29</calling-start>
+      <calling-end>1970-01-18</calling-end>
+    </calling>
+    <calling>
+      <calling-title>President</calling-title>
+      <calling-start>1970-01-18</calling-start>
+      <calling-end>1972-07-02</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Joseph Smith </name>
+    <person-id>75</person-id>
+    <gender>M</gender>
+    <religion> LDS </religion>
+    <birthdate>1805-12-23</birthdate>
+    <deathdate>1844-06-27</deathdate>
+    <calling>
+      <calling-title>President</calling-title>
+      <calling-start>1830-04-06</calling-start>
+      <calling-end>1844-06-27</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Joseph Smith, Sr. </name>
+    <person-id>76</person-id>
+    <gender>M</gender>
+    <religion> LDS </religion>
+    <birthdate>1771-07-12</birthdate>
+    <deathdate>1840-09-14</deathdate>
+  </person>
+  <person>
+    <name> Joy D. Jones </name>
+    <person-id>77</person-id>
+    <gender>F</gender>
+    <religion> LDS </religion>
+    <birthdate>1954-07-20</birthdate>
+    <deathdate>NA</deathdate>
+    <calling>
+      <calling-title>PR - GP - President</calling-title>
+      <calling-start>2016-04-02</calling-start>
+      <calling-end>2021-04-03</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Julie B. Beck </name>
+    <person-id>78</person-id>
+    <gender>F</gender>
+    <religion> LDS </religion>
+    <birthdate>1954-09-29</birthdate>
+    <deathdate>NA</deathdate>
+    <calling>
+      <calling-title>YW - GP - 1st Counselor</calling-title>
+      <calling-start>2002-10-05</calling-start>
+      <calling-end>2007-03-31</calling-end>
+    </calling>
+    <calling>
+      <calling-title>RS - GP - President</calling-title>
+      <calling-start>2007-03-31</calling-start>
+      <calling-end>2012-03-31</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Kevin R. Duncan </name>
+    <person-id>79</person-id>
+    <gender>M</gender>
+    <religion> LDS </religion>
+    <birthdate>1960-10-06</birthdate>
+    <deathdate>NA</deathdate>
+    <calling>
+      <calling-title>Seventy</calling-title>
+      <calling-start>2010-04-03</calling-start>
+      <calling-end>2025-08-01</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Seventy - Pres</calling-title>
+      <calling-start>2025-08-01</calling-start>
+      <calling-end>NA</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> L. Tom Perry </name>
+    <person-id>80</person-id>
+    <gender>M</gender>
+    <religion> LDS </religion>
+    <birthdate>1922-08-05</birthdate>
+    <deathdate>2015-05-30</deathdate>
+    <calling>
+      <calling-title>Assistant to the Q12</calling-title>
+      <calling-start>1972-10-06</calling-start>
+      <calling-end>1974-04-11</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Q12</calling-title>
+      <calling-start>1974-04-11</calling-start>
+      <calling-end>2015-05-30</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> L. Whitney Clayton </name>
+    <person-id>81</person-id>
+    <gender>M</gender>
+    <religion> LDS </religion>
+    <birthdate>1950-02-24</birthdate>
+    <deathdate>NA</deathdate>
+    <calling>
+      <calling-title>Seventy</calling-title>
+      <calling-start>2001-03-31</calling-start>
+      <calling-end>2008-04-05</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Seventy - Pres</calling-title>
+      <calling-start>2008-04-05</calling-start>
+      <calling-end>2020-08-01</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Seventy</calling-title>
+      <calling-start>2020-08-01</calling-start>
+      <calling-end>2020-10-03</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Laura Russell Bunker </name>
+    <person-id>82</person-id>
+    <gender>F</gender>
+    <religion>LDS</religion>
+    <birthdate>UNKNOWN</birthdate>
+    <deathdate>UNKNOWN</deathdate>
+  </person>
+  <person>
+    <name> LeGrand Richards </name>
+    <person-id>83</person-id>
+    <gender>M</gender>
+    <religion>LDS</religion>
+    <birthdate>1886-02-06</birthdate>
+    <deathdate>1983-01-11</deathdate>
+    <calling>
+      <calling-title>PB - Bishop</calling-title>
+      <calling-start>1938-04-06</calling-start>
+      <calling-end>1952-04-06</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Q12</calling-title>
+      <calling-start>1952-04-06</calling-start>
+      <calling-end>1983-01-11</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Lilburn W. Boggs </name>
+    <person-id>84</person-id>
+    <gender>M</gender>
+    <religion>Not LDS</religion>
+    <birthdate>1796-12-14</birthdate>
+    <deathdate>1860-03-14</deathdate>
+  </person>
+  <person>
+    <name> Linda K. Burton </name>
+    <person-id>85</person-id>
+    <gender>F</gender>
+    <religion>LDS</religion>
+    <birthdate>1952-10-19</birthdate>
+    <deathdate>NA</deathdate>
+    <calling>
+      <calling-title>RS - GP - President</calling-title>
+      <calling-start>2012-03-31</calling-start>
+      <calling-end>2017-04-01</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Linda S. Reeves </name>
+    <person-id>86</person-id>
+    <gender>F</gender>
+    <religion>LDS</religion>
+    <birthdate>UNKNOWN</birthdate>
+    <deathdate>NA</deathdate>
+    <calling>
+      <calling-title>RS - GP - 2nd Counselor</calling-title>
+      <calling-start>2012-03-31</calling-start>
+      <calling-end>2017-04-01</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Lowell M. Snow </name>
+    <person-id>87</person-id>
+    <gender>M</gender>
+    <religion>LDS</religion>
+    <birthdate>1944-01-02</birthdate>
+    <deathdate>NA</deathdate>
+    <calling>
+      <calling-title>Seventy</calling-title>
+      <calling-start>2005-04-02</calling-start>
+      <calling-end>2011-10-01</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Lucy Mack Smith </name>
+    <person-id>88</person-id>
+    <gender>F</gender>
+    <religion>LDS</religion>
+    <birthdate>1775-07-08</birthdate>
+    <deathdate>1856-05-14</deathdate>
+  </person>
+  <person>
+    <name> Lynn G. Robbins </name>
+    <person-id>89</person-id>
+    <gender>M</gender>
+    <religion>LDS</religion>
+    <birthdate>1952-10-27</birthdate>
+    <deathdate>NA</deathdate>
+    <calling>
+      <calling-title>Seventy</calling-title>
+      <calling-start>1997-04-05</calling-start>
+      <calling-end>2014-04-05</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Seventy - Presidency</calling-title>
+      <calling-start>2014-04-05</calling-start>
+      <calling-end>2018-08-01</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Seventy</calling-title>
+      <calling-start>2018-08-01</calling-start>
+      <calling-end>2022-10-01</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> M. Russell Ballard </name>
+    <person-id>90</person-id>
+    <gender>M</gender>
+    <religion> LDS </religion>
+    <birthdate>1928-10-08</birthdate>
+    <deathdate>2023-11-12</deathdate>
+    <calling>
+      <calling-title>Seventy</calling-title>
+      <calling-start>1976-04-03</calling-start>
+      <calling-end>1980-02-22</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Seventy - Presidency</calling-title>
+      <calling-start>1980-02-22</calling-start>
+      <calling-end>1985-10-06</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Q12</calling-title>
+      <calling-start>1985-10-06</calling-start>
+      <calling-end>2018-01-14</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Q12 -  Acting Pres</calling-title>
+      <calling-start>2018-01-14</calling-start>
+      <calling-end>2023-11-12</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Malcolm S. Jeppsen </name>
+    <person-id>91</person-id>
+    <gender>M</gender>
+    <religion> LDS </religion>
+    <birthdate>1924-11-01</birthdate>
+    <deathdate>2012-04-08</deathdate>
+    <calling>
+      <calling-title>Seventy</calling-title>
+      <calling-start>1989-04-01</calling-start>
+      <calling-end>1994-10-01</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Margaret D. Nadauld </name>
+    <person-id>92</person-id>
+    <gender>F</gender>
+    <religion> LDS </religion>
+    <birthdate>1944-11-21</birthdate>
+    <deathdate>NA</deathdate>
+    <calling>
+      <calling-title>YW - GP - President</calling-title>
+      <calling-start>1997-10-04</calling-start>
+      <calling-end>2002-10-06</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Marion D. Hanks </name>
+    <person-id>93</person-id>
+    <gender>M</gender>
+    <religion> LDS </religion>
+    <birthdate>1921-10-13</birthdate>
+    <deathdate>2011-08-05</deathdate>
+    <calling>
+      <calling-title>Seventy</calling-title>
+      <calling-start>1953-10-04</calling-start>
+      <calling-end>1968-04-06</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Assistant to the Q12</calling-title>
+      <calling-start>1968-04-06</calling-start>
+      <calling-end>1976-10-01</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Seventy - Presidency</calling-title>
+      <calling-start>1976-10-01</calling-start>
+      <calling-end>1980-02-22</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Seventy</calling-title>
+      <calling-start>1980-02-22</calling-start>
+      <calling-end>1984-10-06</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Seventy - Presidency</calling-title>
+      <calling-start>1984-10-06</calling-start>
+      <calling-end>1992-08-15</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Seventy</calling-title>
+      <calling-start>1992-08-15</calling-start>
+      <calling-end>1992-10-03</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Marion G. Romney </name>
+    <person-id>94</person-id>
+    <gender>M</gender>
+    <religion> LDS </religion>
+    <birthdate>1897-09-19</birthdate>
+    <deathdate>1988-05-20</deathdate>
+    <calling>
+      <calling-title>Assistant to the Q12</calling-title>
+      <calling-start>1941-04-06</calling-start>
+      <calling-end>1951-10-04</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Q12</calling-title>
+      <calling-start>1951-10-04</calling-start>
+      <calling-end>1972-07-07</calling-end>
+    </calling>
+    <calling>
+      <calling-title>FP - 2nd Counselor</calling-title>
+      <calling-start>1972-07-07</calling-start>
+      <calling-end>1982-12-02</calling-end>
+    </calling>
+    <calling>
+      <calling-title>FP - 1st Counselor</calling-title>
+      <calling-start>1982-12-02</calling-start>
+      <calling-end>1985-11-05</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Q12 - Pres</calling-title>
+      <calling-start>1985-11-05</calling-start>
+      <calling-end>1988-05-20</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Martin Harris </name>
+    <person-id>95</person-id>
+    <gender>M</gender>
+    <religion> LDS </religion>
+    <birthdate>1783-05-18</birthdate>
+    <deathdate>1875-07-10</deathdate>
+  </person>
+  <person>
+    <name> Marvin J. Ashton </name>
+    <person-id>96</person-id>
+    <gender>M</gender>
+    <religion> LDS </religion>
+    <birthdate>1915-05-06</birthdate>
+    <deathdate>1994-02-25</deathdate>
+    <calling>
+      <calling-title>Assistant to the Q12</calling-title>
+      <calling-start>1969-10-03</calling-start>
+      <calling-end>1971-12-02</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Q12</calling-title>
+      <calling-start>1971-12-02</calling-start>
+      <calling-end>1994-02-25</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Mary Ellen Smoot </name>
+    <person-id>97</person-id>
+    <gender>F</gender>
+    <religion> LDS </religion>
+    <birthdate>1933-08-19</birthdate>
+    <deathdate>2025-02-10</deathdate>
+    <calling>
+      <calling-title>RS - GP - President</calling-title>
+      <calling-start>1997-04-05</calling-start>
+      <calling-end>2002-04-06</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Mary Isabella Horne </name>
+    <person-id>98</person-id>
+    <gender>F</gender>
+    <religion> LDS </religion>
+    <birthdate>1818-11-20</birthdate>
+    <deathdate>1905-08-25</deathdate>
+  </person>
+  <person>
+    <name> Merrill J. Bateman </name>
+    <person-id>99</person-id>
+    <gender>M</gender>
+    <religion> LDS </religion>
+    <birthdate>1936-06-19</birthdate>
+    <deathdate>NA</deathdate>
+    <calling>
+      <calling-title>BYU President</calling-title>
+      <calling-start>1996-01-01</calling-start>
+      <calling-end>2003-05-01</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Seventy</calling-title>
+      <calling-start>1992-06-06</calling-start>
+      <calling-end>1994-04-02</calling-end>
+    </calling>
+    <calling>
+      <calling-title>PB - Bishop</calling-title>
+      <calling-start>1994-04-02</calling-start>
+      <calling-end>1995-12-27</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Seventy - Presidency</calling-title>
+      <calling-start>2003-08-15</calling-start>
+      <calling-end>2007-08-15</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Michelle Craig </name>
+    <person-id>100</person-id>
+    <gender>F</gender>
+    <religion> LDS </religion>
+    <birthdate>UNKNOWN</birthdate>
+    <deathdate>NA</deathdate>
+    <calling>
+      <calling-title>YW - GP - 1st Counselor</calling-title>
+      <calling-start>2018-03-31</calling-start>
+      <calling-end>2023-08-01</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> N. Eldon Tanner </name>
+    <person-id>101</person-id>
+    <gender>M</gender>
+    <religion> LDS </religion>
+    <birthdate>1898-05-09</birthdate>
+    <deathdate>1982-11-27</deathdate>
+    <calling>
+      <calling-title>Assistant to the Q12</calling-title>
+      <calling-start>1960-10-08</calling-start>
+      <calling-end>1962-10-11</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Q12</calling-title>
+      <calling-start>1962-10-11</calling-start>
+      <calling-end>1963-10-04</calling-end>
+    </calling>
+    <calling>
+      <calling-title>FP - 2nd Counselor</calling-title>
+      <calling-start>1963-10-04</calling-start>
+      <calling-end>1972-07-07</calling-end>
+    </calling>
+    <calling>
+      <calling-title>FP - 1st Counselor</calling-title>
+      <calling-start>1972-07-07</calling-start>
+      <calling-end>1982-11-27</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Neal A. Maxwell </name>
+    <person-id>102</person-id>
+    <gender>M</gender>
+    <religion> LDS </religion>
+    <birthdate>1926-07-06</birthdate>
+    <deathdate>2004-07-21</deathdate>
+    <calling>
+      <calling-title>Assistant to the Q12</calling-title>
+      <calling-start>1974-04-06</calling-start>
+      <calling-end>1976-10-01</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Commissioner of Church Education</calling-title>
+      <calling-start>1970</calling-start>
+      <calling-end>1976</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Seventy - Presidency</calling-title>
+      <calling-start>1976-10-01</calling-start>
+      <calling-end>1981-07-23</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Q12</calling-title>
+      <calling-start>1981-07-23</calling-start>
+      <calling-end>2004-07-21</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Neil L. Andersen </name>
+    <person-id>103</person-id>
+    <gender>M</gender>
+    <religion>LDS</religion>
+    <birthdate>1951-08-09</birthdate>
+    <deathdate>NA</deathdate>
+    <calling>
+      <calling-title>Seventy</calling-title>
+      <calling-start>1993-04-03</calling-start>
+      <calling-end>2005-08-15</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Seventy - Presidency</calling-title>
+      <calling-start>2005-08-15</calling-start>
+      <calling-end>2009-04-04</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Q12</calling-title>
+      <calling-start>2009-04-04</calling-start>
+      <calling-end>NA</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Noel B. Reynolds </name>
+    <person-id>104</person-id>
+    <gender>M</gender>
+    <religion>LDS</religion>
+    <birthdate>1942</birthdate>
+    <deathdate>NA</deathdate>
+  </person>
+  <person>
+    <name> Oliver Cowdery </name>
+    <person-id>105</person-id>
+    <gender>M</gender>
+    <religion>LDS</religion>
+    <birthdate>1806-10-03</birthdate>
+    <deathdate>1850-03-03</deathdate>
+  </person>
+  <person>
+    <name> Origen </name>
+    <person-id>106</person-id>
+    <gender>M</gender>
+    <religion>Not LDS</religion>
+    <birthdate>185</birthdate>
+    <deathdate>253</deathdate>
+  </person>
+  <person>
+    <name> Orson F. Whitney </name>
+    <person-id>107</person-id>
+    <gender>M</gender>
+    <religion>LDS</religion>
+    <birthdate>1855-07-01</birthdate>
+    <deathdate>1931-05-16</deathdate>
+    <calling>
+      <calling-title>Q12</calling-title>
+      <calling-start>1906-04-09</calling-start>
+      <calling-end>1931-05-16</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Orson Hyde </name>
+    <person-id>108</person-id>
+    <gender>M</gender>
+    <religion> LDS </religion>
+    <birthdate>1805-01-08</birthdate>
+    <deathdate>1878-11-28</deathdate>
+    <calling>
+      <calling-title>Q12</calling-title>
+      <calling-start>1835-02-15</calling-start>
+      <calling-end>1847-12-27</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Q12 - Pres</calling-title>
+      <calling-start>1847-12-27</calling-start>
+      <calling-end>1875-04-10</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Q12</calling-title>
+      <calling-start>1875-04-10</calling-start>
+      <calling-end>1878-11-28</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Orson Pratt </name>
+    <person-id>109</person-id>
+    <gender>M</gender>
+    <religion> LDS </religion>
+    <birthdate>1811-09-19</birthdate>
+    <deathdate>1881-10-03</deathdate>
+    <calling>
+      <calling-title>Q12</calling-title>
+      <calling-start>1835-04-26</calling-start>
+      <calling-end>1881-10-03</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Parley P. Pratt </name>
+    <person-id>110</person-id>
+    <gender>M</gender>
+    <religion> LDS </religion>
+    <birthdate>1807-04-12</birthdate>
+    <deathdate>1857-05-13</deathdate>
+    <calling>
+      <calling-title>Q12</calling-title>
+      <calling-start>1835-02-21</calling-start>
+      <calling-end>1857-05-13</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Quentin L. Cook </name>
+    <person-id>111</person-id>
+    <gender>M</gender>
+    <religion> LDS </religion>
+    <birthdate>1940-09-08</birthdate>
+    <deathdate>NA</deathdate>
+    <calling>
+      <calling-title>Seventy</calling-title>
+      <calling-start>1996-04-06</calling-start>
+      <calling-end>2007-08-01</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Seventy - Presidency</calling-title>
+      <calling-start>2007-08-01</calling-start>
+      <calling-end>2007-10-06</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Q12</calling-title>
+      <calling-start>2007-10-06</calling-start>
+      <calling-end>NA</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Rex A. Skidmore </name>
+    <person-id>112</person-id>
+    <gender>M</gender>
+    <religion> LDS </religion>
+    <birthdate>1914-12-31</birthdate>
+    <deathdate>1998-01-10</deathdate>
+  </person>
+  <person>
+    <name> Rex D. Pinegar </name>
+    <person-id>113</person-id>
+    <gender>M</gender>
+    <religion> LDS </religion>
+    <birthdate>1931-09-18</birthdate>
+    <deathdate>2021-06-24</deathdate>
+    <calling>
+      <calling-title>Seventy</calling-title>
+      <calling-start>1972-10-06</calling-start>
+      <calling-end>1979-10</calling-end>
+    </calling>
+    <calling>
+      <calling-title>YM - GP - 2nd Counselor</calling-title>
+      <calling-start>1979-10</calling-start>
+      <calling-end>1985-11</calling-end>
+    </calling>
+    <calling>
+      <calling-title>YM - GP - 1st Counselor</calling-title>
+      <calling-start>1985-11</calling-start>
+      <calling-end>1989-09-30</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Seventy - Presidency</calling-title>
+      <calling-start>1989-09-30</calling-start>
+      <calling-end>1995-09-30</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Seventy</calling-title>
+      <calling-start>1995-09-30</calling-start>
+      <calling-end>2001-10-06</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Richard G. Scott </name>
+    <person-id>114</person-id>
+    <gender>M</gender>
+    <religion> LDS </religion>
+    <birthdate>1928-11-07</birthdate>
+    <deathdate>2015-09-22</deathdate>
+    <calling>
+      <calling-title>Seventy</calling-title>
+      <calling-start>1977-04-02</calling-start>
+      <calling-end>1983-10-01</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Seventy - Presidency</calling-title>
+      <calling-start>1983-10-01</calling-start>
+      <calling-end>1988-01-10</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Q12</calling-title>
+      <calling-start>1988-01-10</calling-start>
+      <calling-end>2015-09-22</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Richard L. Evans </name>
+    <person-id>115</person-id>
+    <gender>M</gender>
+    <religion> LDS </religion>
+    <birthdate>1906-03-23</birthdate>
+    <deathdate>1971-11-01</deathdate>
+    <calling>
+      <calling-title>Seventy</calling-title>
+      <calling-start>1938-10-07</calling-start>
+      <calling-end>1953-10-08</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Q12</calling-title>
+      <calling-start>1953-10-08</calling-start>
+      <calling-end>1971-11-01</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Robert D. Hales </name>
+    <person-id>116</person-id>
+    <gender>M</gender>
+    <religion> LDS </religion>
+    <birthdate>1932-08-24</birthdate>
+    <deathdate>2017-10-01</deathdate>
+    <calling>
+      <calling-title>Assistant to the Q12</calling-title>
+      <calling-start>1975-04-04</calling-start>
+      <calling-end>1976-10-01</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Seventy</calling-title>
+      <calling-start>1976-10-01</calling-start>
+      <calling-end>1985-04-06</calling-end>
+    </calling>
+    <calling>
+      <calling-title>PB - Bishop</calling-title>
+      <calling-start>1985-04-06</calling-start>
+      <calling-end>1994-04-02</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Q12</calling-title>
+      <calling-start>1994-04-02</calling-start>
+      <calling-end>2017-10-01</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Robert L. Simpson </name>
+    <person-id>117</person-id>
+    <gender>M</gender>
+    <religion> LDS </religion>
+    <birthdate>1915-08-08</birthdate>
+    <deathdate>2003-04-15</deathdate>
+    <calling>
+      <calling-title>PB - 1st Counselor</calling-title>
+      <calling-start>1961-09-30</calling-start>
+      <calling-end>1972-04-06</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Assistant to the Q12</calling-title>
+      <calling-start>1972-04-06</calling-start>
+      <calling-end>1976-10-01</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Seventy</calling-title>
+      <calling-start>1976-10-01</calling-start>
+      <calling-end>1989-09-30</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Ronald A. Rasband </name>
+    <person-id>118</person-id>
+    <gender>M</gender>
+    <religion> LDS </religion>
+    <birthdate>1951-02-06</birthdate>
+    <deathdate>NA</deathdate>
+    <calling>
+      <calling-title>Seventy</calling-title>
+      <calling-start>2000-04-01</calling-start>
+      <calling-end>2005-08-15</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Seventy - Presidency</calling-title>
+      <calling-start>2005-08-15</calling-start>
+      <calling-end>2015-10-03</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Q12</calling-title>
+      <calling-start>2015-10-03</calling-start>
+      <calling-end>NA</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Russell M. Nelson </name>
+    <person-id>119</person-id>
+    <gender>M</gender>
+    <religion> LDS </religion>
+    <birthdate>1924-09-09</birthdate>
+    <deathdate>NA</deathdate>
+    <calling>
+      <calling-title>Q12</calling-title>
+      <calling-start>1984-04-07</calling-start>
+      <calling-end>2015-07-03</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Q12 - Pres</calling-title>
+      <calling-start>2015-07-03</calling-start>
+      <calling-end>2018-01-14</calling-end>
+    </calling>
+    <calling>
+      <calling-title>President</calling-title>
+      <calling-start>2018-01-14</calling-start>
+      <calling-end>NA</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Serepta M. Heywood </name>
+    <person-id>120</person-id>
+    <gender>F</gender>
+    <religion> LDS </religion>
+    <birthdate>UNKNOWN</birthdate>
+    <deathdate>
+</deathdate>
+  </person>
+  <person>
+    <name> Sharon Eubank </name>
+    <person-id>121</person-id>
+    <gender>F</gender>
+    <religion> LDS </religion>
+    <birthdate>1963-10-04</birthdate>
+    <deathdate>NA</deathdate>
+    <calling>
+      <calling-title>RS - GP - 1st Counselor</calling-title>
+      <calling-start>2017-04-01</calling-start>
+      <calling-end>2022-08-01</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Sheri L. Dew </name>
+    <person-id>122</person-id>
+    <gender>F</gender>
+    <religion> LDS </religion>
+    <birthdate>1953-11-21</birthdate>
+    <deathdate>NA</deathdate>
+    <calling>
+      <calling-title>RS - GP - 2nd Counselor</calling-title>
+      <calling-start>1997-04-05</calling-start>
+      <calling-end>2002-04-06</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Spencer W. Kimball </name>
+    <person-id>123</person-id>
+    <gender>M</gender>
+    <religion> LDS </religion>
+    <birthdate>1895-03-28</birthdate>
+    <deathdate>1985-11-05</deathdate>
+    <calling>
+      <calling-title>Q12</calling-title>
+      <calling-start>1943-10-07</calling-start>
+      <calling-end>1970-01-23</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Q12 - Acting Pres</calling-title>
+      <calling-start>1970-01-23</calling-start>
+      <calling-end>1972-07-02</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Q12 - Pres</calling-title>
+      <calling-start>1972-07-02</calling-start>
+      <calling-end>1973-12-30</calling-end>
+    </calling>
+    <calling>
+      <calling-title>President</calling-title>
+      <calling-start>1973-12-30</calling-start>
+      <calling-end>1985-11-05</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Stephen W. Owen </name>
+    <person-id>125</person-id>
+    <gender>M</gender>
+    <religion> LDS </religion>
+    <birthdate>1958-03-22</birthdate>
+    <deathdate>NA</deathdate>
+    <calling>
+      <calling-title>YM - GP - President</calling-title>
+      <calling-start>2015-04-04</calling-start>
+      <calling-end>2020-04-04</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Steven J. Lund </name>
+    <person-id>126</person-id>
+    <gender>M</gender>
+    <religion> LDS </religion>
+    <birthdate>1953-10-30</birthdate>
+    <deathdate>NA</deathdate>
+    <calling>
+      <calling-title>YM - GP - President</calling-title>
+      <calling-start>2020-04-04</calling-start>
+      <calling-end>NA</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Tad R. Callister </name>
+    <person-id>127</person-id>
+    <gender>M</gender>
+    <religion> LDS </religion>
+    <birthdate>1945-12-17</birthdate>
+    <deathdate>NA</deathdate>
+    <calling>
+      <calling-title>Seventy</calling-title>
+      <calling-start>2008-04-05</calling-start>
+      <calling-end>2011-08-01</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Seventy - Presidency</calling-title>
+      <calling-start>2011-08-01</calling-start>
+      <calling-end>2014-04-05</calling-end>
+    </calling>
+    <calling>
+      <calling-title>SS - GP - President</calling-title>
+      <calling-start>2014-04-05</calling-start>
+      <calling-end>2019-04</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Terence M. Vinson </name>
+    <person-id>128</person-id>
+    <gender>M</gender>
+    <religion> LDS </religion>
+    <birthdate>1951-03-12</birthdate>
+    <deathdate>NA</deathdate>
+    <calling>
+      <calling-title>Seventy</calling-title>
+      <calling-start>2013-04-06</calling-start>
+      <calling-end>2021-10-02</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Thomas B. Marsh </name>
+    <person-id>129</person-id>
+    <gender>M</gender>
+    <religion> LDS </religion>
+    <birthdate>1800-11-01</birthdate>
+    <deathdate>1866-01</deathdate>
+  </person>
+  <person>
+    <name> Thomas S. Monson </name>
+    <person-id>130</person-id>
+    <gender>M</gender>
+    <religion> LDS </religion>
+    <birthdate>1927-08-21</birthdate>
+    <deathdate>2018-01-02</deathdate>
+    <calling>
+      <calling-title>Q12</calling-title>
+      <calling-start>1963-10-10</calling-start>
+      <calling-end>1985-11-10</calling-end>
+    </calling>
+    <calling>
+      <calling-title>FP - 2nd Counselor</calling-title>
+      <calling-start>1985-11-10</calling-start>
+      <calling-end>1995-03-12</calling-end>
+    </calling>
+    <calling>
+      <calling-title>FP - 1st Counselor</calling-title>
+      <calling-start>1995-03-12</calling-start>
+      <calling-end>2008-02-03</calling-end>
+    </calling>
+    <calling>
+      <calling-title>President</calling-title>
+      <calling-start>2008-02-03</calling-start>
+      <calling-end>2018-01-02</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Ulisses Soares </name>
+    <person-id>131</person-id>
+    <gender>M</gender>
+    <religion> LDS </religion>
+    <birthdate>1958-10-02</birthdate>
+    <deathdate>NA</deathdate>
+    <calling>
+      <calling-title>Seventy</calling-title>
+      <calling-start>2005-04-02</calling-start>
+      <calling-end>2013-01-06</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Seventy - Presidency</calling-title>
+      <calling-start>2013-01-06</calling-start>
+      <calling-end>2018-03-31</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Q12</calling-title>
+      <calling-start>2018-03-31</calling-start>
+      <calling-end>NA</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Valeri V. Cord&#xF3;n </name>
+    <person-id>132</person-id>
+    <gender>M</gender>
+    <religion> LDS </religion>
+    <birthdate>1969-02-19</birthdate>
+    <deathdate>NA</deathdate>
+    <calling>
+      <calling-title>Seventy</calling-title>
+      <calling-start>2016-04-02</calling-start>
+      <calling-end>NA</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Vicki F. Matsumori </name>
+    <person-id>133</person-id>
+    <gender>F</gender>
+    <religion> LDS </religion>
+    <birthdate>1950-12-15</birthdate>
+    <deathdate>NA</deathdate>
+    <calling>
+      <calling-title>PR - GP - 2nd Counselor</calling-title>
+      <calling-start>2005-04-02</calling-start>
+      <calling-end>2010-04-03</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Victor L. Brown </name>
+    <person-id>134</person-id>
+    <gender>M</gender>
+    <religion> LDS </religion>
+    <birthdate>1914-07-31</birthdate>
+    <deathdate>1996-03-26</deathdate>
+    <calling>
+      <calling-title>PB - 2nd Counselor</calling-title>
+      <calling-start>1961-09-31</calling-start>
+      <calling-end>1972-04-06</calling-end>
+    </calling>
+    <calling>
+      <calling-title>PB - Bishop</calling-title>
+      <calling-start>1972-04-06</calling-start>
+      <calling-end>1985-04-06</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Seventy</calling-title>
+      <calling-start>1985-04-06</calling-start>
+      <calling-end>1989-09-30</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Virginia H. Pearce </name>
+    <person-id>135</person-id>
+    <gender>F</gender>
+    <religion> LDS </religion>
+    <birthdate>1945-02-08</birthdate>
+    <deathdate>NA</deathdate>
+    <calling>
+      <calling-title>YW - GP - 1st Counselor</calling-title>
+      <calling-start>1992-04-04</calling-start>
+      <calling-end>1997-10-04</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Virginia U. Jensen </name>
+    <person-id>136</person-id>
+    <gender>F</gender>
+    <religion> LDS </religion>
+    <birthdate>1939-04-20</birthdate>
+    <deathdate>2020-03-18</deathdate>
+    <calling>
+      <calling-title>RS - GP - 1st Counselor</calling-title>
+      <calling-start>1997-04-05</calling-start>
+      <calling-end>2002-04-06</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> W. Don Ladd </name>
+    <person-id>137</person-id>
+    <gender>M</gender>
+    <religion> LDS </religion>
+    <birthdate>1933-07-14</birthdate>
+    <deathdate>2009-10-06</deathdate>
+    <calling>
+      <calling-title>Seventy</calling-title>
+      <calling-start>1994-04-02</calling-start>
+      <calling-end>2000-10-07</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Wendy Nelson </name>
+    <person-id>138</person-id>
+    <gender>F</gender>
+    <religion> LDS </religion>
+    <birthdate>1950-05-31</birthdate>
+    <deathdate>NA</deathdate>
+  </person>
+  <person>
+    <name> Wilford Woodruff </name>
+    <person-id>139</person-id>
+    <gender>M</gender>
+    <religion> LDS </religion>
+    <birthdate>1807-03-01</birthdate>
+    <deathdate>1898-09-02</deathdate>
+    <calling>
+      <calling-title>Q12</calling-title>
+      <calling-start>1839-04-26</calling-start>
+      <calling-end>1880-10-10</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Q12 - Pres</calling-title>
+      <calling-start>1880-10-10</calling-start>
+      <calling-end>1889-04-07</calling-end>
+    </calling>
+    <calling>
+      <calling-title>President</calling-title>
+      <calling-start>1889-04-07</calling-start>
+      <calling-end>1898-09-02</calling-end>
+    </calling>
+  </person>
+  <person>
+    <name> Willard Richards </name>
+    <person-id>140</person-id>
+    <gender>M</gender>
+    <religion> LDS </religion>
+    <birthdate>1804-06-24</birthdate>
+    <deathdate>1854-03-11</deathdate>
+  </person>
+  <person>
+    <name> William R. Bradford </name>
+    <person-id>141</person-id>
+    <gender>M</gender>
+    <religion> LDS </religion>
+    <birthdate>1933-10-25</birthdate>
+    <deathdate>2019-02-24</deathdate>
+    <calling>
+      <calling-title>Seventy</calling-title>
+      <calling-start>1975-10-03</calling-start>
+      <calling-end>2003-10-04</calling-end>
+    </calling>
+  </person>
+</text>
