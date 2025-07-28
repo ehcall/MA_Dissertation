@@ -13,7 +13,7 @@ def add_gender(speaker_name):
                'Linda S. Reeves','Margaret D. Nadauld','Mary Ellen Smoot','Mary Isabella Horne','Michelle Craig',
                'Serepta M. Heywood','Sharon Eubank','Sheri L. Dew','Vicki F. Matsumori','Virginia H. Pearce',
                'Virginia U. Jensen', 'Chieko Okazaki','Wendy Nelson','Belle S. Spafford','Cori Christensen',
-               'Eliza R. Snow','Lucy Mack Smith','Linda K. Burton']
+               'Eliza R. Snow','Lucy Mack Smith','Linda K. Burton', 'Priscilla Sampson-Davis']
     if speaker_name in supp_mats:
         #Hymns could probably be adjusted based on who wrote the hymn, but they're kind of treated as gender neutral
         gender = 'S - Supp Mats'
@@ -168,4 +168,4 @@ def main():
 
     #for speaker_name in all_speakers:
        # print(speaker_name)
-main()
+#main()

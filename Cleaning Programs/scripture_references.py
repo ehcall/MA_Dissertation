@@ -30,24 +30,22 @@ def check_book_name(line):
 
 def remove_extras(line):
     line = re.sub(" ?[Ss]ee also ?",'',line)
+    line = re.sub(" ?[Ss]ee ?",'',line)
     #line = re.sub("italics added",'',line)
     return line
 def check_if_scripture(line):
     line = remove_extras(line)
+    false_options = ['Mormon Doctrine','History of the Church','Journal of Discourses','Doctrines of Salvation',
+                     'Joseph Smith Papers','New Era','Ensign','Liahona','Authorship','Revelations in Context',
+                     'Messianic','Student Manual','Teachings of','First Presidency letter','Encyclopedia','Pioneer',
+                     'A New Witness','josephsmithpapers','Ante-Nicene','Discourses','The Articles','Story Gems',
+                     'Tullidge','James R. Clark','Conference Report','Church History and Modern Revelation','Lyndon',
+                     'Robert J. Matthews','Orson Hyde','Gospel Topics']
+    for f_o in false_options:
+        if re.search(f_o, line):
+            return False
 
-    if re.search("Mormon Doctrine",line):
-        return False
-    elif re.search("History of the Church",line):
-        return False
-    elif re.search("Journal of Discourses",line):
-        return False
-    elif re.search("Doctrines of Salvation",line):
-        return False
-    elif re.search("Joseph Smith Papers",line):
-        return False
-    elif re.search("New Era",line):
-        return False
-    elif check_book_name(line):
+    if check_book_name(line):
         return True
     elif re.search("verses? [0-9]",line):
         return True
@@ -55,8 +53,8 @@ def check_if_scripture(line):
         return True
     elif re.search("footnote",line):
         return True
-    elif re.search(':',line):
-        return True
+    #elif re.search(':',line):
+    #    return True
     else:
 
         return False

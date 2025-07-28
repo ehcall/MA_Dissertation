@@ -151,15 +151,48 @@ def modify_quote(soup):
         current_text = text_element.string
         if current_text:
             text_element.clear()
-            new_text = re.sub(r'([^:])\n\"', r'\1 ¶ ', current_text)
+            new_text = re.sub(r'([^:])\r?\n\"', r'\1 ¶ ', current_text)
             text_element.string = new_text
-            possible_quotes = re.finditer('\"[\s\S]*?\"',text_element.string)
-            pq_count = re.findall('\"[\s\S]*?\"',text_element.string)
+            possible_quotes = re.finditer('\".*?\"',text_element.string)
+            pq_count = re.findall('\".*?\"',text_element.string)
 
             needs_citation = []
             for pq in possible_quotes:
+
                 if check_quote(pq.group()):
-                    possible_citation = re.match("\?? [\(\[].*?[\)\]]", new_text[pq.end():])
+
+                    non_quotation_text = new_text[:pq.start()] + new_text[pq.end():]
+                    possible_citation = re.match("\?? \(.*?\)", new_text[pq.end():])
+                    possible_citations = re.finditer("\(.*?\)", non_quotation_text)
+                    pc_count = re.findall("\(.*?\)", non_quotation_text)
+
+                    plausible_citations = []
+                    if len(pc_count) < 1:
+                        #no possible citation could be found in the paragraph
+                        #TODO: come back
+                        #print(pq.group())
+                        pass
+                    else:
+                        for option in possible_citations:
+                            #scripture_ref = False
+                            scripture_ref = scripture_references.check_if_scripture(option.group())
+                            if not scripture_ref:
+                                if not re.search('[0-9]',option.group()):
+                                    if re.search('Hymns', option.group()) \
+                                            or re.search('Gospel Topics', option.group()) \
+                                            or re.search('No Greater Call', option.group()) \
+                                            or re.search('Explanatory Introduction', option.group()) \
+                                            or re.search('National Press Club', option.group()):
+                                        #TODO: this is a citation
+                                        plausible_citations.append(option.group())
+                                    #else:
+                                        #these aren't actually citations
+                                else:
+                                    plausible_citations.append(option.group())
+                                    print(option.group())
+    return
+
+'''
                     if re.search('\(ChurchofJesusChrist.org\)',new_text) and re.search('The Family: A Proclamation to the World', new_text):
                         # hardcoded this because I *cannot* figure out what went wrong with this citation
                         #had to add AttributeError catch
@@ -424,7 +457,8 @@ def modify_quote(soup):
                         #Quotes without citations that are part of a bigger paragraph
                         else:
                             needs_citation.append(pq)
-    return
+                            '''
+
 
 
 
@@ -445,4 +479,4 @@ def main():
         with open(modified_manual, 'w', encoding='utf-8') as modifying_manual:
             modifying_manual.write(soup.prettify())
 
-#main()
+main()

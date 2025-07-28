@@ -8,7 +8,7 @@
     <birthdate>1954-06-30</birthdate>
     <deathdate>NA</deathdate>
     <calling>
-      <calling-title>YW - GP - 2nd Counselor</calling-title>
+      <calling-title>YW - 2nd Counselor</calling-title>
       <calling-start>2008-04-05</calling-start>
       <calling-end>2013-04-06</calling-end>
     </calling>
@@ -42,12 +42,12 @@
     <birthdate>1895-10-08</birthdate>
     <deathdate>1982-02-02</deathdate>
     <calling>
-      <calling-title>RS - GP - President</calling-title>
+      <calling-title>RS - President</calling-title>
       <calling-start>1945-04-06</calling-start>
       <calling-end>1974-10-03</calling-end>
     </calling>
     <calling>
-      <calling-title>RS - GP - 2nd Counselor</calling-title>
+      <calling-title>RS - 2nd Counselor</calling-title>
       <calling-start>1942</calling-start>
       <calling-end>1945</calling-end>
     </calling>
@@ -60,7 +60,7 @@
     <birthdate>1964-03-11</birthdate>
     <deathdate>NA</deathdate>
     <calling>
-      <calling-title>YW - GP - President</calling-title>
+      <calling-title>YW - President</calling-title>
       <calling-start>2018-03-31</calling-start>
       <calling-end>2023-08-01</calling-end>
     </calling>
@@ -78,7 +78,7 @@
     <birthdate>1950-10-23</birthdate>
     <deathdate>NA</deathdate>
     <calling>
-      <calling-title>YW - GP - President</calling-title>
+      <calling-title>YW - President</calling-title>
       <calling-start>2013-04-06</calling-start>
       <calling-end>2018-03-31</calling-end>
     </calling>
@@ -119,7 +119,7 @@
     <birthdate>1801-06-01</birthdate>
     <deathdate>1877-08-29</deathdate>
     <calling>
-      <calling-title>President</calling-title>
+      <calling-title>FP - President</calling-title>
       <calling-start>1847-12-27</calling-start>
       <calling-end>1877-08-29</calling-end>
     </calling>
@@ -199,7 +199,7 @@
       <calling-end>1980-02-22</calling-end>
     </calling>
     <calling>
-      <calling-title>Seventy - Presidency</calling-title>
+      <calling-title>Seventy - Pres</calling-title>
       <calling-start>1980-02-22</calling-start>
       <calling-end>1986-08-15</calling-end>
     </calling>
@@ -209,7 +209,7 @@
       <calling-end>1989-10-01</calling-end>
     </calling>
     <calling>
-      <calling-title>Seventy - Presidency</calling-title>
+      <calling-title>Seventy - Pres</calling-title>
       <calling-start>1989-10-01</calling-start>
       <calling-end>1996-08-15</calling-end>
     </calling>
@@ -270,6 +270,7 @@
     <calling>
       <calling-title>Seventy</calling-title>
       <calling-start>2014-04-05</calling-start>
+      <calling-end>NA</calling-end>
     </calling>
   </person>
   <person>
@@ -293,7 +294,7 @@
       <calling-end>1998-08-15</calling-end>
     </calling>
     <calling>
-      <calling-title>Seventy - Presidency</calling-title>
+      <calling-title>Seventy - Pres</calling-title>
       <calling-start>1998-08-15</calling-start>
       <calling-end>2008-04-05</calling-end>
     </calling>
@@ -416,7 +417,7 @@
       <calling-end>1951-04-04</calling-end>
     </calling>
     <calling>
-      <calling-title>President</calling-title>
+      <calling-title>FP - President</calling-title>
       <calling-start>1951-04-09</calling-start>
       <calling-end>1970-01-18</calling-end>
     </calling>
@@ -442,7 +443,7 @@
       <calling-end>2000-08-15</calling-end>
     </calling>
     <calling>
-      <calling-title>Seventy - Presidency</calling-title>
+      <calling-title>Seventy - Pres</calling-title>
       <calling-start>2000-08-15</calling-start>
       <calling-end>2004-04-03</calling-end>
     </calling>
@@ -465,7 +466,7 @@
       <calling-end>2002-08-15</calling-end>
     </calling>
     <calling>
-      <calling-title>Seventy - Presidency</calling-title>
+      <calling-title>Seventy - Pres</calling-title>
       <calling-start>2002-08-15</calling-start>
       <calling-end>2004-10-02</calling-end>
     </calling>
@@ -498,7 +499,7 @@
       <calling-end>2009-04-04</calling-end>
     </calling>
     <calling>
-      <calling-title>Seventy - Presidency</calling-title>
+      <calling-title>Seventy - Pres</calling-title>
       <calling-start>2009-04-04</calling-start>
       <calling-end>2017-08-01</calling-end>
     </calling>
@@ -540,17 +541,17 @@
     <birthdate>1946-11-01</birthdate>
     <deathdate>NA</deathdate>
     <calling>
-      <calling-title>YW - GP - 2nd Counselor</calling-title>
+      <calling-title>YW - 2nd Counselor</calling-title>
       <calling-start>2002-10-02</calling-start>
       <calling-end>2007-03-31</calling-end>
     </calling>
     <calling>
-      <calling-title>YW - GP - 1st Counselor</calling-title>
+      <calling-title>YW - 1st Counselor</calling-title>
       <calling-start>2007-03-31</calling-start>
       <calling-end>2008-04-05</calling-end>
     </calling>
     <calling>
-      <calling-title>YW - GP - President</calling-title>
+      <calling-title>YW - President</calling-title>
       <calling-start>2008-04-05</calling-start>
       <calling-end>2013-04-06</calling-end>
     </calling>
@@ -563,7 +564,7 @@
     <birthdate>1804-01-21</birthdate>
     <deathdate>1887-12-05</deathdate>
     <calling>
-      <calling-title>RS - GP - President</calling-title>
+      <calling-title>RS - President</calling-title>
       <calling-start>1866-12</calling-start>
       <calling-end>1887-12-05</calling-end>
     </calling>
@@ -576,7 +577,7 @@
     <birthdate>1830-09-12</birthdate>
     <deathdate>1904-12-06</deathdate>
     <calling>
-      <calling-title>YW - GP - President</calling-title>
+      <calling-title>YW - President</calling-title>
       <calling-start>1880-06-19</calling-start>
       <calling-end>1904-12-06</calling-end>
     </calling>
@@ -612,7 +613,7 @@
       <calling-end>1985-11-10</calling-end>
     </calling>
     <calling>
-      <calling-title>President</calling-title>
+      <calling-title>FP - President</calling-title>
       <calling-start>1985-11-10</calling-start>
       <calling-end>1994-05-30</calling-end>
     </calling>
@@ -718,7 +719,7 @@
       <calling-end>1945-05-21</calling-end>
     </calling>
     <calling>
-      <calling-title>President</calling-title>
+      <calling-title>FP - President</calling-title>
       <calling-start>1945-05-21</calling-start>
       <calling-end>1951-04-04</calling-end>
     </calling>
@@ -815,7 +816,7 @@
       <calling-end>1995-03-12</calling-end>
     </calling>
     <calling>
-      <calling-title>President</calling-title>
+      <calling-title>FP - President</calling-title>
       <calling-start>1995-03-12</calling-start>
       <calling-end>2008-01-27</calling-end>
     </calling>
@@ -856,7 +857,7 @@
       <calling-end>1972-07-07</calling-end>
     </calling>
     <calling>
-      <calling-title>President</calling-title>
+      <calling-title>FP - President</calling-title>
       <calling-start>1972-07-07</calling-start>
       <calling-end>1973-12-26</calling-end>
     </calling>
@@ -910,7 +911,7 @@
       <calling-end>1918-11-23</calling-end>
     </calling>
     <calling>
-      <calling-title>President</calling-title>
+      <calling-title>FP - President</calling-title>
       <calling-start>1918-11-23</calling-start>
       <calling-end>1945-05-14</calling-end>
     </calling>
@@ -989,7 +990,7 @@
       <calling-end>1994-06-05</calling-end>
     </calling>
     <calling>
-      <calling-title>President</calling-title>
+      <calling-title>FP - President</calling-title>
       <calling-start>1994-06-05</calling-start>
       <calling-end>1995-03-03</calling-end>
     </calling>
@@ -1053,7 +1054,7 @@
       <calling-end>1994-08-15</calling-end>
     </calling>
     <calling>
-      <calling-title>SS - GP - 1st Counselor</calling-title>
+      <calling-title>SS - 1st Counselor</calling-title>
       <calling-start>1994-08-15</calling-start>
       <calling-end>1995-09-30</calling-end>
     </calling>
@@ -1099,7 +1100,7 @@
       <calling-end>1976-10-01</calling-end>
     </calling>
     <calling>
-      <calling-title>Seventy - Presidency</calling-title>
+      <calling-title>Seventy - Pres</calling-title>
       <calling-start>1976-10-01</calling-start>
       <calling-end>1978-09-30</calling-end>
     </calling>
@@ -1135,12 +1136,12 @@
     <birthdate>1933-06-07</birthdate>
     <deathdate>2022-03-04</deathdate>
     <calling>
-      <calling-title>YW - GP - 2nd Counselor</calling-title>
+      <calling-title>YW - 2nd Counselor</calling-title>
       <calling-start>1990-03-31</calling-start>
       <calling-end>1992-04-04</calling-end>
     </calling>
     <calling>
-      <calling-title>YW - GP - President</calling-title>
+      <calling-title>YW - President</calling-title>
       <calling-start>1992-04-04</calling-start>
       <calling-end>1997-10-04</calling-end>
     </calling>
@@ -1158,7 +1159,7 @@
       <calling-end>2008-08-01</calling-end>
     </calling>
     <calling>
-      <calling-title>Seventy - Presidency</calling-title>
+      <calling-title>Seventy - Pres</calling-title>
       <calling-start>2008-08-01</calling-start>
       <calling-end>2012-08-01</calling-end>
     </calling>
@@ -1176,7 +1177,7 @@
     <birthdate>1952-06-10</birthdate>
     <deathdate>NA</deathdate>
     <calling>
-      <calling-title>RS - GP - President</calling-title>
+      <calling-title>RS - President</calling-title>
       <calling-start>2017-04-01</calling-start>
       <calling-end>2022-08-01</calling-end>
     </calling>
@@ -1204,7 +1205,7 @@
       <calling-end>2023-11-15</calling-end>
     </calling>
     <calling>
-      <calling-title>Q12 -  Acting Pres</calling-title>
+      <calling-title>Q12 - Acting Pres</calling-title>
       <calling-start>2023-11-15</calling-start>
       <calling-end>NA</calling-end>
     </calling>
@@ -1227,7 +1228,7 @@
       <calling-end>1993-08-15</calling-end>
     </calling>
     <calling>
-      <calling-title>Seventy - Presidency</calling-title>
+      <calling-title>Seventy - Pres</calling-title>
       <calling-start>1993-08-15</calling-start>
       <calling-end>1999-08-15</calling-end>
     </calling>
@@ -1263,7 +1264,7 @@
       <calling-end>2004-04-03</calling-end>
     </calling>
     <calling>
-      <calling-title>Seventy - Presidency</calling-title>
+      <calling-title>Seventy - Pres</calling-title>
       <calling-start>2004-04-03</calling-start>
       <calling-end>2005-08-15</calling-end>
     </calling>
@@ -1304,7 +1305,7 @@
       <calling-end>1880-10-10</calling-end>
     </calling>
     <calling>
-      <calling-title>President</calling-title>
+      <calling-title>FP - President</calling-title>
       <calling-start>1880-10-10</calling-start>
       <calling-end>1887-07-25</calling-end>
     </calling>
@@ -1327,7 +1328,7 @@
       <calling-end>1986-08-28</calling-end>
     </calling>
     <calling>
-      <calling-title>Seventy - Presidency</calling-title>
+      <calling-title>Seventy - Pres</calling-title>
       <calling-start>1986-08-28</calling-start>
       <calling-end>1986-10-04</calling-end>
     </calling>
@@ -1375,13 +1376,13 @@
       <calling-end>1901-10-10</calling-end>
     </calling>
     <calling>
-      <calling-title>President</calling-title>
+      <calling-title>FP - President</calling-title>
       <calling-start>1901-10-10</calling-start>
       <calling-end>1918-11-19</calling-end>
     </calling>
   </person>
   <person>
-    <name> Joseph Fielding Smith </name>
+    <name note="I do not know which man this refers to. It could be Joseph Fielding Smith Sr. It could be Jr. The world may never know"> Joseph Fielding Smith </name>
     <person-id>73</person-id>
     <gender>M</gender>
     <religion>LDS</religion>
@@ -1418,7 +1419,7 @@
       <calling-end>1970-01-18</calling-end>
     </calling>
     <calling>
-      <calling-title>President</calling-title>
+      <calling-title>FP - President</calling-title>
       <calling-start>1970-01-18</calling-start>
       <calling-end>1972-07-02</calling-end>
     </calling>
@@ -1431,7 +1432,7 @@
     <birthdate>1805-12-23</birthdate>
     <deathdate>1844-06-27</deathdate>
     <calling>
-      <calling-title>President</calling-title>
+      <calling-title>FP - President</calling-title>
       <calling-start>1830-04-06</calling-start>
       <calling-end>1844-06-27</calling-end>
     </calling>
@@ -1452,7 +1453,7 @@
     <birthdate>1954-07-20</birthdate>
     <deathdate>NA</deathdate>
     <calling>
-      <calling-title>PR - GP - President</calling-title>
+      <calling-title>PR - President</calling-title>
       <calling-start>2016-04-02</calling-start>
       <calling-end>2021-04-03</calling-end>
     </calling>
@@ -1465,12 +1466,12 @@
     <birthdate>1954-09-29</birthdate>
     <deathdate>NA</deathdate>
     <calling>
-      <calling-title>YW - GP - 1st Counselor</calling-title>
+      <calling-title>YW - 1st Counselor</calling-title>
       <calling-start>2002-10-05</calling-start>
       <calling-end>2007-03-31</calling-end>
     </calling>
     <calling>
-      <calling-title>RS - GP - President</calling-title>
+      <calling-title>RS - President</calling-title>
       <calling-start>2007-03-31</calling-start>
       <calling-end>2012-03-31</calling-end>
     </calling>
@@ -1576,7 +1577,7 @@
     <birthdate>1952-10-19</birthdate>
     <deathdate>NA</deathdate>
     <calling>
-      <calling-title>RS - GP - President</calling-title>
+      <calling-title>RS - President</calling-title>
       <calling-start>2012-03-31</calling-start>
       <calling-end>2017-04-01</calling-end>
     </calling>
@@ -1589,7 +1590,7 @@
     <birthdate>UNKNOWN</birthdate>
     <deathdate>NA</deathdate>
     <calling>
-      <calling-title>RS - GP - 2nd Counselor</calling-title>
+      <calling-title>RS - 2nd Counselor</calling-title>
       <calling-start>2012-03-31</calling-start>
       <calling-end>2017-04-01</calling-end>
     </calling>
@@ -1628,7 +1629,7 @@
       <calling-end>2014-04-05</calling-end>
     </calling>
     <calling>
-      <calling-title>Seventy - Presidency</calling-title>
+      <calling-title>Seventy - Pres</calling-title>
       <calling-start>2014-04-05</calling-start>
       <calling-end>2018-08-01</calling-end>
     </calling>
@@ -1651,7 +1652,7 @@
       <calling-end>1980-02-22</calling-end>
     </calling>
     <calling>
-      <calling-title>Seventy - Presidency</calling-title>
+      <calling-title>Seventy - Pres</calling-title>
       <calling-start>1980-02-22</calling-start>
       <calling-end>1985-10-06</calling-end>
     </calling>
@@ -1661,7 +1662,7 @@
       <calling-end>2018-01-14</calling-end>
     </calling>
     <calling>
-      <calling-title>Q12 -  Acting Pres</calling-title>
+      <calling-title>Q12 - Acting Pres</calling-title>
       <calling-start>2018-01-14</calling-start>
       <calling-end>2023-11-12</calling-end>
     </calling>
@@ -1687,7 +1688,7 @@
     <birthdate>1944-11-21</birthdate>
     <deathdate>NA</deathdate>
     <calling>
-      <calling-title>YW - GP - President</calling-title>
+      <calling-title>YW - President</calling-title>
       <calling-start>1997-10-04</calling-start>
       <calling-end>2002-10-06</calling-end>
     </calling>
@@ -1710,7 +1711,7 @@
       <calling-end>1976-10-01</calling-end>
     </calling>
     <calling>
-      <calling-title>Seventy - Presidency</calling-title>
+      <calling-title>Seventy - Pres</calling-title>
       <calling-start>1976-10-01</calling-start>
       <calling-end>1980-02-22</calling-end>
     </calling>
@@ -1720,7 +1721,7 @@
       <calling-end>1984-10-06</calling-end>
     </calling>
     <calling>
-      <calling-title>Seventy - Presidency</calling-title>
+      <calling-title>Seventy - Pres</calling-title>
       <calling-start>1984-10-06</calling-start>
       <calling-end>1992-08-15</calling-end>
     </calling>
@@ -1797,7 +1798,7 @@
     <birthdate>1933-08-19</birthdate>
     <deathdate>2025-02-10</deathdate>
     <calling>
-      <calling-title>RS - GP - President</calling-title>
+      <calling-title>RS - President</calling-title>
       <calling-start>1997-04-05</calling-start>
       <calling-end>2002-04-06</calling-end>
     </calling>
@@ -1833,7 +1834,7 @@
       <calling-end>1995-12-27</calling-end>
     </calling>
     <calling>
-      <calling-title>Seventy - Presidency</calling-title>
+      <calling-title>Seventy - Pres</calling-title>
       <calling-start>2003-08-15</calling-start>
       <calling-end>2007-08-15</calling-end>
     </calling>
@@ -1846,7 +1847,7 @@
     <birthdate>UNKNOWN</birthdate>
     <deathdate>NA</deathdate>
     <calling>
-      <calling-title>YW - GP - 1st Counselor</calling-title>
+      <calling-title>YW - 1st Counselor</calling-title>
       <calling-start>2018-03-31</calling-start>
       <calling-end>2023-08-01</calling-end>
     </calling>
@@ -1897,7 +1898,7 @@
       <calling-end>1976</calling-end>
     </calling>
     <calling>
-      <calling-title>Seventy - Presidency</calling-title>
+      <calling-title>Seventy - Pres</calling-title>
       <calling-start>1976-10-01</calling-start>
       <calling-end>1981-07-23</calling-end>
     </calling>
@@ -1920,7 +1921,7 @@
       <calling-end>2005-08-15</calling-end>
     </calling>
     <calling>
-      <calling-title>Seventy - Presidency</calling-title>
+      <calling-title>Seventy - Pres</calling-title>
       <calling-start>2005-08-15</calling-start>
       <calling-end>2009-04-04</calling-end>
     </calling>
@@ -1951,8 +1952,8 @@
     <person-id>106</person-id>
     <gender>M</gender>
     <religion>Not LDS</religion>
-    <birthdate>185</birthdate>
-    <deathdate>253</deathdate>
+    <birthdate>0185</birthdate>
+    <deathdate>0253</deathdate>
   </person>
   <person>
     <name> Orson F. Whitney </name>
@@ -2029,7 +2030,7 @@
       <calling-end>2007-08-01</calling-end>
     </calling>
     <calling>
-      <calling-title>Seventy - Presidency</calling-title>
+      <calling-title>Seventy - Pres</calling-title>
       <calling-start>2007-08-01</calling-start>
       <calling-end>2007-10-06</calling-end>
     </calling>
@@ -2060,17 +2061,17 @@
       <calling-end>1979-10</calling-end>
     </calling>
     <calling>
-      <calling-title>YM - GP - 2nd Counselor</calling-title>
+      <calling-title>YM - 2nd Counselor</calling-title>
       <calling-start>1979-10</calling-start>
       <calling-end>1985-11</calling-end>
     </calling>
     <calling>
-      <calling-title>YM - GP - 1st Counselor</calling-title>
+      <calling-title>YM - 1st Counselor</calling-title>
       <calling-start>1985-11</calling-start>
       <calling-end>1989-09-30</calling-end>
     </calling>
     <calling>
-      <calling-title>Seventy - Presidency</calling-title>
+      <calling-title>Seventy - Pres</calling-title>
       <calling-start>1989-09-30</calling-start>
       <calling-end>1995-09-30</calling-end>
     </calling>
@@ -2093,7 +2094,7 @@
       <calling-end>1983-10-01</calling-end>
     </calling>
     <calling>
-      <calling-title>Seventy - Presidency</calling-title>
+      <calling-title>Seventy - Pres</calling-title>
       <calling-start>1983-10-01</calling-start>
       <calling-end>1988-01-10</calling-end>
     </calling>
@@ -2185,7 +2186,7 @@
       <calling-end>2005-08-15</calling-end>
     </calling>
     <calling>
-      <calling-title>Seventy - Presidency</calling-title>
+      <calling-title>Seventy - Pres</calling-title>
       <calling-start>2005-08-15</calling-start>
       <calling-end>2015-10-03</calling-end>
     </calling>
@@ -2213,7 +2214,7 @@
       <calling-end>2018-01-14</calling-end>
     </calling>
     <calling>
-      <calling-title>President</calling-title>
+      <calling-title>FP - President</calling-title>
       <calling-start>2018-01-14</calling-start>
       <calling-end>NA</calling-end>
     </calling>
@@ -2235,7 +2236,7 @@
     <birthdate>1963-10-04</birthdate>
     <deathdate>NA</deathdate>
     <calling>
-      <calling-title>RS - GP - 1st Counselor</calling-title>
+      <calling-title>RS - 1st Counselor</calling-title>
       <calling-start>2017-04-01</calling-start>
       <calling-end>2022-08-01</calling-end>
     </calling>
@@ -2248,7 +2249,7 @@
     <birthdate>1953-11-21</birthdate>
     <deathdate>NA</deathdate>
     <calling>
-      <calling-title>RS - GP - 2nd Counselor</calling-title>
+      <calling-title>RS - 2nd Counselor</calling-title>
       <calling-start>1997-04-05</calling-start>
       <calling-end>2002-04-06</calling-end>
     </calling>
@@ -2276,7 +2277,7 @@
       <calling-end>1973-12-30</calling-end>
     </calling>
     <calling>
-      <calling-title>President</calling-title>
+      <calling-title>FP - President</calling-title>
       <calling-start>1973-12-30</calling-start>
       <calling-end>1985-11-05</calling-end>
     </calling>
@@ -2289,7 +2290,7 @@
     <birthdate>1958-03-22</birthdate>
     <deathdate>NA</deathdate>
     <calling>
-      <calling-title>YM - GP - President</calling-title>
+      <calling-title>YM - President</calling-title>
       <calling-start>2015-04-04</calling-start>
       <calling-end>2020-04-04</calling-end>
     </calling>
@@ -2302,7 +2303,7 @@
     <birthdate>1953-10-30</birthdate>
     <deathdate>NA</deathdate>
     <calling>
-      <calling-title>YM - GP - President</calling-title>
+      <calling-title>YM - President</calling-title>
       <calling-start>2020-04-04</calling-start>
       <calling-end>NA</calling-end>
     </calling>
@@ -2320,12 +2321,12 @@
       <calling-end>2011-08-01</calling-end>
     </calling>
     <calling>
-      <calling-title>Seventy - Presidency</calling-title>
+      <calling-title>Seventy - Pres</calling-title>
       <calling-start>2011-08-01</calling-start>
       <calling-end>2014-04-05</calling-end>
     </calling>
     <calling>
-      <calling-title>SS - GP - President</calling-title>
+      <calling-title>SS - President</calling-title>
       <calling-start>2014-04-05</calling-start>
       <calling-end>2019-04</calling-end>
     </calling>
@@ -2374,7 +2375,7 @@
       <calling-end>2008-02-03</calling-end>
     </calling>
     <calling>
-      <calling-title>President</calling-title>
+      <calling-title>FP - President</calling-title>
       <calling-start>2008-02-03</calling-start>
       <calling-end>2018-01-02</calling-end>
     </calling>
@@ -2392,7 +2393,7 @@
       <calling-end>2013-01-06</calling-end>
     </calling>
     <calling>
-      <calling-title>Seventy - Presidency</calling-title>
+      <calling-title>Seventy - Pres</calling-title>
       <calling-start>2013-01-06</calling-start>
       <calling-end>2018-03-31</calling-end>
     </calling>
@@ -2423,7 +2424,7 @@
     <birthdate>1950-12-15</birthdate>
     <deathdate>NA</deathdate>
     <calling>
-      <calling-title>PR - GP - 2nd Counselor</calling-title>
+      <calling-title>PR - 2nd Counselor</calling-title>
       <calling-start>2005-04-02</calling-start>
       <calling-end>2010-04-03</calling-end>
     </calling>
@@ -2437,7 +2438,7 @@
     <deathdate>1996-03-26</deathdate>
     <calling>
       <calling-title>PB - 2nd Counselor</calling-title>
-      <calling-start>1961-09-31</calling-start>
+      <calling-start>1961-09-30</calling-start>
       <calling-end>1972-04-06</calling-end>
     </calling>
     <calling>
@@ -2459,7 +2460,7 @@
     <birthdate>1945-02-08</birthdate>
     <deathdate>NA</deathdate>
     <calling>
-      <calling-title>YW - GP - 1st Counselor</calling-title>
+      <calling-title>YW - 1st Counselor</calling-title>
       <calling-start>1992-04-04</calling-start>
       <calling-end>1997-10-04</calling-end>
     </calling>
@@ -2472,7 +2473,7 @@
     <birthdate>1939-04-20</birthdate>
     <deathdate>2020-03-18</deathdate>
     <calling>
-      <calling-title>RS - GP - 1st Counselor</calling-title>
+      <calling-title>RS - 1st Counselor</calling-title>
       <calling-start>1997-04-05</calling-start>
       <calling-end>2002-04-06</calling-end>
     </calling>
@@ -2516,7 +2517,7 @@
       <calling-end>1889-04-07</calling-end>
     </calling>
     <calling>
-      <calling-title>President</calling-title>
+      <calling-title>FP - President</calling-title>
       <calling-start>1889-04-07</calling-start>
       <calling-end>1898-09-02</calling-end>
     </calling>
@@ -2541,5 +2542,13 @@
       <calling-start>1975-10-03</calling-start>
       <calling-end>2003-10-04</calling-end>
     </calling>
+  </person>
+  <person>
+    <name> Priscilla Sampson-Davis </name>
+    <person-id>142</person-id>
+    <gender>F</gender>
+    <religion> LDS </religion>
+    <birthdate>UNKNOWN</birthdate>
+    <deathdate>UNKNOWN</deathdate>
   </person>
 </text>
