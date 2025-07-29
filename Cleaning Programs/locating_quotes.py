@@ -13,7 +13,7 @@ def check_quote(to_check):
     uppers = len(re.findall('[A-Z]',to_check))
     #if it's a title, it's not a quote
     #if it's less than 6 words long, it's definitely not a quote
-    if round(uppers/quote_len, 2) > 0.4 or quote_len < 6:
+    if round(uppers/quote_len, 2) > 0.4 or quote_len < 5:
         return False
     #else:
     #    print(to_check)
@@ -25,6 +25,7 @@ def check_citation(to_check):
                 re.match('\([Ss]ee (also )?True ', to_check) or \
                 re.match('\([Ss]ee [b-z]', to_check) or \
                 re.search('item [0-9]', to_check) or \
+                re.search('The doctrines of the gospel', to_check) or \
                 re.match('\([Ss]ee (also )?Doctrines ', to_check):
             return False
         else:
@@ -140,7 +141,7 @@ def find_entity(text_line):
                              'Brigham Young University','Lutheran','Simon','Andrew','Samson','David','Enoch','Peter',
                              'Matt','Gabriel','Mary','Zacchaeus','Martha','Tiny Mary','Old Bob','Tommy','McConnells',
                              'Quorums','Elder King Follett','Quorum','Benbow','Jane','Rachel','Rebekah','Grandfather',
-                             'Grandmother','Hannah','Samuel','Alvin','Isaac']
+                             'Grandmother','Hannah','Samuel','Alvin','Isaac','Peter 5:5','Stakes']
     for entity in doc.ents:
 
         if entity.label_ == "PERSON":
@@ -175,158 +176,95 @@ def find_entity(text_line):
         people.remove(remove)
     return people
 
-def modify_quote(soup):
 
-    text_elements = soup.find_all(['p','li'])
-    for text_element in text_elements:
-        current_text = text_element.string
-        if current_text:
-            text_element.clear()
-            new_text = re.sub(r'([^:])\r?\n\"', r'\1 ¶ ', current_text)
-            text_element.string = new_text
-            possible_quotes = re.finditer('\".*?\"',text_element.string)
-            pq_count = re.findall('\".*?\"',text_element.string)
+def clean_citation(quote_citation):
+    cleaned_citation = re.sub('[\(\)]','',quote_citation)
+    cleaned_citation = re.sub('^in ','',cleaned_citation)
+    cleaned_citation = re.sub('^[Ss]ee ','',cleaned_citation)
+    split_citation = cleaned_citation.split('; ')
+    citation_options = []
+    if len(split_citation) > 1:
 
-            needs_citation = []
-            for pq in possible_quotes:
-
-                if check_quote(pq.group()):
-
-                    non_quotation_text = new_text[:pq.start()] + new_text[pq.end():]
-                    possible_citation = re.match("\?? \(.*?\)", new_text[pq.end():])
-                    possible_citations = re.finditer("\(.*?\)", non_quotation_text)
-                    pc_count = re.findall("\(.*?\)", non_quotation_text)
-
-                    plausible_citations = []
-                    if len(pc_count) < 1:
-                        #no possible citation could be found in the paragraph
-                        #TODO: come back
-                        #print(pq.group())
-                        pass
-                    else:
-                        has_been_scripture = False
-                        for option in possible_citations:
-
-                            #scripture_ref = False
-                            scripture_ref = scripture_references.check_if_scripture(option.group())
-                            if not scripture_ref:
-                                if not re.search('[0-9]',option.group()):
-                                    if re.search('Hymns', option.group()) \
-                                            or re.search('Gospel Topics', option.group()) \
-                                            or re.search('No Greater Call', option.group()) \
-                                            or re.search('Explanatory Introduction', option.group()) \
-                                            or re.search('National Press Club', option.group()):
-                                        #TODO: this is a citation
-                                        plausible_citations.append(option.group())
-
-                                else:
-                                    if check_citation(option.group()):
-                                        plausible_citations.append(option.group())
-                            else:
-                                has_been_scripture = True
-                            if re.match('\(36\)',option.group()):
-                                plausible_citations.append('Our Heritage, 36')
-                                has_been_scripture = False
-                        if len(plausible_citations) < 1 and has_been_scripture:
-                            if re.search('Elder Haight', non_quotation_text):
-                                #TODO: deal with Haight
-                                pass
-                            #it's probably a scripture otherwise though
-                        elif len(plausible_citations) < 1 and not has_been_scripture:
-                            if re.search('[Pp]roclamation',non_quotation_text):
-                                print(pq.group())
-                            #otherwise it's a scripture or a question
-
-    return
-
-'''
-                    if re.search('\(ChurchofJesusChrist.org\)',new_text) and re.search('The Family: A Proclamation to the World', new_text):
-                        # hardcoded this because I *cannot* figure out what went wrong with this citation
-                        #had to add AttributeError catch
-                        possible_citation = 'The Family: A Proclamation to the World'
-                    if possible_citation:
-                        quote_citation = ''
-                        try:
-                            pc = re.sub("; italics added",'',possible_citation.group())
-                        except AttributeError:
-                            pc = possible_citation
-                        grouped_citation = pc.split('; ')
-                        scripture_ref = False
-                        if len(grouped_citation) == 1:
-                            # print(len(grouped_citation[0].split(' ')))
-                            if len(grouped_citation[0].split(' ')) < 8:
-                                scripture_ref = scripture_references.check_if_scripture(grouped_citation[0])
-                            if not scripture_ref:
-
-                                if not re.search('[0-9]', possible_citation.group()):
-                                    if re.search('Hymns', possible_citation.group()) \
-                                            or re.search('Gospel Topics', possible_citation.group()) \
-                                            or re.search('No Greater Call', possible_citation.group()) \
-                                            or re.search('Explanatory Introduction', possible_citation.group()) \
-                                            or re.search('National Press Club', possible_citation.group()):
-                                        quote_citation = possible_citation.group()
-                                else:
-                                    quote_citation = possible_citation.group()
-                        else:
-
-                            if re.search('Conference Report', possible_citation.group()) or re.search('Ensign',
-                                                                                                      possible_citation.group()):
-                                quote_citation = possible_citation.group()
-                            # if it has more than four semicolons, it's typically just scriptures
-                            elif len(grouped_citation) < 3:
-                                citation_1 = grouped_citation[0]
-                                citation_1_ref = scripture_references.check_if_scripture(citation_1)
-                                citation_2 = grouped_citation[1]
-                                citation_2_ref = scripture_references.check_if_scripture(citation_2)
-                                if citation_1_ref and citation_2_ref:
-                                    # both scriptures
-                                    scripture_ref = True
-                                #  print(possible_citation.group())
-                                if not citation_1_ref and not citation_2_ref:
-                                    quote_citation = possible_citation.group()
-
-                                elif citation_1_ref or citation_2_ref:
-                                    if not citation_1_ref and re.search('[0-9]', citation_1):
-                                        quote_citation = possible_citation.group()
-                                    elif not citation_2_ref and re.search('Teaching', citation_2):
-                                        quote_citation = possible_citation.group()
-                                    else:
-                                       # print(grouped_citation)
-                                        scripture_ref = True
-                            else:
-                                scripture_ref = True
-
-                        if quote_citation != '':
-                            quote_citation = re.sub("^ \((in )?", '', quote_citation)
-                            quote_citation = re.sub("\)$", '', quote_citation)
-                            #quote_citation = re.sub("^ ", '', quote_citation)
-                            people = find_entity(new_text)
-                            citation_folks = set()
-                            elsewhere_folks = set()
-                            character_folks = set()
-                            embedded_folks = set()
-                            if len(people) > 0:
-                                quote_start = pq.start()-1
-                                if quote_start < 0:
-                                    quote_start = 0
-                                not_quote_citation_text = new_text[:quote_start] + " {QUOTED TEXT} {CITATION}" \
-                                                          + new_text[pq.end()+possible_citation.end():]
-                                not_quote_citation_text = re.sub('\{CITATION\}.*?\)\.$','{CITATION}',not_quote_citation_text)
-                                for person in people:
-                                    if re.search(person, pq.group()):
-                                        if re.search('«',pq.group()):
-                                            embedded_folks.add(person)
-                                        else:
-                                            character_folks.add(person)
-                                    if re.search(person, possible_citation.group()):
-                                        citation_folks.add(person)
-                                    if re.search(person,not_quote_citation_text):
-                                        elsewhere_folks.add(person)
-                            else:
-                                #okay, so these are the Neal A. Maxwell quotes from the DC_2003 manual.
-                                elsewhere_folks.add('Neal A. Maxwell')
+        #print(split_citation)
+        if re.match('\"That Ye May Be',split_citation[0]) or \
+                re.match('\"Minutes and Blessings',split_citation[0]) or \
+                re.match('Journal, December',split_citation[0]):
+            citation_options.append(cleaned_citation)
+        else:
+            for sc in split_citation:
+                if not re.match('[sS]ee',sc) and not \
+                    re.match('italics',sc) and not \
+                    re.match('spelling',sc) and not \
+                    re.search('^quoted',sc) and not \
+                    re.search('Conference Report',sc):
+                    #print(re.sub('^or ','',sc))
+                    citation_options.append(re.sub('^or ','',sc))
+    else:
+        citation_options.append(split_citation[0])
 
 
+    cleaned_citation = re.sub('^quoted in','',citation_options[0])
+    cleaned_citation = re.sub('^told by','',cleaned_citation)
+    cleaned_citation = re.sub('^quoted by','',cleaned_citation)
+    #print(cleaned_citation)
+    return cleaned_citation
+
+
+def locate_speakers(full_text, quote_data, citation):
+    people = find_entity(full_text)
+    edited_text = full_text[:quote_data.start()] + "{QUOTATION}" + full_text[quote_data.end():]
+    edited_text = re.sub(citation,'{CITATION}',edited_text)
+    #print(edited_text)
+   # print(quote_data.group())
+    cited_people = set()
+    other_people = set()
+    if len(people) < 1:
+        if re.search('Vincenzo di Francesca',full_text):
+            cited_people.add('Vincenzo di Francesca')
+            other_people.add('Vincenzo di Francesca')
+        elif re.search('The Prophet', full_text):
+            cited_people.add('Joseph Smith')
+            other_people.add('Joseph Smith')
+        elif re.search('Hosanna Shout', full_text):
+            cited_people.add('Encyclopedia of Mormonism')
+            other_people.add('Encyclopedia of Mormonism')
+        elif re.search('The proclamation', full_text):
+            cited_people.add('The Family: A Proclamation to the World')
+            other_people.add('The Family: A Proclamation to the World')
+        elif re.search('Conference Report', full_text):
+            cited_people.add('Neal A. Maxwell')
+            other_people.add('Neal A. Maxwell')
+        elif re.search('Life isn\'t always easy', full_text):
+            cited_people.add('M. Russell Ballard')
+            other_people.add('M. Russell Ballard')
+        elif re.search('Hosanna Shout', full_text):
+            cited_people.add('')
+            other_people.add('')
+        elif re.search('I always want to be', full_text):
+            cited_people.add('Children\'s Songbook')
+            other_people.add('Children\'s Songbook')
+        elif re.search('Neither the law of Moses', full_text):
+            cited_people.add('The Life and Teachings of Jesus and His Apostles')
+            other_people.add('The Life and Teachings of Jesus and His Apostles')
+        else:
+            cited_people.add('A missionary')
+            other_people.add('A missionary')
+    for person in people:
+        #ignore people in the quoted text
+        if re.search(person, citation):
+            cited_people.add(person)
+        if re.search(person, edited_text):
+            other_people.add(person)
+    if len(cited_people) == 0 and len(other_people) == 1:
+        return other_people
+    elif len(cited_people) == 1 and len(other_people) == 0:
+        return cited_people
+    elif len(other_people) > 1 and len(cited_people) == 0:
+        print(other_people)
+        #print("\t",full_text)
+
+
+        '''
                             quote_speaker = []
 
                             # We are ignoring embedded quotes
@@ -398,6 +336,124 @@ def modify_quote(soup):
                                         quote_speaker.append(shared_speakers.pop())
                                     else:
                                         quote_speaker.append(speaker_from_verb(new_text))
+        '''
+        return None
+
+def modify_quote(soup):
+
+    text_elements = soup.find_all(['p','li'])
+    for text_element in text_elements:
+        current_text = text_element.string
+        if current_text:
+            text_element.clear()
+            new_text = re.sub(r'([^\)][^:])\r?\n\"', r'\1 ¶ ', current_text)
+            text_element.string = new_text
+            possible_quotes = re.finditer('\".*?\"',text_element.string)
+            pq_count = re.findall('\".*?\"',text_element.string)
+            quote_count = 0
+            needs_citation = []
+            for pq in possible_quotes:
+                if check_quote(pq.group()):
+                    quote_count += 1
+                    non_quotation_text = new_text[:pq.start()] + new_text[pq.end():]
+                    #possible_citation = re.match("\?? \(.*?\)", new_text[pq.end():])
+                    possible_citations = re.finditer("\(.*?\)", non_quotation_text)
+                    pc_count = re.findall("\(.*?\)", non_quotation_text)
+                    plausible_citations = []
+                    quote_citation = ''
+                    if len(pc_count) < 1:
+                        #no possible citation could be found in the paragraph
+                        if re.search('\?\"$', pq.group()) or \
+                                (re.match(' ?[a-z]\. ?',non_quotation_text)
+                                 and not re.search('Elder Haight',non_quotation_text)) or \
+                                len(non_quotation_text) < 2 or len(pq.group()) < 79:
+                            #it's not relevant. don't worry about it
+                            pass
+                        else:
+                            #hardcoding relevant passages
+                            if re.search('I always want to be',pq.group()) or \
+                                re.search('A man would get nearer',pq.group())or \
+                                re.search('Without the Atonement',pq.group()) or \
+                                re.search('A power went',pq.group()) or \
+                                re.search('grow varieties',pq.group()) or \
+                                re.search('happiness in family life',pq.group()):
+                                #TODO: something with these phrases
+                                plausible_citations.append('IDK it has one')
+                                #print(pq.group())
+                          #  else:
+                                #pass
+                    else:
+                        has_been_scrip = False
+                        for option in possible_citations:
+                            scripture_ref = scripture_references.check_if_scripture(option.group())
+                            if not scripture_ref:
+                                if not re.search('[0-9]',option.group()):
+                                    if re.search('Hymns', option.group()) \
+                                            or re.search('Gospel Topics', option.group()) \
+                                            or re.search('No Greater Call', option.group()) \
+                                            or re.search('Explanatory Introduction', option.group()) \
+                                            or re.search('National Press Club', option.group()):
+                                        #TODO: this is a citation
+                                        plausible_citations.append(option.group())
+
+                                else:
+                                    if check_citation(option.group()):
+                                        plausible_citations.append(option.group())
+                            else:
+                                if re.match('\(36\)', option.group()):
+                                    plausible_citations.append('Our Heritage, 36')
+                                else:
+                                    has_been_scrip = True
+
+                    if len(plausible_citations) < 1 and has_been_scrip:
+                         if re.search('Elder Haight', non_quotation_text):
+                          #      #TODO: deal with Haight
+                                plausible_citations.append('Elder Haight')
+                               # pass
+                            #it's probably a scripture otherwise though
+                    elif len(plausible_citations) < 1 and not has_been_scrip:
+                        if re.search('[Pp]roclamation',non_quotation_text):
+                         #       #TODO: deal with proclamation
+                            plausible_citations.append('Fam Proc')
+
+                    if len(plausible_citations) > 1:
+                        if re.search('the heart \[and\] the spirit',pq.group()):
+                            pass
+                        elif re.search('One able',pq.group()):
+                            quote_citation = plausible_citations[1]
+                        else:
+                            quote_citation = plausible_citations[quote_count-1]
+                    elif len(plausible_citations) == 1:
+                        if len(pq.group()) < 100:
+                            if re.match(' ?\?',new_text[pq.end():]) or \
+                                re.match(' ?\(D\&', new_text[pq.end():]) or \
+                                re.match(' ?\:', new_text[pq.end():]) or \
+                                re.match(' ?[crwo]', new_text[pq.end():]) or \
+                                re.match(' ?A', new_text[pq.end():]) or \
+                                re.search('the place of my', pq.group()) or \
+                                re.match(' ?\([3M]', new_text[pq.end():]):
+                                    #we don't want this
+                                pass
+                            else:
+                                quote_citation = plausible_citations[0]
+                        else:
+                            quote_citation = plausible_citations[0]
+
+                    if quote_citation != '':
+                        cleaned_citation = clean_citation(quote_citation)
+                        quote_speakers = locate_speakers(new_text, pq, cleaned_citation)
+                       # print(cleaned_citation)
+
+    return
+
+'''
+                   
+                        if quote_citation != '':
+                            quote_citation = re.sub("^ \((in )?", '', quote_citation)
+                            quote_citation = re.sub("\)$", '', quote_citation)
+                            #quote_citation = re.sub("^ ", '', quote_citation)
+                            
+                           
 
                             #adds the quotation tag
                             speaker = ', '.join(str(x) for x in quote_speaker)
@@ -526,4 +582,4 @@ def main():
         with open(modified_manual, 'w', encoding='utf-8') as modifying_manual:
             modifying_manual.write(soup.prettify())
 
-main()
+#main()
