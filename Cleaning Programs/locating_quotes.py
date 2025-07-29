@@ -19,6 +19,37 @@ def check_quote(to_check):
     #    print(to_check)
     return True
 
+def check_citation(to_check):
+    if re.match('\([Ss]ee', to_check):
+        if re.match('\([Ss]ee (also )?Teaching ', to_check) or \
+                re.match('\([Ss]ee (also )?True ', to_check) or \
+                re.match('\([Ss]ee [b-z]', to_check) or \
+                re.search('item [0-9]', to_check) or \
+                re.match('\([Ss]ee (also )?Doctrines ', to_check):
+            return False
+        else:
+            if re.search("Christofferson", to_check) or \
+                    re.search("Andersen", to_check) or \
+                    re.search("Packer", to_check):
+                return False
+            else:
+                return True
+    else:
+        if re.search('Hymns,',to_check):
+            #idk if any of the hymns are actually quoted?? keep this separate just in case
+            return False
+        elif re.match('\([cpsf]',to_check) or \
+                re.search('gave some examples',to_check) or \
+                re.search('media-library',to_check) or \
+                re.search('Our Heritage, page 101',to_check) or \
+                re.match('\(For the',to_check) or \
+                re.match('\(Note',to_check) or \
+                re.match('\([0-9]',to_check) or \
+                re.match('\(D\&',to_check):
+            return False
+        else:
+            return True
+
 nlp.add_pipe('merge_entities')
 def speaker_from_verb(text_line):
     speaker = ''
@@ -173,7 +204,9 @@ def modify_quote(soup):
                         #print(pq.group())
                         pass
                     else:
+                        has_been_scripture = False
                         for option in possible_citations:
+
                             #scripture_ref = False
                             scripture_ref = scripture_references.check_if_scripture(option.group())
                             if not scripture_ref:
@@ -185,11 +218,25 @@ def modify_quote(soup):
                                             or re.search('National Press Club', option.group()):
                                         #TODO: this is a citation
                                         plausible_citations.append(option.group())
-                                    #else:
-                                        #these aren't actually citations
+
                                 else:
-                                    plausible_citations.append(option.group())
-                                    print(option.group())
+                                    if check_citation(option.group()):
+                                        plausible_citations.append(option.group())
+                            else:
+                                has_been_scripture = True
+                            if re.match('\(36\)',option.group()):
+                                plausible_citations.append('Our Heritage, 36')
+                                has_been_scripture = False
+                        if len(plausible_citations) < 1 and has_been_scripture:
+                            if re.search('Elder Haight', non_quotation_text):
+                                #TODO: deal with Haight
+                                pass
+                            #it's probably a scripture otherwise though
+                        elif len(plausible_citations) < 1 and not has_been_scripture:
+                            if re.search('[Pp]roclamation',non_quotation_text):
+                                print(pq.group())
+                            #otherwise it's a scripture or a question
+
     return
 
 '''
