@@ -13,10 +13,16 @@ def check_quote(to_check):
     uppers = len(re.findall('[A-Z]',to_check))
     #if it's a title, it's not a quote
     #if it's less than 6 words long, it's definitely not a quote
-    if round(uppers/quote_len, 2) > 0.4 or quote_len < 5:
+    if re.search('What I have received', to_check):
+        #hardcoded because it's the exception to the rounding rule
+        return True
+    if quote_len < 5:
         return False
-    #else:
-    #    print(to_check)
+    elif round(uppers/quote_len, 2) > 0.4 and quote_len < 15:
+        #print(to_check)
+        return False
+    elif re.search('To the Presidents and Members',to_check):
+        return False
     return True
 
 def check_citation(to_check):
@@ -74,67 +80,17 @@ def speaker_from_verb(text_line):
     speaker_doc = nlp(text_line)
     matches = matcher(speaker_doc)
     speaking_verbs = ['told','said','recalled','explained','issued','announced', 'taught','shared','wrote','declared',
-                      'commented','published', 'quoted','made','offered',]
+                      'commented','published', 'quoted','made','offered','observed','recorded','replied']
     for match in matches:
         match_id, (start, end) = match
         if str(speaker_doc[end]) in speaking_verbs:
             return str(speaker_doc[start])
         elif str(speaker_doc[start]) == 'Emma' and str(speaker_doc[end]) == 'support':
             return 'Lucy Mack Smith'
-    if re.match('A hymn such as',text_line):
-        return('Henry B. Eyring')
-    elif re.match('President M. Russell Ballard\'s message',text_line):
-        return('M. Russell Ballard')
-    elif re.match('Consider introducing the topic of marriage',text_line):
-        return('Robert D. Hales')
-    elif re.match('Read Joseph Smith—History',text_line) or \
-        re.match('Display the picture of the Martin', text_line):
-        return('Gordon B. Hinckley')
-    elif re.match('You may want to review Oliver Cowdery',text_line):
-        return('James E. Talmage')
-    elif re.match(' ?Speaking about Joseph Smith',text_line):
-        return('LeGrand Richards')
-    elif re.match('When Jeffrey R. Holland was president',text_line):
-        return('Jeffrey R. Holland')
-    elif re.match('Display the picture of President Wilford Woodruff',text_line) or \
-            re.match('Speaking at Christmastime', text_line):
-        return('Russell M. Nelson')
-    elif re.match('In "The Family: A Proclamation to the World,"',text_line) or \
-            re.match('The First Presidency',text_line) or \
-            re.match('Explain that the Prophet Joseph Smith', text_line):
-        return('First Presidency')
-    elif re.match('Share the following story told',text_line):
-        return('Vaughn J. Featherstone')
-    elif re.match('Some people incorrectly believe',text_line):
-        return('Richard G. Scott')
-    elif re.match('Explain that in 1952',text_line):
-        return('Ezra Taft Benson')
-    elif re.match('Share the following story told by Elder Thomas S. Monson',text_line):
-        return('Thomas S. Monson')
-    elif re.match('In February 1828, Martin Harris',text_line):
-        return('Revelations in Context')
-    elif re.match('Soon after Sister Belle S. Spafford',text_line):
-        return('Belle S. Spafford')
-    elif re.match('In July 1839, a large number',text_line):
-        return('Wilford Woodruff')
-    elif re.match('Explain that Joseph Smith\'s father',text_line):
-        return('E. Cecil McGavin')
-    elif re.match('The process of translating the Bible',text_line):
-        return('Robert J. Matthews')
-    elif re.match('Levi Hancock was baptized in November 1830',text_line):
-        return('Don L. Searle')
-    elif re.match('Explain that before Joseph Smith Sr.',text_line):
-        return('Joseph Smith Sr.')
-    elif re.match('Frederick William Hurst was working',text_line):
-        return('Frederick William Hurst')
-    elif re.match('3. Suggestion for teaching',text_line):
-        return('Boyd K. Packer')
-    elif re.match('Some of the workers suggested they build the temple',text_line):
-        return('Joseph Smith')
-    else:
-        line_string = "CHECK THIS LINE: " + text_line
-        return(line_string)
-       # return ''
+    if re.search('Richard G. Scott', text_line):
+        return 'Richard G. Scott'
+    line_string = "CHECK THIS LINE: " + text_line
+    return (line_string)
 
 def find_entity(text_line):
     doc = nlp(text_line)
@@ -258,13 +214,10 @@ def clean_citation(quote_citation):
     #print(cleaned_citation)
     return cleaned_citation
 
-
 def locate_speakers(full_text, quote_data, citation):
     people = find_entity(full_text)
     edited_text_quote = full_text[:quote_data.start()] + "{QUOTATION}" + full_text[quote_data.end():]
     edited_text_citation = re.sub(citation,'{CITATION}',edited_text_quote)
-    #print(edited_text)
-   # print(quote_data.group())
     cited_people = set()
     other_people = set()
     new_people = set()
@@ -273,33 +226,36 @@ def locate_speakers(full_text, quote_data, citation):
         if re.search('Vincenzo di Francesca',full_text):
             cited_people.add('Vincenzo di Francesca')
             other_people.add('Vincenzo di Francesca')
-        elif re.search('The Prophet', full_text):
-            cited_people.add('Joseph Smith')
-            other_people.add('Joseph Smith')
         elif re.search('Hosanna Shout', full_text):
             cited_people.add('Encyclopedia of Mormonism')
             other_people.add('Encyclopedia of Mormonism')
         elif re.search('The proclamation', full_text):
             cited_people.add('The Family: A Proclamation to the World')
             other_people.add('The Family: A Proclamation to the World')
-        elif re.search('Conference Report', full_text):
-            cited_people.add('Neal A. Maxwell')
-            other_people.add('Neal A. Maxwell')
-        elif re.search('Life isn\'t always easy', full_text):
-            cited_people.add('M. Russell Ballard')
-            other_people.add('M. Russell Ballard')
-        elif re.search('Hosanna Shout', full_text):
-            cited_people.add('')
-            other_people.add('')
+        elif re.search('The Prophet', full_text):
+            cited_people.add('Joseph Smith')
+            other_people.add('Joseph Smith')
         elif re.search('I always want to be', full_text):
             cited_people.add('Children\'s Songbook')
             other_people.add('Children\'s Songbook')
         elif re.search('Neither the law of Moses', full_text):
             cited_people.add('The Life and Teachings of Jesus and His Apostles')
             other_people.add('The Life and Teachings of Jesus and His Apostles')
-        else:
+        elif re.search('Life isn\'t always easy', full_text):
+            cited_people.add('M. Russell Ballard')
+            other_people.add('M. Russell Ballard')
+        elif re.search('Paramore',full_text):
+            cited_people.add('James M. Paramore')
+            other_people.add('James M. Paramore')
+        elif re.search('Word of Wisdom',full_text):
             cited_people.add('A missionary')
             other_people.add('A missionary')
+        elif re.match('[a-z]',full_text):
+            cited_people.add('Neal A. Maxwell')
+            other_people.add('Neal A. Maxwell')
+        else:
+            print("Couldn't find a speaker for this line: ",full_text)
+
     for person in people:
         #ignore people in the quoted text
         if re.search(person, citation):
@@ -321,12 +277,14 @@ def locate_speakers(full_text, quote_data, citation):
     elif len(other_people) > 0 and len(cited_people) == 0:
         potential_speakers = set()
         potential_speakers.add(speaker_from_verb(edited_text_quote))
+
         return potential_speakers
     elif len(cited_people) > 0 and len(other_people) > 0:
         combined_set = cited_people & other_people
-
         if 'Joseph Fielding Smith' in cited_people:
             other_people.discard('Joseph Fielding Smith')
+            other_people.discard('Zacharias')
+            other_people.discard('Elisabeth')
             return other_people
         elif 'Edward L. Kimball' in cited_people:
             combined_set.discard('Edward L. Kimball')
@@ -334,48 +292,99 @@ def locate_speakers(full_text, quote_data, citation):
         elif 'Bruce R. McConkie' in cited_people:
             other_people.discard('Bruce R. McConkie')
             return other_people
-        elif 'John A. Widtsoe' in cited_people:
-            combined_set.discard('John A. Widtsoe')
-            return combined_set
         elif 'G. Homer Durham' in cited_people:
             other_people.discard('G. Homer Durham')
             return other_people
         elif 'Stanley B. Kimball' in cited_people:
             combined_set.discard('Stanley B. Kimball')
             return combined_set
+        elif 'Albert L. Zobell Jr.' in cited_people:
+            other_people.discard('Albert L. Zobell Jr.')
+            return other_people
         elif 'History of the Church' in cited_people:
-            #print(cited_people, other_people)
             other_people.discard('History of the Church')
             if len(other_people) == 1:
                 return other_people
             else:
                 new_people.add('History of the Church')
                 return new_people
+        elif 'John A. Widtsoe' in cited_people:
+            combined_set.discard('John A. Widtsoe')
+            return combined_set
         else:
-            if len(other_people) == 1:
-                if 'Gospel Topics' in other_people:
+            if 'Brigham Young' in cited_people and re.search('University',full_text):
+                other_people.discard('Brigham Young')
+                return other_people
+            elif len(other_people) == 1:
+                if 'First Presidency' in other_people:
+                    return other_people
+                elif 'Gospel Topics' in other_people:
                     return cited_people
-                elif 'Joseph F. Smith' in other_people:
-                    return cited_people
-                elif 'The Family: A Proclamation to the World' in cited_people:
+                elif 'George Frideric Handel' in other_people:
                     return cited_people
                 else:
                     return other_people
-            else:
-                speaker_check = speaker_from_verb(edited_text_citation)
-                if re.match('CHECK',speaker_check):
-                    for cited_person in cited_people:
-                        other_people.discard(cited_person)
+            elif len(cited_people) == 1:
+                if 'Richard G. Scott' in other_people:
+                    other_people.discard('Richard G. Scott')
                     return other_people
-                else:
-                    new_people.add(speaker_check)
+                elif 'Belle S. Spafford' in cited_people or \
+                        'Boyd K. Packer' in cited_people or \
+                        'Don L. Searle' in cited_people or \
+                        'E. Cecil McGavin' in cited_people or \
+                        'Robert J. Matthews' in cited_people or \
+                        'Wilford Woodruff' in cited_people or \
+                        'Brigham Young' in cited_people:
+                    return cited_people
+                elif 'Joseph Smith' in cited_people:
+                    new_people.add('First Presidency')
                     return new_people
-    else:
-        print(other_people, cited_people)
-        print('\t',full_text)
+                elif 'Lucy Mack Smith' in other_people:
+                    new_people.add('Lucy Mack Smith')
+                    return new_people
+                elif 'Martin Harris' in cited_people:
+                    new_people.add('Revelations in Context')
+                    return new_people
+                elif 'Wilford Woodruff' in other_people:
+                    #this one is weird because it's Joseph Smith from Woodruff's words...
+                    new_people.add('Joseph Smith')
+                    return new_people
+                else:
+                    return other_people.difference(cited_people)
+
+                #print(cited_people, other_people)
+                #print("\t\t",edited_text_quote)
+            else:
+                if other_people == cited_people:
+                    if 'Gordon B. Hinckley' in cited_people:
+                        new_people.add('Marjorie P. Hinckley')
+                        return new_people
+                    else:
+                        speaker_check = speaker_from_verb(edited_text_citation)
+                        if re.match('CHECK',speaker_check):
+                            return cited_people
+                        else:
+                            new_people.add(speaker_check)
+                            return new_people
+                else:
+                    if 'Frederick G. Williams' in other_people:
+                        new_people.add('Frederick G. Williams')
+                        return new_people
+                    elif 'Joseph Smith Sr.' in other_people:
+                        new_people.add('Joseph Smith Sr.')
+                        return new_people
+                    elif 'Joseph Smith' in other_people:
+                        new_people.add('Joseph Smith')
+                        return new_people
+                    elif 'Frederick William Hurst' in other_people:
+                        new_people.add('Frederick William Hurst')
+                        return new_people
+    return new_people
 
 def clean_speakers(dirty_speakers, text_line):
     cleaned_speakers = set()
+    if dirty_speakers == None:
+        return cleaned_speakers
     for speaker in dirty_speakers:
         new_speaker = re.sub('Elder ','',speaker)
         new_speaker = re.sub('Bishop ','',new_speaker)
@@ -390,8 +399,6 @@ def clean_speakers(dirty_speakers, text_line):
             new_speaker = 'William R. Bradford'
         if new_speaker == 'David A. Bednar\'s':
             new_speaker = 'David A. Bednar'
-        if new_speaker == 'Elisabeth':
-            new_speaker = 'Joseph Smith'
         if new_speaker == 'Joseph Fielding Smith Jr.':
             new_speaker = 'Joseph Fielding Smith'
         if new_speaker == 'Chi Hong':
@@ -420,12 +427,11 @@ def clean_speakers(dirty_speakers, text_line):
             new_speaker = 'Joseph B. Wirthlin'
         if new_speaker == 'Woodruff':
             new_speaker = 'Wilford Woodruff'
-        if new_speaker == 'Zacharias':
-            new_speaker = 'Joseph Smith'
         if new_speaker == 'Young':
             new_speaker = 'Brigham Young'
         cleaned_speakers.add(new_speaker)
     return cleaned_speakers
+
 def modify_quote(soup):
 
     text_elements = soup.find_all(['p','li'])
@@ -433,17 +439,23 @@ def modify_quote(soup):
         current_text = text_element.string
         if current_text:
             text_element.clear()
-            new_text = re.sub(r'([^\)][^:])\r?\n\"', r'\1 ¶ ', current_text)
+            new_text = re.sub(r'(^\"[^\"]*?)\r?\n\"', r'\1 ¶ ', current_text)
+            new_text = re.sub(r'([^\"]\r?\n)(\"[^\"]*?)\r?\n\"', r'\1\2 ¶ ', new_text)
+            # if a line starts with a quotation, but does not end in a quotation,
+                # you should combine it with the quotation below
+            while re.search(r'[^\"]\r?\n\"[^\"]*?\r?\n\"', new_text):
+                new_text = re.sub(r'([^\"]\r?\n\"[^\"]*?)\r?\n\"', r'\1 ¶ ', new_text)
+
             text_element.string = new_text
             possible_quotes = re.finditer('\".*?\"',text_element.string)
             pq_count = re.findall('\".*?\"',text_element.string)
             quote_count = 0
             all_quotes = []
+
             for pq in possible_quotes:
                 if check_quote(pq.group()):
                     quote_count += 1
                     non_quotation_text = new_text[:pq.start()] + new_text[pq.end():]
-                    #possible_citation = re.match("\?? \(.*?\)", new_text[pq.end():])
                     possible_citations = re.finditer("\(.*?\)", non_quotation_text)
                     pc_count = re.findall("\(.*?\)", non_quotation_text)
                     plausible_citations = []
@@ -458,17 +470,18 @@ def modify_quote(soup):
                             pass
                         else:
                             #hardcoding relevant passages
-                            if re.search('I always want to be',pq.group()) or \
-                                re.search('A man would get nearer',pq.group())or \
-                                re.search('Without the Atonement',pq.group()) or \
-                                re.search('A power went',pq.group()) or \
-                                re.search('grow varieties',pq.group()) or \
-                                re.search('happiness in family life',pq.group()):
-                                #TODO: something with these phrases
-                                plausible_citations.append('IDK it has one')
-                                #print(pq.group())
-                          #  else:
-                                #pass
+                            if re.search('I always want to be',pq.group()):
+                                plausible_citations.append('Children\'s Songbook')
+                            elif re.search('A man would get nearer',pq.group()):
+                                plausible_citations.append('Joseph Smith')
+                            elif re.search('Without the Atonement',pq.group()):
+                                plausible_citations.append('Russell M. Nelson')
+                            elif re.search('A power went',pq.group()):
+                                plausible_citations.append('A missionary')
+                            elif re.search('grow varieties',pq.group()):
+                                plausible_citations.append('(in Conference Report, Apr. 1989, 7; or Ensign, May 1989, 7)')
+                            elif re.search('happiness in family life',pq.group()):
+                                plausible_citations.append('The Family: A Proclamation to the World')
                     else:
                         has_been_scrip = False
                         for option in possible_citations:
@@ -494,13 +507,10 @@ def modify_quote(soup):
 
                     if len(plausible_citations) < 1 and has_been_scrip:
                          if re.search('Elder Haight', non_quotation_text):
-                          #      #TODO: deal with Haight
-                                plausible_citations.append('Elder Haight')
-                               # pass
-                            #it's probably a scripture otherwise though
+                            plausible_citations.append('Elder Haight')
+                        #it's probably a scripture otherwise though
                     elif len(plausible_citations) < 1 and not has_been_scrip:
                         if re.search('[Pp]roclamation',non_quotation_text):
-                         #       #TODO: deal with proclamation
                             plausible_citations.append('Fam Proc')
 
                     if len(plausible_citations) > 1:
@@ -523,6 +533,7 @@ def modify_quote(soup):
                                     #we don't want this
                                 pass
                             else:
+
                                 quote_citation = plausible_citations[0]
                         else:
                             quote_citation = plausible_citations[0]
@@ -530,138 +541,38 @@ def modify_quote(soup):
                     if quote_citation != '':
                         cleaned_citation = clean_citation(quote_citation)
                         quote_speakers = locate_speakers(new_text, pq, cleaned_citation)
-
                         speaker = ', '.join(str(x) for x in clean_speakers(quote_speakers, new_text))
                         all_quotes.append([pq, cleaned_citation, speaker])
-
+            
             if len(all_quotes) > 0:
-                print("New Element")
-            for a_quote in all_quotes:
-                print("\t",a_quote)
+                reversed_quotes = all_quotes[::-1]
+                for q in reversed_quotes:
+                    q_quote = q[0]
+                    q_citation = q[1]
+                    q_speaker = q[2]
+                    contents_start = q_quote.start() - 1
+                    modify_text = text_element.contents[0]
+                    long_comments = []
+                    partial = False
+                    if len(text_element.contents) > 1:
+                        long_comments.extend(text_element.contents[1:])
+                        partial = True
 
-                '''
-                      print(speaker)
-                        contents_start = pq.start() - 1
-                        if contents_start < 0:
-                            contents_start = 0
-                        try:
-                            text_element.clear()
-                        except AttributeError:
-                            print(text_element)
-                        quote_tag = soup.new_tag('quotation', speaker=speaker, citation=quote_citation,
-                                                 string=pq.group(), partial_quote="False")
-                        new_contents = [new_text[:contents_start], quote_tag, new_text[pq.end() + 1:]]
-                        text_element.extend(new_contents)
-                    else:
-                        print(pq.group())
-                       # print(cleaned_citation)
-                       '''
+                    if contents_start < 0:
+                        contents_start = 0
 
-    return
+                    try:
+                        text_element.clear()
+                    except AttributeError:
+                        print(text_element)
 
-'''
-                   
-                        if quote_citation != '':
-                            #adds the quotation tag
-                            
-                            new_contents = []
-                            start_quote = 0
-                            if not (re.match('\?',quote_citation) and speaker == 'Neal A. Maxwell'):
-                                if len(needs_citation) > 0:
-                                    if re.search('Why We Are Organized',quote_citation):
-                                        speaker = 'Julie B. Beck'
-                                    for quote_section in needs_citation:
-                                        new_contents.append(new_text[start_quote:quote_section.start()-1])
-                                        quote_tag = soup.new_tag('quotation', speaker=speaker, citation=quote_citation,
-                                                                 string=quote_section.group(), partial_quote="True")
-                                        new_contents.append(quote_tag)
-                                        start_quote = quote_section.end() + 1
+                    quote_tag = soup.new_tag('quotation', speaker=q_speaker, citation=q_citation,
+                                             string=q_quote.group(), partial_quote=partial)
+                    new_contents = [modify_text[:contents_start], quote_tag, modify_text[q_quote.end() + 1:]]
+                    if len(long_comments) > 1:
+                        new_contents.extend(long_comments)
 
-                                    quote_tag = soup.new_tag('quotation', speaker=speaker, citation=quote_citation,
-                                                             string=pq.group(), partial_quote="True")
-                                    new_contents.append(new_text[start_quote:contents_start])
-                                    new_contents.append(quote_tag)
-                                    new_contents.append(new_text[pq.end() + 1:])
-                                else:
-                                    #Hardcoded thing I had to fix
-                                    if re.search('the most important preparation is of yourself', new_text):
-                                        speaker = 'Boyd K. Packer'
-                                        quote_citation = 'Boyd K. Packer, Teach Ye Diligently [1975], 219'
-                                    if re.search('Elders\' Journal', quote_citation) and speaker == 'Neal A. Maxwell':
-                                        speaker = 'Joseph Smith'
-                                    quote_tag = soup.new_tag('quotation', speaker=speaker, citation=quote_citation,
-                                                             string=pq.group(), partial_quote="False")
-                                    new_contents = [new_text[:contents_start], quote_tag, new_text[pq.end() + 1:]]
-
-                                text_element.extend(new_contents)
-
-                        else:
-                            #don't do anything with this because they're basically all scriptures,
-                            #except for some video narration that I'm ignoring
-                            pass
-                    else:
-                        #Quotes without citations, but there's only one of it in the paragraph
-                        if len(pq_count) < 2:
-                            speaker = ''
-                            citation = ''
-                            if re.search("A man would get nearer to God",pq.group()):
-                                speaker = 'Joseph Smith'
-                                citation = ''
-                            elif re.search("appeared within viewing distance", pq.group()):
-                                speaker = 'Frederick G. Williams'
-                                citation = 'The Revelations of the Prophet Joseph Smith, comp. Lyndon W. Cook [1981], 198.'
-                            elif re.search("A power went through me at that moment", pq.group()):
-                                speaker = 'A missionary'
-                                citation = ''
-                            elif re.search("the sound of the voice of the", pq.group()):
-                                speaker = 'Spencer W. Kimball'
-                                citation = 'Conference Report, Apr. 1977, 115; or Ensign, May 1977, 78'
-                            elif re.search("I always want to be with my own family",pq.group()):
-                                speaker = 'Children\'s Songbook'
-                                citation = 'Families Can Be Together Forever'
-                            elif re.search("happiness in family life is most likely to be achieved",pq.group()) \
-                                    or re.search("successful marriages and families are established",pq.group()):
-                                speaker = 'The First Presidency'
-                                citation = 'The Family: A Proclamation to the World'
-                            elif re.search("When an enemy had told a scandalous story", pq.group()):
-                                speaker = 'Joseph Smith'
-                                citation = 'Jesse W. Crosby, quoted in Hyrum L. Andrus and Helen Mae Andrus, comps., They Knew the Prophet [1974], 144.'
-                            elif re.search("Perhaps Jesus felt not only a sense",pq.group()) \
-                                    or re.search("He took His three apostles with Him",pq.group()) \
-                                    or re.search("The three chosen apostles were taught",pq.group()):
-                                speaker = 'David B. Haight'
-                                citation = 'Conference Report, Apr. 1977, 9–10; or Ensign, May 1977, 7–9'
-                            elif re.search("grow varieties of corn and beans that", pq.group()):
-                                speaker = 'Joseph B. Wirthlin'
-                                citation = 'Conference Report, Apr. 1989, 7; or Ensign, May 1989, 7'
-                            elif re.search("a correct idea of",pq.group()):
-                                speaker = 'Joseph Smith'
-                                citation = 'Lectures on Faith [1985], 38'
-                            else:
-
-                                pass
-
-                            #I mean, if I can clean this up, I can make it a function
-                            if not (speaker == '' and citation == ''):
-                                try:
-                                    text_element.clear()
-                                except AttributeError:
-                                    print(text_element)
-                                contents_start = pq.start() - 1
-                                if contents_start < 0:
-                                    contents_start = 0
-                                quote_tag = soup.new_tag('quotation', speaker=speaker, citation=citation,
-                                                         string=pq.group(), partial_quote="False")
-                                new_contents = [new_text[:contents_start], quote_tag, new_text[pq.end() + 1:]]
-                                text_element.extend(new_contents)
-                        #Quotes without citations that are part of a bigger paragraph
-                        else:
-                            needs_citation.append(pq)
-                            '''
-
-
-
-
+                    text_element.extend(new_contents)
 
 def main():
     to_modify_dir = "C:\\Users\elena\PycharmProjects\MA_Thesis\Full_Manuals\Sections_XML"
@@ -675,7 +586,7 @@ def main():
             file = f.read()
         soup = BeautifulSoup(file,'xml')
         modify_quote(soup)
-      #  hold = input("wait a sec")
+        #hold = input("wait a sec")
         with open(modified_manual, 'w', encoding='utf-8') as modifying_manual:
             modifying_manual.write(soup.prettify())
 
