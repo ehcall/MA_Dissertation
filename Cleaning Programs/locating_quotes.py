@@ -89,6 +89,31 @@ def speaker_from_verb(text_line):
             return 'Lucy Mack Smith'
     if re.search('Richard G. Scott', text_line):
         return 'Richard G. Scott'
+    if re.search('Henry B. Eyring', text_line):
+        return 'Henry B. Eyring'
+    if re.search('Thomas S. Monson', text_line):
+        return 'Thomas S. Monson'
+    if re.search('First Presidency', text_line):
+        return 'First Presidency'
+    if re.search('Vaughn J. Featherstone', text_line):
+        return 'Vaughn J. Featherstone'
+    if re.search('Ezra Taft Benson', text_line):
+        return 'Ezra Taft Benson'
+    if re.search('Russell M. Nelson', text_line):
+        return 'Russell M. Nelson'
+    if re.search('Jeffrey R. Holland', text_line):
+        return 'Jeffrey R. Holland'
+    if re.search('Gordon B. Hinckley', text_line):
+        return 'Gordon B. Hinckley'
+
+    if re.search('James E. Talmage', text_line):
+        return 'James E. Talmage'
+    if re.search('Robert D. Hales', text_line):
+        return 'Robert D. Hales'
+    if re.search('M. Russell Ballard', text_line):
+        return 'M. Russell Ballard'
+    if re.search('LeGrand Richards', text_line):
+        return 'LeGrand Richards'
     line_string = "CHECK THIS LINE: " + text_line
     return (line_string)
 
@@ -257,6 +282,7 @@ def locate_speakers(full_text, quote_data, citation):
             print("Couldn't find a speaker for this line: ",full_text)
 
     for person in people:
+
         #ignore people in the quoted text
         if re.search(person, citation):
             cited_people.add(person)
@@ -267,6 +293,9 @@ def locate_speakers(full_text, quote_data, citation):
     elif len(cited_people) == 1 and len(other_people) == 0:
         return cited_people
     elif len(cited_people) == 1 and cited_people == other_people:
+        if 'James R. Clark' in cited_people:
+            new_people.add('First Presidency')
+            return new_people
         return cited_people
     elif len(cited_people) > 1 and len(other_people) == 0:
         if 'Joseph Smith\'s' in cited_people:
@@ -275,16 +304,24 @@ def locate_speakers(full_text, quote_data, citation):
         else:
             return cited_people
     elif len(other_people) > 0 and len(cited_people) == 0:
-        potential_speakers = set()
-        potential_speakers.add(speaker_from_verb(edited_text_quote))
+        if re.search('Church History in the Fulness of Times', full_text):
+            new_people.add('Church History in the Fulness of Times')
+            return new_people
+        else:
+            new_people.add(speaker_from_verb(edited_text_quote))
 
-        return potential_speakers
+        return new_people
     elif len(cited_people) > 0 and len(other_people) > 0:
         combined_set = cited_people & other_people
         if 'Joseph Fielding Smith' in cited_people:
             other_people.discard('Joseph Fielding Smith')
             other_people.discard('Zacharias')
             other_people.discard('Elisabeth')
+            return other_people
+        elif 'James R. Clark' in cited_people:
+            other_people.discard('James R. Clark')
+            if 'Joseph F. Smith' in cited_people:
+                other_people.add('First Presidency')
             return other_people
         elif 'Edward L. Kimball' in cited_people:
             combined_set.discard('Edward L. Kimball')
@@ -311,6 +348,9 @@ def locate_speakers(full_text, quote_data, citation):
         elif 'John A. Widtsoe' in cited_people:
             combined_set.discard('John A. Widtsoe')
             return combined_set
+        elif 'Julie B. Beck' in other_people:
+            new_people.add('Julie B. Beck')
+            return new_people
         else:
             if 'Brigham Young' in cited_people and re.search('University',full_text):
                 other_people.discard('Brigham Young')
@@ -482,6 +522,7 @@ def modify_quote(soup):
                                 plausible_citations.append('(in Conference Report, Apr. 1989, 7; or Ensign, May 1989, 7)')
                             elif re.search('happiness in family life',pq.group()):
                                 plausible_citations.append('The Family: A Proclamation to the World')
+
                     else:
                         has_been_scrip = False
                         for option in possible_citations:
@@ -497,7 +538,12 @@ def modify_quote(soup):
                                         plausible_citations.append(option.group())
 
                                 else:
-                                    if check_citation(option.group()):
+                                    if re.search('Hymns',option.group()):
+                                        if re.search("Again We Meet", option.group()):
+                                            plausible_citations.append(option.group())
+                                        else:
+                                            pass
+                                    elif check_citation(option.group()):
                                         plausible_citations.append(option.group())
                             else:
                                 if re.match('\(36\)', option.group()):
@@ -546,6 +592,10 @@ def modify_quote(soup):
             
             if len(all_quotes) > 0:
                 reversed_quotes = all_quotes[::-1]
+                if len(all_quotes) > 1:
+                    partial = True
+                else:
+                    partial = False
                 for q in reversed_quotes:
                     q_quote = q[0]
                     q_citation = q[1]
@@ -553,10 +603,9 @@ def modify_quote(soup):
                     contents_start = q_quote.start() - 1
                     modify_text = text_element.contents[0]
                     long_comments = []
-                    partial = False
+
                     if len(text_element.contents) > 1:
                         long_comments.extend(text_element.contents[1:])
-                        partial = True
 
                     if contents_start < 0:
                         contents_start = 0

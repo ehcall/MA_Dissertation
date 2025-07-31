@@ -164,8 +164,6 @@ def import_speaker_data():
 
     for person in people:
         person_name = person.find('name').text.strip()
-        if person_name == 'Joseph Fielding Smith':
-            person_name = 'Joseph Fielding Smith Jr.'
         person_id = person.find('person-id').text.strip()
         gender = person.find('gender').text.strip()
         religion = person.find('religion').text.strip()
@@ -359,17 +357,8 @@ def link_speakers():
         pub_date = re.search('[0-9]{4}',manual).group()
         gender = qd[1]
         speaker = qd[2]
-        if speaker == 'Joseph Fielding Smith':
-            speaker = 'Joseph Fielding Smith Jr.'
-        if speaker == 'Chi Hong':
-            speaker = 'Chi Hong (Sam) Wong'
-        if speaker == '':
-            continue
-        if speaker == 'Wendy W. Nelson':
-            speaker = 'Wendy Nelson'
         citation = qd[3]
         citation_date = get_citation_data(citation, speaker, gender, quote_id)
-
         #print(pub_date, citation_date)
         quote = qd[4]
         partial = qd[5]
@@ -377,7 +366,7 @@ def link_speakers():
             calling_at_cite = 'NA'
             org_at_cite = 'NA'
             org_at_pub = 'NA'
-        elif speaker == 'First Presidency':
+        elif speaker == 'The First Presidency':
             calling_at_cite = 'First Presidency'
             org_at_cite = 'First Presidency'
             org_at_pub = 'First Presidency'
@@ -398,17 +387,7 @@ def link_speakers():
                 org_at_cite = calling_org_citation[1]
                 calling_org_pub = get_pub_calling(pub_date, speaker)
                 org_at_pub = calling_org_pub[1]
-        '''
-        if manual not in basic_data:
-            basic_data[manual] = {}
-        if gender not in basic_data[manual]:
-            basic_data[manual][gender] = {}
-        if org_at_cite not in basic_data[manual][gender]:
-            basic_data[manual][gender][org_at_cite] = {}
-        if speaker not in basic_data[manual][gender][org_at_cite]:
-            basic_data[manual][gender][org_at_cite][speaker] = 0
-        basic_data[manual][gender][org_at_cite][speaker] += 1
-        '''
+
         if manual not in basic_data:
             basic_data[manual] = {}
         if gender not in basic_data[manual]:
@@ -425,10 +404,12 @@ def link_speakers():
         for gender in basic_data[manual]:
             for org in basic_data[manual][gender]:
                 org_people = []
+                total_quote_count = 0
                 for person in basic_data[manual][gender][org]:
                     #print(person)
                     org_people.append([person, basic_data[manual][gender][org][person]])
-                basic_data_list.append([manual, gender, org, org_people])
+                    total_quote_count+= basic_data[manual][gender][org][person]
+                basic_data_list.append([manual, gender, org, org_people, len(org_people), total_quote_count])
 
     with open('speaker_quote_data.csv','w',encoding='utf-8') as csv_writer:
         csvwriter = csv.writer(csv_writer)

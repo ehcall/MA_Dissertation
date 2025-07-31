@@ -6,14 +6,16 @@ def add_gender(speaker_name):
     gender = 'M - Male'
     supp_mats = ['Old Testament Student Manual','Hymns','Teaching — No Greater Call','Church Handbook','Gospel Topics',
                  'Handbook 2','History of the Church','Our Heritage','Teaching in the Savior\'s Way','True to the Faith',
-                 'Children\'s Songbook']
+                 'Children\'s Songbook','Revelations in Context','Church History in the Fulness of Times',
+                 'The Life and Teachings of Jesus and His Apostles', 'Encyclopedia of Mormonism']
 
     females = ['Ann M. Dibb','Bonnie H. Cordon','Bonnie L. Oscarson','Elaine S. Dalton','Elmina S. Taylor',
                'Janette Hales Beckham','Jean B. Bingham','Joy D. Jones','Julie B. Beck','Laura Russell Bunker',
                'Linda S. Reeves','Margaret D. Nadauld','Mary Ellen Smoot','Mary Isabella Horne','Michelle Craig',
                'Serepta M. Heywood','Sharon Eubank','Sheri L. Dew','Vicki F. Matsumori','Virginia H. Pearce',
                'Virginia U. Jensen', 'Chieko Okazaki','Wendy Nelson','Belle S. Spafford','Cori Christensen',
-               'Eliza R. Snow','Lucy Mack Smith','Linda K. Burton', 'Priscilla Sampson-Davis']
+               'Eliza R. Snow','Lucy Mack Smith','Linda K. Burton', 'Priscilla Sampson-Davis', 'Wendy W. Nelson',
+               'Marjorie P. Hinckley']
     if speaker_name in supp_mats:
         #Hymns could probably be adjusted based on who wrote the hymn, but they're kind of treated as gender neutral
         gender = 'S - Supp Mats'
@@ -22,8 +24,14 @@ def add_gender(speaker_name):
     #print(speaker_name)
     return gender
 
-def lengthen_name(speaker_name, quotation):
+def lengthen_name(speaker_name):
     new_speaker_name = ''
+    if speaker_name == '':
+        speaker_name = 'Joseph Smith'
+    if speaker_name == 'The Family: A Proclamation to the World':
+        speaker_name = 'First Presidency'
+    if speaker_name == 'President Monson':
+        speaker_name = 'Thomas S. Monson'
     if speaker_name == 'Ballard':
         new_speaker_name = 'M. Russell Ballard'
     elif speaker_name == 'Benson':
@@ -40,7 +48,7 @@ def lengthen_name(speaker_name, quotation):
         new_speaker_name = 'Jeffrey R. Holland'
     elif speaker_name == 'Hyde':
         new_speaker_name = 'Orson Hyde'
-    elif speaker_name == 'Kimball':
+    elif re.search('Kimball', speaker_name):
         new_speaker_name = 'Spencer W. Kimball'
     elif speaker_name == 'Maxwell':
         new_speaker_name = 'Neal A. Maxwell'
@@ -68,72 +76,27 @@ def lengthen_name(speaker_name, quotation):
         new_speaker_name = 'Joseph Smith'
     elif speaker_name == 'Woodruff':
         new_speaker_name = 'Wilford Woodruff'
+    elif speaker_name == 'Wendy Nelson':
+        new_speaker_name = 'Wendy W. Nelson'
+    elif speaker_name == 'Uchtdorf':
+        new_speaker_name = 'Dieter F. Uchtdorf'
     else:
         new_speaker_name = speaker_name
     return new_speaker_name
 
-def fix_empty_speaker(quotation):
-    speaker = ''
-    if re.search('Being More Diligent', quotation.text) \
-            or re.search('Strong Modeling in the Home', quotation.text) \
-            or re.search('we need to avoid any tradition', quotation.text):
-        speaker = 'Valeri V. Cordón'
-    elif re.search('a small house', quotation.text):
-        speaker = 'Wilford Woodruff'
-    elif re.search('Brethren I have been very', quotation.text) \
-            or re.search('I could pray in my heart',quotation.text)\
-            or re.search('I teach the people correct principles',quotation.text):
-        speaker = 'Joseph Smith'
-    elif re.search('As far as our records show', quotation.text):
-        speaker = 'LeGrand Richards'
-        quotation['citation'] = 'Conference Report, Apr. 1981, 43; or Ensign, May 1981, 33'
-    elif re.search('I began to awake', quotation.text)\
-            or re.search('The Lord could get along',quotation.text):
-        speaker = 'Thomas B. Marsh'
-    elif re.search('You shall even live',quotation.text):
-        speaker = 'Joseph Smith, Sr.'
-    elif re.search('I have been happy in the privilege',quotation.text):
-        speaker = 'Ezra Taft Benson'
-    elif re.search('Born in poverty but nurtured in faith',quotation.text) \
-        or re.search('with a twinkle in his eye and a smile on his face',quotation.text):
-        speaker = 'Thomas S. Monson'
-    elif re.search('The prestigious Scientific American',quotation.text):
-        speaker = 'Jeffrey R. Holland'
-    #else:
-     #   print(quotation.text)
-     #   print(quotation['citation'])
-    return speaker
 def standardize_names(soup, all_speakers):
     quotations = soup.find_all('quotation')
     for quotation in quotations:
         speakers = quotation['speaker'].split(', ')
         updated_speakers = []
         gender = ''
-        #print(speakers)
         genders = set()
         for speaker in speakers:
-            speaker = re.sub('Elder ','',speaker)
-            speaker = re.sub('President ','',speaker)
-            speaker = re.sub('Prophet ','',speaker)
-            speaker = re.sub('Bishop ','',speaker)
-            if speaker == 'The Family: A Proclamation to the World':
-                speaker = 'First Presidency'
-            if speaker == 'Stanley B. Kimball':
-                speaker = 'Heber C. Kimball'
-            speaker = re.sub('The ','',speaker)
-            if speaker != 'Teaching in the Savior\'s Way' and speaker != 'Children\'s Songbook':
-                speaker = re.sub('\'s','',speaker)
-            if speaker == 'Albert L. Zobell Jr.':
-                speaker = 'James E. Talmage'
-            if len(speaker.split(' ')) == 1 and speaker != '' and speaker != 'Hymns':
-                #print(speaker," ; ",quotation.string)
-                speaker = lengthen_name(speaker, quotation)
-            if speaker == '':
-                speaker = fix_empty_speaker(quotation)
 
-            updated_speakers.append(speaker)
-            all_speakers.add(speaker)
-            genders.add(add_gender(speaker))
+            updated_speaker = lengthen_name(speaker)
+            updated_speakers.append(updated_speaker)
+            all_speakers.add(updated_speaker)
+            genders.add(add_gender(updated_speaker))
         if len(genders) > 1:
             if 'S - Supp Mats' in genders and 'M - Male':
                 gender = 'M - Male'

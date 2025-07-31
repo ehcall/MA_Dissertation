@@ -1382,17 +1382,7 @@
     </calling>
   </person>
   <person>
-    <name note="I do not know which man this refers to. It could be Joseph Fielding Smith Sr. It could be Jr. The world may never know"> Joseph Fielding Smith </name>
-    <person-id>73</person-id>
-    <gender>M</gender>
-    <religion>LDS</religion>
-    <birthdate>
-</birthdate>
-    <deathdate>
-</deathdate>
-  </person>
-  <person>
-    <name> Joseph Fielding Smith Jr. </name>
+    <name> Joseph Fielding Smith </name>
     <person-id>74</person-id>
     <gender>M</gender>
     <religion> LDS </religion>
@@ -2492,7 +2482,7 @@
     </calling>
   </person>
   <person>
-    <name> Wendy Nelson </name>
+    <name> Wendy W. Nelson </name>
     <person-id>138</person-id>
     <gender>F</gender>
     <religion> LDS </religion>
@@ -2551,4 +2541,101 @@
     <birthdate>UNKNOWN</birthdate>
     <deathdate>UNKNOWN</deathdate>
   </person>
+  <person>
+    <name> Vincenzo di Francesca </name>
+    <person-id>143</person-id>
+    <gender>M</gender>
+    <religion> LDS </religion>
+    <birthdate>1888-09-23</birthdate>
+    <deathdate>1966-11-18</deathdate>
+  </person>
+  <person>
+    <name> A missionary </name>
+    <person-id>144</person-id>
+    <gender>M</gender>
+    <religion> LDS </religion>
+    <birthdate>UNKNOWN</birthdate>
+    <deathdate>UNKNOWN</deathdate>
+  </person>
+  <person>
+    <name> Don L. Searle </name>
+    <person-id>145</person-id>
+    <gender>M</gender>
+    <religion> LDS </religion>
+    <birthdate>1944-09-20</birthdate>
+    <deathdate>2023-09-16</deathdate>
+  </person>
+  <person>
+    <name> John Lyman Smith </name>
+    <person-id>146</person-id>
+    <gender>M</gender>
+    <religion> LDS </religion>
+    <birthdate>1828-11-17</birthdate>
+    <deathdate>1898-02-21</deathdate>
+  </person>
+  <person>
+    <name> Joseph Smith Sr. </name>
+    <person-id>147</person-id>
+    <gender>M</gender>
+    <religion> LDS </religion>
+    <birthdate>1771-07-12</birthdate>
+    <deathdate>1840-09-14</deathdate>
+  </person>
+    <person>
+    <name> Robert J. Matthews </name>
+    <person-id>148</person-id>
+    <gender>M</gender>
+    <religion> LDS </religion>
+    <birthdate>1926-09-12</birthdate>
+    <deathdate>2009-08-30</deathdate>
+  </person>
+  <person>
+    <name> Marjorie P. Hinckley </name>
+    <person-id>149</person-id>
+    <gender>F</gender>
+    <religion> LDS </religion>
+    <birthdate>1911-11-23</birthdate>
+    <deathdate>2004-04-06</deathdate>
+  </person>
+    <person>
+    <name> James M. Paramore </name>
+    <person-id>150</person-id>
+    <gender>M</gender>
+    <religion> LDS </religion>
+    <birthdate>1928-05-06</birthdate>
+    <deathdate>2022-03-17</deathdate>
+    <calling>
+      <calling-title>Seventy</calling-title>
+      <calling-start>1977-04-02</calling-start>
+      <calling-end>1987-08-15</calling-end>
+    </calling>
+      <calling>
+      <calling-title>Seventy - Pres</calling-title>
+      <calling-start>1987-08-15</calling-start>
+      <calling-end>1993-08-15</calling-end>
+    </calling>
+      <calling>
+      <calling-title>Seventy</calling-title>
+      <calling-start>1993-08-15</calling-start>
+      <calling-end>1998-10-03</calling-end>
+    </calling>
+    </person>
+    <person>
+    <name> Vaughn J. Featherstone </name>
+    <person-id>151</person-id>
+    <gender>M</gender>
+    <religion> LDS </religion>
+    <birthdate>1931-03-23</birthdate>
+    <deathdate>2018-05-12</deathdate>
+      <calling>
+      <calling-title>PB - 2nd Counselor</calling-title>
+      <calling-start>1972-04-06</calling-start>
+      <calling-end>1976-10-01</calling-end>
+    </calling>
+    <calling>
+      <calling-title>Seventy</calling-title>
+      <calling-start>1976-10-01</calling-start>
+      <calling-end>2001-10-06</calling-end>
+    </calling>
+    </person>
 </text>
