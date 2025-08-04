@@ -2638,4 +2638,44 @@
       <calling-end>2001-10-06</calling-end>
     </calling>
     </person>
+  <person>
+    <name> John Whitmer </name>
+    <person-id>152</person-id>
+    <gender>M</gender>
+    <religion> LDS </religion>
+    <birthdate>UNKNOWN</birthdate>
+    <deathdate>UNKNOWN</deathdate>
+  </person>
+  <person>
+    <name> Relief Society Presidency </name>
+    <person-id>153</person-id>
+    <gender>F</gender>
+    <religion> LDS </religion>
+    <birthdate>UNKNOWN</birthdate>
+    <deathdate>UNKNOWN</deathdate>
+  </person>
+  <person>
+    <name> The Quorum of the Twelve </name>
+    <person-id>154</person-id>
+    <gender>M</gender>
+    <religion> LDS </religion>
+    <birthdate>UNKNOWN</birthdate>
+    <deathdate>UNKNOWN</deathdate>
+  </person>
+  <person>
+    <name> Unknown </name>
+    <person-id>155</person-id>
+    <gender>M</gender>
+    <religion> LDS </religion>
+    <birthdate>UNKNOWN</birthdate>
+    <deathdate>UNKNOWN</deathdate>
+  </person>
+    <person>
+    <name> Ruth Renlund </name>
+    <person-id>156</person-id>
+    <gender>F</gender>
+    <religion> LDS </religion>
+    <birthdate>UNKNOWN</birthdate>
+    <deathdate>UNKNOWN</deathdate>
+  </person>
 </text>

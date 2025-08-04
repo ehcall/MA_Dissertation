@@ -23,6 +23,12 @@ def add_to_dict(quotation, qdata, speaker, manual, text):
             qdata[manual]['women'][speaker] = [[citation, text, quotation['partial_quote']]]
         else:
             qdata[manual]['women'][speaker].append([citation, text, quotation['partial_quote']])
+    elif gender == 'O - Mixed':
+        if speaker == 'Ruth Renlund':
+            qdata[manual]['women'][speaker] = [[citation, text, quotation['partial_quote']]]
+        else:
+            qdata[manual]['men'][speaker] = [[citation, text, quotation['partial_quote']]]
+
     else:
         if speaker not in qdata[manual]['supp']:
             qdata[manual]['supp'][speaker] = [[citation, text, quotation['partial_quote']]]
@@ -307,6 +313,8 @@ def get_pub_calling(publication_year,speaker):
         if people_dict[speaker]['religion'] != 'LDS':
             return 'Not LDS','Not LDS'
         else:
+            if speaker == 'The Quorum of the Twelve':
+                return 'Quorum of the Twelve'
             return "NA","NA"
     else:
         for sc in speaker_callings:
@@ -351,6 +359,7 @@ def link_speakers():
         #print(pub_date, citation_date)
         quote = qd[4]
         partial = qd[5]
+
         if gender == 'supp':
             calling_at_cite = 'NA'
             org_at_cite = 'NA'
