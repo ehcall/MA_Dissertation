@@ -272,21 +272,6 @@ def get_citation_data(citation, speaker, gender, quote_id):
         citation_date = citation_year
         if citation_month != 'NONE':
             citation_date = citation_date + "-" + citation_month
-    '''
-    citation_split = citation.split('; ')
-    for cs in citation_split:
-        cs = re.sub('^or ', '', cs)
-        cs = re.sub('^also ', '', cs)
-        cs = re.sub('^ed\., ', '', cs)
-        cs = re.sub('^in ', '', cs)
-        cs = re.sub('^comp\., ', '', cs)
-        cs = re.sub('^page ', '', cs)
-
-        if (re.search('Ensign,', cs) or re.search('Conference Report',cs)) and (citation_month == '04' or citation_month == '10'):
-            if 'LDS Conf' not in citation_dict:
-                citation_dict['LDS Conf'] = []
-            citation_dict['LDS Conf'].append(quote_id)
-       '''
     return citation_date
 
 def get_calling(citation_date,speaker, publication_date):
@@ -302,9 +287,12 @@ def get_calling(citation_date,speaker, publication_date):
             #print(speaker_callings[sc])
             for calling_option in speaker_callings[sc]:
                 if calling_option['end'] == people_dict[speaker]['death'] and people_dict[speaker]['death'].year < int(publication_date):
-                    #last_calling = "DECEASED AT PUB - " + calling_option['org']
-                    return sc, calling_option['org']
+                    last_calling = "DECEASED AT PUB - " + calling_option['org']
+                    return sc, last_calling
                 if calling_option['start'] < citation_date < calling_option['end']:
+                    if people_dict[speaker]['death'].year < int(publication_date):
+                        last_calling = "DECEASED AT PUB - " + calling_option['org']
+                        return sc, last_calling
                     return sc, calling_option['org']
 
 
@@ -349,7 +337,8 @@ def link_speakers():
             if len(row) > 0 and row[0] != 'Manual':
                q_data.append(row)
                 #print(row)
-    basic_data = {}
+    basic_data_cite = {}
+    basic_data_pub = {}
     quote_id = 0
     for qd in q_data:
         quote_id += 1
@@ -380,6 +369,7 @@ def link_speakers():
                 #print(calling_org)
                 calling_at_cite = calling_org_citation[0]
                 org_at_cite = calling_org_citation[1]
+                #print(manual, org_at_cite, speaker, citation_date)
             else:
                 new_pub_date = adjust_date(pub_date)
                 calling_org_citation = get_calling(new_pub_date, speaker, pub_date)
@@ -388,47 +378,291 @@ def link_speakers():
                 calling_org_pub = get_pub_calling(pub_date, speaker)
                 org_at_pub = calling_org_pub[1]
 
-        if manual not in basic_data:
-            basic_data[manual] = {}
-        if gender not in basic_data[manual]:
-            basic_data[manual][gender] = {}
-        if org_at_pub not in basic_data[manual][gender]:
-            basic_data[manual][gender][org_at_pub] = {}
-        if speaker not in basic_data[manual][gender][org_at_pub]:
-            basic_data[manual][gender][org_at_pub][speaker] = 0
-        basic_data[manual][gender][org_at_pub][speaker] += 1
+
+        if manual not in basic_data_cite:
+            basic_data_cite[manual] = {}
+        if gender not in basic_data_cite[manual]:
+            basic_data_cite[manual][gender] = {}
+        if org_at_cite not in basic_data_cite[manual][gender]:
+
+            basic_data_cite[manual][gender][org_at_cite] = {}
+        if speaker not in basic_data_cite[manual][gender][org_at_cite]:
+            basic_data_cite[manual][gender][org_at_cite][speaker] = 0
+        basic_data_cite[manual][gender][org_at_cite][speaker] += 1
+
+        if manual not in basic_data_pub:
+            basic_data_pub[manual] = {}
+        if gender not in basic_data_pub[manual]:
+            basic_data_pub[manual][gender] = {}
+        if org_at_pub not in basic_data_pub[manual][gender]:
+            basic_data_pub[manual][gender][org_at_pub] = {}
+        if speaker not in basic_data_pub[manual][gender][org_at_pub]:
+            basic_data_pub[manual][gender][org_at_pub][speaker] = 0
+        basic_data_pub[manual][gender][org_at_pub][speaker] += 1
 
     #print(basic_data)
-    basic_data_list = []
-    for manual in basic_data:
-        for gender in basic_data[manual]:
-            for org in basic_data[manual][gender]:
+    basic_data_list_pub = []
+    for manual in basic_data_pub:
+        for gender in basic_data_pub[manual]:
+            for org in basic_data_pub[manual][gender]:
                 org_people = []
                 total_quote_count = 0
-                for person in basic_data[manual][gender][org]:
+                for person in basic_data_pub[manual][gender][org]:
                     #print(person)
-                    org_people.append([person, basic_data[manual][gender][org][person]])
-                    total_quote_count+= basic_data[manual][gender][org][person]
-                basic_data_list.append([manual, gender, org, org_people, len(org_people), total_quote_count])
+                    org_people.append([person, basic_data_pub[manual][gender][org][person]])
+                    total_quote_count+= basic_data_pub[manual][gender][org][person]
+                basic_data_list_pub.append([manual, gender, org, org_people, len(org_people), total_quote_count])
 
-    with open('speaker_quote_data.csv','w',encoding='utf-8') as csv_writer:
+    basic_data_list_cite = []
+    for manual in basic_data_cite:
+        for gender in basic_data_cite[manual]:
+            for org in basic_data_cite[manual][gender]:
+                org_people = []
+                total_quote_count = 0
+                for person in basic_data_cite[manual][gender][org]:
+                    # print(person)
+                    org_people.append([person, basic_data_cite[manual][gender][org][person]])
+                    total_quote_count += basic_data_cite[manual][gender][org][person]
+                basic_data_list_cite.append([manual, gender, org, org_people, len(org_people), total_quote_count])
+
+    with open('speaker_quote_data_pub.csv','w',newline='',encoding='utf-8') as csv_writer:
         csvwriter = csv.writer(csv_writer)
-        csvwriter.writerows(basic_data_list)
+        csvwriter.writerows(basic_data_list_pub)
 
-        #if gender != 'supp':
-       #     if speaker in people_dict:
-       #         #print(qd)
-       #         print("\t",speaker, people_dict[speaker]['gender'], people_dict[speaker]['callings'])
-
-        #if speaker in people_dict:
-          #  print(speaker, people_dict[speaker])
-
+    with open('speaker_quote_data_cite.csv','w',newline='',encoding='utf-8') as csv_writer:
+        csvwriter = csv.writer(csv_writer)
+        csvwriter.writerows(basic_data_list_cite)
 
     return
+
+def get_percent(figure_1, figure_2):
+    total_overall = figure_1 + figure_2
+    fig_1_percent = round((figure_1 / total_overall * 100), 2)
+    fig_2_percent = round((figure_2 / total_overall * 100), 2)
+    return (fig_1_percent,fig_2_percent)
+
+def get_stats():
+    pub_calling_data = []
+    cite_calling_data = []
+    with open('speaker_quote_data_pub.csv',encoding='utf-8') as csv_reader:
+        csvreader = csv.reader(csv_reader)
+        for row in csvreader:
+            pub_calling_data.append(row)
+    with open('speaker_quote_data_cite.csv',encoding='utf-8') as csv_reader:
+        csvreader = csv.reader(csv_reader)
+        for row in csvreader:
+            cite_calling_data.append(row)
+
+    manual_data = dict()
+    people_data = dict()
+
+    for list_item in pub_calling_data:
+        manual = list_item[0]
+        gender = list_item[1]
+        org_pub = list_item[2]
+        speakers = list_item[3].split("], [")
+        #print(speakers)
+        cat_speaker_count = list_item[4]
+        cat_quote_count = list_item[5]
+
+        if manual not in manual_data:
+            manual_data[manual] = {
+                #this is the total number of quotes by gendered speakers
+                'total_counts': {
+                    'total_male': 0,
+                    'total_female': 0,
+                    'total_supp': 0,
+                },
+                #this is the percentage of gendered speakers (excl. supp)
+                'percent_counts': {
+                    'percent_male':float(),
+                    'percent_female':float(),
+                },
+                #this is sets of unique speakers by gender
+                'unique_gender':{
+                    'unique_males':set(),
+                    'unique_females':set(),
+                    'unique_supp':set(),
+                },
+
+            }
+
+        #I don't think knowing the calling is actually all that important right now??
+        for speaker in speakers:
+            speaker = re.sub('[\[\]]','',speaker)
+            speaker = speaker.split(', ')
+            speaker_name = speaker[0]
+            speaker_name = re.sub('^[\'\"]','',speaker_name)
+            speaker_name = re.sub('[\'\"]$','',speaker_name)
+            speaker_number = int(speaker[1])
+
+            if gender == 'men':
+                manual_data[manual]['unique_gender']['unique_males'].add(speaker_name)
+                manual_data[manual]['total_counts']['total_male'] += speaker_number
+            elif gender == 'women':
+                manual_data[manual]['unique_gender']['unique_females'].add(speaker_name)
+                manual_data[manual]['total_counts']['total_female'] += speaker_number
+            elif gender == 'supp':
+                manual_data[manual]['unique_gender']['unique_supp'].add(speaker_name)
+                manual_data[manual]['total_counts']['total_supp'] += speaker_number
+
+            if not re.search('NT_2019',manual):
+                if speaker_name not in people_data:
+                    people_data[speaker_name] = {
+                        'total_quotes':0,
+                        'total_CFM':0,
+                        'total_GD':0,
+                        'gender':gender,
+                        'manuals':{
+                            'CFM_BM_2019_T.xml':0,
+                            'CFM_DC_2020_T.xml':0,
+                            'CFM_OT_2021_T.xml':0,
+                            'CFM_NT_2022_T.xml':0,
+                            'GD_BM_2003_T.xml':0,
+                            'GD_DC_2003_T.xml':0,
+                            'GD_NT_1997_T.xml':0,
+                            'GD_OT_2001_T.xml':0
+                        },
+                        'callings':set()
+                    }
+                people_data[speaker_name]['manuals'][manual] += speaker_number
+                if re.match('CFM',manual):
+                    people_data[speaker_name]['total_CFM'] += speaker_number
+                elif re.match('GD',manual):
+                    people_data[speaker_name]['total_GD'] += speaker_number
+                people_data[speaker_name]['total_quotes'] += speaker_number
+                people_data[speaker_name]['callings'].add(org_pub)
+
+    era_data = {
+        'CFM':{
+            'manuals':set(),
+            'total_counts': {
+                'total_male': 0,
+                'total_female': 0,
+                'total_supp': 0,
+            },
+            #this is the percentage of gendered speakers (excl. supp)
+            'percent_counts': {
+                'percent_male':float(),
+                'percent_female':float(),
+            },
+            #this is sets of unique speakers by gender
+            'unique_gender':{
+                'unique_males':set(),
+                'unique_females':set(),
+                'unique_supp':set(),
+            },
+        },
+        'GD':{
+            'manuals':set(),
+            'total_counts': {
+                'total_male': 0,
+                'total_female': 0,
+                'total_supp': 0,
+            },
+            #this is the percentage of gendered speakers (excl. supp)
+            'percent_counts': {
+                'percent_male':float(),
+                'percent_female':float(),
+            },
+            #this is sets of unique speakers by gender
+            'unique_gender':{
+                'unique_males':set(),
+                'unique_females':set(),
+                'unique_supp':set(),
+            },
+        }
+    }
+    for manual in manual_data:
+        percents = get_percent(manual_data[manual]['total_counts']['total_female'],manual_data[manual]['total_counts']['total_male'])
+        manual_data[manual]['percent_counts']['percent_female'] = percents[0]
+        manual_data[manual]['percent_counts']['percent_male'] = percents[1]
+
+        if re.match('CFM', manual):
+            era = 'CFM'
+        elif re.match('GD', manual):
+            era = 'GD'
+
+        if manual not in era_data[era]['manuals'] and not re.search('NT_2019',manual):
+            era_data[era]['manuals'].add(manual)
+            era_data[era]['total_counts']['total_female'] += manual_data[manual]['total_counts']['total_female']
+            era_data[era]['total_counts']['total_male'] += manual_data[manual]['total_counts']['total_male']
+            era_data[era]['total_counts']['total_supp'] += manual_data[manual]['total_counts']['total_supp']
+            era_data[era]['unique_gender']['unique_males'] |= manual_data[manual]['unique_gender']['unique_males']
+            era_data[era]['unique_gender']['unique_females'] |= manual_data[manual]['unique_gender']['unique_females']
+            era_data[era]['unique_gender']['unique_supp'] |= manual_data[manual]['unique_gender']['unique_supp']
+       # print(manual, manual_data[manual])
+
+        #pretty print
+    with open('data_manual.csv','w',newline='',encoding='utf-8') as csv_writer:
+        csvwriter = csv.writer(csv_writer)
+        csvwriter.writerow(['Manual', 'Total Male Quotes','Total Female Quotes','Total Supps','Percent Gendered Quotes Male','Percent Gendered Quotes Female',
+                            'Unique Men Count','Unique Women Count','Unique Supps Count','Unique Men Percent','Unique Women Percent','Unique Men','Unique Women', 'Unique Supps'])
+        for manual in manual_data:
+            percents = get_percent(len(manual_data[manual]['unique_gender']['unique_males']), len(manual_data[manual]['unique_gender']['unique_females']))
+            csvwriter.writerow([manual,manual_data[manual]['total_counts']['total_male'],manual_data[manual]['total_counts']['total_female'],
+                       manual_data[manual]['total_counts']['total_supp'],manual_data[manual]['percent_counts']['percent_male'],
+                       manual_data[manual]['percent_counts']['percent_female'], len(manual_data[manual]['unique_gender']['unique_males']),
+                       len(manual_data[manual]['unique_gender']['unique_females']), len(manual_data[manual]['unique_gender']['unique_supp']),
+                       percents[0],percents[1],
+                       list(manual_data[manual]['unique_gender']['unique_males']), list(manual_data[manual]['unique_gender']['unique_females']),
+                       list(manual_data[manual]['unique_gender']['unique_supp'])
+                       ])
+
+    for era in era_data:
+        percents = get_percent(era_data[era]['total_counts']['total_female'],era_data[era]['total_counts']['total_male'])
+        era_data[era]['percent_counts']['percent_female'] = percents[0]
+        era_data[era]['percent_counts']['percent_male'] = percents[1]
+
+    #pretty print
+    with open('data_era.csv','w',newline='',encoding='utf-8') as csv_writer:
+        csvwriter = csv.writer(csv_writer)
+        csvwriter.writerow(['Manual', 'Total Male','Total Female','Total Supps','Percent Male','Percent Female',
+                            'Unique Men Count','Unique Women Count','Unique Supps Count','Unique Men Percent','Unique Women Percent',
+                            'Unique Men','Unique Women', 'Unique Supps'])
+        for era in era_data:
+            percents = get_percent(len(era_data[era]['unique_gender']['unique_males']), len(era_data[era]['unique_gender']['unique_females']))
+            csvwriter.writerow([era,era_data[era]['total_counts']['total_male'],era_data[era]['total_counts']['total_female'],
+                       era_data[era]['total_counts']['total_supp'],era_data[era]['percent_counts']['percent_male'],
+                       era_data[era]['percent_counts']['percent_female'], len(era_data[era]['unique_gender']['unique_males']),
+                       len(era_data[era]['unique_gender']['unique_females']), len(era_data[era]['unique_gender']['unique_supp']),
+                       percents[0],percents[1],
+                       list(era_data[era]['unique_gender']['unique_males']), list(era_data[era]['unique_gender']['unique_females']),
+                       list(era_data[era]['unique_gender']['unique_supp'])
+                       ])
+
+    #for person in people_data:
+    #    print(person, people_data[person])
+
+    with open('data_people.csv', 'w', newline='', encoding='utf-8') as csv_writer:
+        csvwriter = csv.writer(csv_writer)
+        csvwriter.writerow(
+            ['Name', 'Gender','Total Quotes', 'Total CFM','Total GD', 'Callings',
+             'CFM_BM_2019', 'CFM_DC_2020', 'CFM_OT_2021', 'CFM_NT_2022',
+             'GD_BM_2003', 'GD_DC_2003,', 'GD_NT_1997', 'GD_OT_2001'])
+
+        for person in people_data:
+            new_row = []
+            new_row.append(person)
+            new_row.append(people_data[person]['gender'])
+            new_row.append(people_data[person]['total_quotes'])
+            new_row.append(people_data[person]['total_CFM'])
+            new_row.append(people_data[person]['total_GD'])
+            new_row.append(list(people_data[person]['callings']))
+            for manual in people_data[person]['manuals']:
+                new_row.append(people_data[person]['manuals'][manual])
+            csvwriter.writerow(new_row)
+    #what stats do I want
+    #percentage of women speaking per manual (both quote count and speaker count)
+    #percentage per calling...level? per manual?
+
+    return
+
 def main():
     grab_from_corpus()
     import_speaker_data()
     link_speakers()
+    get_stats()
 
 
     return

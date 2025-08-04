@@ -553,7 +553,7 @@ def modify_quote(soup):
 
                     if len(plausible_citations) < 1 and has_been_scrip:
                          if re.search('Elder Haight', non_quotation_text):
-                            plausible_citations.append('Elder Haight')
+                            plausible_citations.append('(in Conference Report, Apr. 1977, 9–10; or Ensign, May 1977, 7–9)')
                         #it's probably a scripture otherwise though
                     elif len(plausible_citations) < 1 and not has_been_scrip:
                         if re.search('[Pp]roclamation',non_quotation_text):
