@@ -496,7 +496,7 @@ keyword_data = {
     }
 }
 
-stopwords = ['1','2','3','4','5','6','7','8','9','10','\'d','\'s','\'re','n\'t','\'m','\'ll','\'ve','\'ca',
+stopwords = ['0','1','2','3','4','5','6','7','8','9','10','\'d','\'s','\'re','n\'t','\'m','\'ll','\'ve','\'ca',
              'what','which','who','whom','this','that','these','those','am','is','are','was','were','be','been','being',
              'have','has','had','having','do','does','did','doing','a','an','the','and','but','if','or','because','as',
              'until','while','of','at','by','for','with','about','against','between','into','through','during','before',
@@ -640,7 +640,7 @@ def get_keywords(data):
 
     for word_data in group_1_word_list:
         word = word_data[0]
-        if word not in stopwords and not re.search('\:',word):
+        if word not in stopwords and not re.search('\:',word) and not re.search('–',word):
             actual_freq = word_data[1].replace(',','')
             if word not in working_dict:
                 working_dict[word] = {
@@ -652,7 +652,7 @@ def get_keywords(data):
                 }
     for word_data in group_2_word_list:
         word = word_data[0]
-        if word not in stopwords and not re.search('\:', word):
+        if word not in stopwords and not re.search('\:', word) and not re.search('–',word):
             actual_freq = word_data[1].replace(',', '')
             if word not in working_dict:
                 working_dict[word] = {
@@ -671,7 +671,7 @@ def get_keywords(data):
         ref_rf =  working_dict[word]['group_2_rf']
         working_dict[word]['simple_maths'] = calculate_simple_maths(focus_rf, ref_rf, 0.1)
 
-    new_csv_filename = "Generated_Keyword_Data/" + group_1_name + "_vs_" + group_2_name + "_" \
+    new_csv_filename = "Generated_Keyword_Data/" + group_1_name + "_vs_" + group_2_name + "__" \
                        + unit_type + "_" + ngrams + "-ngrams" + ".csv"
     group_1_af_name = group_1_name + "_AF"
     group_1_rf_name = group_1_name + "_RF"
@@ -733,23 +733,61 @@ def keyword_testing():
         for row in csv_reader:
             groups_data.append(row)
 
-    #all text vs all gendered quotes (text does contain quotes though)
-    #cfm quotes vs gd quotes
-    #all female vs all male
-    #cfm female vs cfm male
-    #gd female vs gd male
-    #cfm female vs gd female
-    #cfm male vs gd male
-
-
     for data in groups_data:
         get_keywords(data)
     return
 
+
+def combine_csv_files():
+    csv_filename_dict = {}
+    for filename in os.listdir('Generated_Keyword_Data'):
+        if filename != 'Combined_Files':
+            split_filename = filename.split('__')
+            if split_filename[0] not in csv_filename_dict:
+                csv_filename_dict[split_filename[0]] = []
+            csv_filename_dict[split_filename[0]].append(filename)
+
+
+    for csv_file in csv_filename_dict:
+        #print(csv_file)
+        new_csv_data = []
+        combined_csv_file = 'Generated_Keyword_Data/Combined_Files/' + csv_file + '.csv'
+        new_header_row = ['Unit_Type','Term']
+        for partial_file in csv_filename_dict[csv_file]:
+            #print("\t",partial_file)
+            partial_file_name = 'Generated_Keyword_Data/' + partial_file
+            row_num = 0
+            unit_type = ''
+            with open(partial_file_name,encoding='utf-8') as partial_csv:
+                csv_reader = csv.reader(partial_csv)
+                for row in csv_reader:
+                    if row_num == 0:
+                        unit_type = row[0]
+                        if len(new_header_row) == 2:
+                            new_header_row.extend(row[1:])
+                        row_num+=1
+                    else:
+                        new_row = [unit_type]
+                        new_row.extend(row)
+                        new_csv_data.append(new_row)
+                        #print(new_row)
+                  #  print(row)
+
+        with open(combined_csv_file, 'w', newline='', encoding='utf-8') as new_csv:
+            csv_writer = csv.writer(new_csv)
+           # print(new_header_row)
+            csv_writer.writerow(new_header_row)
+            for new_data_line in new_csv_data:
+                csv_writer.writerow(new_data_line)
+    return
+
 def main():
     import_keyword_folders()
-    keyword_testing()
 
+    # Okay, so this currently handles 1-grams, but not anything bigger.
+    # that will be...tomorrow's problem
+    keyword_testing()
+    combine_csv_files()
    # print_keyword_dict()
 
     #do the thing
