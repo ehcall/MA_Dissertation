@@ -118,7 +118,7 @@ def grab_from_corpus():
                     new_row = [manual, gender, speaker, speaker_citation, speaker_text, speaker_quote[2]]
                     qdata_rows.append(new_row)
 
-    with open('C:\\Users\elena\PycharmProjects\MA_Thesis\Cleaning Programs\quote_data.csv', 'w',
+    with open('/Cleaning_Programs/quote_data.csv', 'w',
               encoding='utf-8') as csvfile:
         csvwriter = csv.writer(csvfile)
         csvwriter.writerow(['Manual', 'Gender', 'Speaker', 'Citation', 'Text', 'Partial'])
@@ -163,7 +163,7 @@ def adjust_date(old_date):
     return new_date
 def import_speaker_data():
     #would this have been easier if I assigned IDs to begin with? almost certainly. not changing it now though!
-    with open('C:\\Users\elena\PycharmProjects\MA_Thesis\Cleaning Programs\speaker_data.xml', 'r', encoding='utf-8') as f:
+    with open('/Cleaning_Programs\speaker_data.xml', 'r', encoding='utf-8') as f:
         file = f.read()
     people_soup = BeautifulSoup(file, 'xml')
     people = people_soup.find_all('person')
@@ -348,8 +348,10 @@ def link_speakers():
     basic_data_cite = {}
     basic_data_pub = {}
     quote_id = 0
+    partial_quote = []
+    prev_data = []
+    full_quotes = []
     for qd in q_data:
-        quote_id += 1
         manual = qd[0]
         pub_date = re.search('[0-9]{4}',manual).group()
         gender = qd[1]
@@ -359,7 +361,39 @@ def link_speakers():
         #print(pub_date, citation_date)
         quote = qd[4]
         partial = qd[5]
+        if partial == 'False':
+            if len(partial_quote) != 0:
+                prev_data.extend([' '.join(partial_quote), 'Connected'])
+                full_quotes.append(prev_data)
+                partial_quote = []
+                prev_data = []
+            full_quotes.append([manual, gender, speaker, citation, pub_date, citation_date, quote, partial])
+            partial_quote = []
+            prev_data = []
+        elif len(prev_data) > 0 and citation != prev_data[3]:
+            prev_data.extend([' '.join(partial_quote), 'Connected'])
+            full_quotes.append(prev_data)
+            partial_quote = []
+            prev_data = []
+            partial_quote.append(quote)
+            prev_data = [manual, gender, speaker, citation, pub_date, citation_date]
 
+        else:
+            partial_quote.append(quote)
+            prev_data = [manual, gender, speaker, citation, pub_date, citation_date]
+            #print("here")
+
+    just_quote_text = []
+    for full_quote in full_quotes:
+        manual = full_quote[0]
+        gender = full_quote[1]
+        speaker = full_quote[2]
+        citation = full_quote[3]
+        pub_date = full_quote[4]
+        citation_date = full_quote[5]
+        quote = full_quote[6]
+        partial = full_quote[7]
+        just_quote_text.append([quote, manual, gender, speaker])
         if gender == 'supp':
             calling_at_cite = 'NA'
             org_at_cite = 'NA'
@@ -434,14 +468,24 @@ def link_speakers():
                     total_quote_count += basic_data_cite[manual][gender][org][person]
                 basic_data_list_cite.append([manual, gender, org, org_people, len(org_people), total_quote_count])
 
-    with open('speaker_quote_data_pub.csv','w',newline='',encoding='utf-8') as csv_writer:
+    with open('speaker_quote_data_pub.csv', 'w', newline='', encoding='utf-8') as csv_writer:
         csvwriter = csv.writer(csv_writer)
         csvwriter.writerows(basic_data_list_pub)
 
-    with open('speaker_quote_data_cite.csv','w',newline='',encoding='utf-8') as csv_writer:
+    with open('speaker_quote_data_cite.csv', 'w', newline='', encoding='utf-8') as csv_writer:
         csvwriter = csv.writer(csv_writer)
         csvwriter.writerows(basic_data_list_cite)
 
+    internal_quotes = []
+
+    for line in just_quote_text:
+        if re.search('«',line[0]):
+            internal_quotes.append(line)
+
+    with open('internal_quotes.csv', 'w', newline='', encoding='utf-8') as csv_writer:
+        csvwriter = csv.writer(csv_writer)
+        csvwriter.writerows(internal_quotes)
+    print(len(just_quote_text), len(internal_quotes))
     return
 
 def get_percent(figure_1, figure_2):
@@ -453,11 +497,11 @@ def get_percent(figure_1, figure_2):
 def get_stats():
     pub_calling_data = []
     cite_calling_data = []
-    with open('speaker_quote_data_pub.csv',encoding='utf-8') as csv_reader:
+    with open('speaker_quote_data_pub.csv', encoding='utf-8') as csv_reader:
         csvreader = csv.reader(csv_reader)
         for row in csvreader:
             pub_calling_data.append(row)
-    with open('speaker_quote_data_cite.csv',encoding='utf-8') as csv_reader:
+    with open('speaker_quote_data_cite.csv', encoding='utf-8') as csv_reader:
         csvreader = csv.reader(csv_reader)
         for row in csvreader:
             cite_calling_data.append(row)
@@ -603,7 +647,7 @@ def get_stats():
        # print(manual, manual_data[manual])
 
         #pretty print
-    with open('data_manual.csv','w',newline='',encoding='utf-8') as csv_writer:
+    with open('data_manual.csv', 'w', newline='', encoding='utf-8') as csv_writer:
         csvwriter = csv.writer(csv_writer)
         csvwriter.writerow(['Manual', 'Total Male Quotes','Total Female Quotes','Total Supps','Percent Gendered Quotes Male','Percent Gendered Quotes Female',
                             'Unique Men Count','Unique Women Count','Unique Supps Count','Unique Men Percent','Unique Women Percent','Unique Men','Unique Women', 'Unique Supps'])
@@ -624,7 +668,7 @@ def get_stats():
         era_data[era]['percent_counts']['percent_male'] = percents[1]
 
     #pretty print
-    with open('data_era.csv','w',newline='',encoding='utf-8') as csv_writer:
+    with open('data_era.csv', 'w', newline='', encoding='utf-8') as csv_writer:
         csvwriter = csv.writer(csv_writer)
         csvwriter.writerow(['Manual', 'Total Male','Total Female','Total Supps','Percent Male','Percent Female',
                             'Unique Men Count','Unique Women Count','Unique Supps Count','Unique Men Percent','Unique Women Percent',
@@ -667,8 +711,43 @@ def get_stats():
 
     return
 
+def get_quote_info():
+    q_data = []
+    full_quotes = []
+    with open('quote_data.csv', encoding='utf-8') as csv_read:
+        csvreader = csv.reader(csv_read)
+        for row in csvreader:
+            if len(row) > 0 and row[0] != 'Manual':
+                q_data.append(row)
+    partial_quote = []
+    prev_data = []
+    for quote in q_data:
+        manual = quote[0]
+        gender = quote[1]
+        quote_text = quote[4]
+        quote_partial = quote[-1]
+        if gender != 'supp':
+            if quote_partial == 'False':
+                if len(partial_quote) != 0:
+                    full_quotes.append([prev_data[0], prev_data[1], ' '.join(partial_quote), 'Connected'])
+                    partial_quote = []
+                    prev_data = []
+                full_quotes.append([manual, gender, quote_text, quote_partial])
+                partial_quote = []
+                prev_data = []
+            else:
+                partial_quote.append(quote_text)
+                prev_data = [manual, gender]
+                #print(manual, gender, quote_text, quote_partial)
+    #for full_quote in full_quotes:
+    #    print(full_quote)
+    print(len(full_quotes))
+    return
+
 def main():
     grab_from_corpus()
+    #get_quote_info()
+
     import_speaker_data()
     link_speakers()
     get_stats()
