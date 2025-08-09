@@ -583,6 +583,7 @@ def read_keyword_file(data_folder_path, data_file):
                     keyword_data[corpus_name][sub_corpus_name]['unit_type'][unit_type]['ngrams'][ngrams].append(row)
                 else:
                     keyword_data[corpus_name][sub_corpus_name][sub_sub_corpus_name]['unit_type'][unit_type]['ngrams'][ngrams].append(row)
+
     return
 
 def import_keyword_folders():
@@ -611,6 +612,9 @@ def print_keyword_dict():
                 print("\t\tUnit Types:")
                 for unit_type in keyword_data[corpus][sub_corpus]['unit_type']:
                     print("\t\t\t",unit_type)
+                    for ngram in keyword_data[corpus][sub_corpus]['unit_type'][unit_type]['ngrams']:
+                        print("\t\t\t\t", ngram)
+                        print("\t\t\t\t\t", keyword_data[corpus][sub_corpus]['unit_type'][unit_type]['ngrams'][ngram][1])
             else:
                 for sub_sub_corpus in keyword_data[corpus][sub_corpus]:
                     print("\t\t",sub_sub_corpus)
@@ -634,11 +638,10 @@ def get_keywords(data):
 
     #print(group_1['size'])
     working_dict = {}
-    #this is throwing an error with CFM/GD Female Quotes Word 1 Ngram but I can't figure out why and it still processes so who knows
     group_1_word_list = group_1['unit_type'][unit_type]['ngrams'][ngrams]
     group_2_word_list = group_2['unit_type'][unit_type]['ngrams'][ngrams]
 
-    for word_data in group_1_word_list:
+    for word_data in group_1_word_list[1:]:
         word = word_data[0]
         if word not in stopwords and not re.search('\:',word) and not re.search('–',word):
             actual_freq = word_data[1].replace(',','')
@@ -650,7 +653,7 @@ def get_keywords(data):
                     'group_2_rf':0,
                     'simple_maths':0,
                 }
-    for word_data in group_2_word_list:
+    for word_data in group_2_word_list[1:]:
         word = word_data[0]
         if word not in stopwords and not re.search('\:', word) and not re.search('–',word):
             actual_freq = word_data[1].replace(',', '')
@@ -671,8 +674,8 @@ def get_keywords(data):
         ref_rf =  working_dict[word]['group_2_rf']
         working_dict[word]['simple_maths'] = calculate_simple_maths(focus_rf, ref_rf, 0.1)
 
-    new_csv_filename = "Generated_Keyword_Data/" + group_1_name + "_vs_" + group_2_name + "__" \
-                       + unit_type + "_" + ngrams + "-ngrams" + ".csv"
+    new_csv_filename = "Generated_Keyword_Data/" + group_1_name + "_vs_" + group_2_name + "_" + ngrams + "-ngrams" \
+                       + "__" + unit_type + ".csv"
     group_1_af_name = group_1_name + "_AF"
     group_1_rf_name = group_1_name + "_RF"
     group_2_af_name = group_2_name + "_AF"
@@ -688,10 +691,82 @@ def get_keywords(data):
 
     return
 
+def get_keywords_23(data):
+    group_1 = data[0]
+    group_1_name = data[1]
+    group_2 = data[2]
+    group_2_name = data[3]
+    unit_type = data[4]
+    ngrams = data[5]
+    working_dict = {}
+    group_1_word_list = group_1['unit_type'][unit_type]['ngrams'][ngrams]
+
+    group_2_word_list = group_2['unit_type'][unit_type]['ngrams'][ngrams]
+    for word_data in group_1_word_list[1:]:
+
+        combined_word = ''
+        if ngrams == '2':
+            combined_word = ' | '.join(word_data[0:2])
+            actual_freq = word_data[2].replace(',', '')
+        elif ngrams == '3':
+            combined_word = ' | '.join(word_data[0:3])
+            actual_freq = word_data[3].replace(',', '')
+        if combined_word not in working_dict:
+            working_dict[combined_word] = {
+                'group_1_af': int(actual_freq),
+                'group_1_rf': calculate_rf(group_1['size'], int(actual_freq)),
+                'group_2_af': 0,
+                'group_2_rf': 0,
+                'simple_maths': 0,
+            }
+    for word_data in group_2_word_list[1:]:
+        combined_word = ''
+        if ngrams == '2':
+            combined_word = ' | '.join(word_data[0:2])
+            actual_freq = word_data[2].replace(',', '')
+        elif ngrams == '3':
+            combined_word = ' | '.join(word_data[0:3])
+            actual_freq = word_data[3].replace(',', '')
+        if combined_word not in working_dict:
+            working_dict[combined_word] = {
+                'group_2_af': int(actual_freq),
+                'group_2_rf': calculate_rf(group_2['size'], int(actual_freq)),
+                'group_1_af': 0,
+                'group_1_rf': 0,
+                'simple_maths': 0,
+            }
+        else:
+            working_dict[combined_word]['group_2_af'] = int(actual_freq)
+            working_dict[combined_word]['group_2_rf'] = calculate_rf(group_2['size'], int(actual_freq))
+
+    for word in working_dict:
+        #print(word)
+        focus_rf = working_dict[word]['group_1_rf']
+        ref_rf = working_dict[word]['group_2_rf']
+        working_dict[word]['simple_maths'] = calculate_simple_maths(focus_rf, ref_rf, 0.1)
+
+    new_csv_filename = "Generated_Keyword_Data/" + group_1_name + "_vs_" + group_2_name + "_" + ngrams + "-ngrams" + "__" \
+                       + unit_type + ".csv"
+    group_1_af_name = group_1_name + "_AF"
+    group_1_rf_name = group_1_name + "_RF"
+    group_2_af_name = group_2_name + "_AF"
+    group_2_rf_name = group_2_name + "_RF"
+    with open(new_csv_filename, 'w', newline='', encoding='utf-8') as csv_writefile:
+        csv_writer = csv.writer(csv_writefile)
+        csv_writer.writerow(
+            [unit_type, group_1_af_name, group_1_rf_name, group_2_af_name, group_2_rf_name, 'Simple Maths'])
+        for word in working_dict:
+            if working_dict[word]['group_1_af'] > 5 or working_dict[word]['group_2_af'] > 5:
+                csv_writer.writerow([word, working_dict[word]['group_1_af'], working_dict[word]['group_1_rf'],
+                                     working_dict[word]['group_2_af'], working_dict[word]['group_2_rf'],
+                                     working_dict[word]['simple_maths']])
+
+    return
+
 def keyword_testing():
 
     #yeah I tried to read this in as a file and it was a nightmare
-    groups_data = [
+    groups_data_ngrams1 = [
         [keyword_data['quotations_corpus']['female_quotes']['cfm_female_quotes'], 'CFM_Female_Quotes', keyword_data['quotations_corpus']['female_quotes']['gd_female_quotes'], 'GD_Female_Quotes', 'word', '1'],
         [keyword_data['quotations_corpus']['all_gendered_quotes']['cfm_gendered_quotes'], 'CFM_Gendered_Quotes', keyword_data['quotations_corpus']['all_gendered_quotes']['gd_gendered_quotes'], 'GD_Gendered_Quotes', 'word', '1'],
         [keyword_data['quotations_corpus']['male_quotes']['cfm_male_quotes'], 'CFM_Male_Quotes', keyword_data['quotations_corpus']['male_quotes']['gd_male_quotes'], 'GD_Male_Quotes', 'word', '1'],
@@ -727,14 +802,178 @@ def keyword_testing():
         [keyword_data['all_text_corpus']['overall_text'], 'Overall_Text', keyword_data['quotations_corpus']['all_gendered_quotes']['all_gendered_quotes_overall'], 'All_Gendered_Quotes', 'sem', '1'],
         [keyword_data['quotations_corpus']['female_quotes']['cfm_female_quotes'], 'CFM_Female_Quotes', keyword_data['quotations_corpus']['male_quotes']['cfm_male_quotes'], 'CFM_Male_Quotes', 'sem', '1'],
         [keyword_data['quotations_corpus']['female_quotes']['gd_female_quotes'], 'GD_Female_Quotes', keyword_data['quotations_corpus']['male_quotes']['gd_male_quotes'], 'GD_Male_Quotes', 'sem', '1']]
+    groups_data_ngrams2 = [
+        [keyword_data['quotations_corpus']['female_quotes']['cfm_female_quotes'], 'CFM_Female_Quotes',
+         keyword_data['quotations_corpus']['female_quotes']['gd_female_quotes'], 'GD_Female_Quotes', 'word', '2'],
+        [keyword_data['quotations_corpus']['all_gendered_quotes']['cfm_gendered_quotes'], 'CFM_Gendered_Quotes',
+         keyword_data['quotations_corpus']['all_gendered_quotes']['gd_gendered_quotes'], 'GD_Gendered_Quotes', 'word',
+         '2'],
+        [keyword_data['quotations_corpus']['male_quotes']['cfm_male_quotes'], 'CFM_Male_Quotes',
+         keyword_data['quotations_corpus']['male_quotes']['gd_male_quotes'], 'GD_Male_Quotes', 'word', '2'],
+        [keyword_data['quotations_corpus']['female_quotes']['all_female_quotes'], 'All_Female_Quotes',
+         keyword_data['quotations_corpus']['male_quotes']['all_male_quotes'], 'All_Male_Quotes', 'word', '2'],
+        [keyword_data['all_text_corpus']['overall_text'], 'Overall_Text',
+         keyword_data['quotations_corpus']['all_gendered_quotes']['all_gendered_quotes_overall'], 'All_Gendered_Quotes',
+         'word', '2'],
+        [keyword_data['quotations_corpus']['female_quotes']['cfm_female_quotes'], 'CFM_Female_Quotes',
+         keyword_data['quotations_corpus']['male_quotes']['cfm_male_quotes'], 'CFM_Male_Quotes', 'word', '2'],
+        [keyword_data['quotations_corpus']['female_quotes']['gd_female_quotes'], 'GD_Female_Quotes',
+         keyword_data['quotations_corpus']['male_quotes']['gd_male_quotes'], 'GD_Male_Quotes', 'word', '2'],
+        [keyword_data['quotations_corpus']['female_quotes']['cfm_female_quotes'], 'CFM_Female_Quotes',
+         keyword_data['quotations_corpus']['female_quotes']['gd_female_quotes'], 'GD_Female_Quotes', 'class', '2'],
+        [keyword_data['quotations_corpus']['all_gendered_quotes']['cfm_gendered_quotes'], 'CFM_Gendered_Quotes',
+         keyword_data['quotations_corpus']['all_gendered_quotes']['gd_gendered_quotes'], 'GD_Gendered_Quotes', 'class',
+         '2'],
+        [keyword_data['quotations_corpus']['male_quotes']['cfm_male_quotes'], 'CFM_Male_Quotes',
+         keyword_data['quotations_corpus']['male_quotes']['gd_male_quotes'], 'GD_Male_Quotes', 'class', '2'],
+        [keyword_data['quotations_corpus']['female_quotes']['all_female_quotes'], 'All_Female_Quotes',
+         keyword_data['quotations_corpus']['male_quotes']['all_male_quotes'], 'All_Male_Quotes', 'class', '2'],
+        [keyword_data['all_text_corpus']['overall_text'], 'Overall_Text',
+         keyword_data['quotations_corpus']['all_gendered_quotes']['all_gendered_quotes_overall'], 'All_Gendered_Quotes',
+         'class', '2'],
+        [keyword_data['quotations_corpus']['female_quotes']['cfm_female_quotes'], 'CFM_Female_Quotes',
+         keyword_data['quotations_corpus']['male_quotes']['cfm_male_quotes'], 'CFM_Male_Quotes', 'class', '2'],
+        [keyword_data['quotations_corpus']['female_quotes']['gd_female_quotes'], 'GD_Female_Quotes',
+         keyword_data['quotations_corpus']['male_quotes']['gd_male_quotes'], 'GD_Male_Quotes', 'class', '2'],
+        [keyword_data['quotations_corpus']['female_quotes']['cfm_female_quotes'], 'CFM_Female_Quotes',
+         keyword_data['quotations_corpus']['female_quotes']['gd_female_quotes'], 'GD_Female_Quotes', 'hw', '2'],
+        [keyword_data['quotations_corpus']['all_gendered_quotes']['cfm_gendered_quotes'], 'CFM_Gendered_Quotes',
+         keyword_data['quotations_corpus']['all_gendered_quotes']['gd_gendered_quotes'], 'GD_Gendered_Quotes', 'hw',
+         '2'],
+        [keyword_data['quotations_corpus']['male_quotes']['cfm_male_quotes'], 'CFM_Male_Quotes',
+         keyword_data['quotations_corpus']['male_quotes']['gd_male_quotes'], 'GD_Male_Quotes', 'hw', '2'],
+        [keyword_data['quotations_corpus']['female_quotes']['all_female_quotes'], 'All_Female_Quotes',
+         keyword_data['quotations_corpus']['male_quotes']['all_male_quotes'], 'All_Male_Quotes', 'hw', '2'],
+        [keyword_data['all_text_corpus']['overall_text'], 'Overall_Text',
+         keyword_data['quotations_corpus']['all_gendered_quotes']['all_gendered_quotes_overall'], 'All_Gendered_Quotes',
+         'hw', '2'],
+        [keyword_data['quotations_corpus']['female_quotes']['cfm_female_quotes'], 'CFM_Female_Quotes',
+         keyword_data['quotations_corpus']['male_quotes']['cfm_male_quotes'], 'CFM_Male_Quotes', 'hw', '2'],
+        [keyword_data['quotations_corpus']['female_quotes']['gd_female_quotes'], 'GD_Female_Quotes',
+         keyword_data['quotations_corpus']['male_quotes']['gd_male_quotes'], 'GD_Male_Quotes', 'hw', '2'],
+        [keyword_data['quotations_corpus']['female_quotes']['cfm_female_quotes'], 'CFM_Female_Quotes',
+         keyword_data['quotations_corpus']['female_quotes']['gd_female_quotes'], 'GD_Female_Quotes', 'pos', '2'],
+        [keyword_data['quotations_corpus']['all_gendered_quotes']['cfm_gendered_quotes'], 'CFM_Gendered_Quotes',
+         keyword_data['quotations_corpus']['all_gendered_quotes']['gd_gendered_quotes'], 'GD_Gendered_Quotes', 'pos',
+         '2'],
+        [keyword_data['quotations_corpus']['male_quotes']['cfm_male_quotes'], 'CFM_Male_Quotes',
+         keyword_data['quotations_corpus']['male_quotes']['gd_male_quotes'], 'GD_Male_Quotes', 'pos', '2'],
+        [keyword_data['quotations_corpus']['female_quotes']['all_female_quotes'], 'All_Female_Quotes',
+         keyword_data['quotations_corpus']['male_quotes']['all_male_quotes'], 'All_Male_Quotes', 'pos', '2'],
+        [keyword_data['all_text_corpus']['overall_text'], 'Overall_Text',
+         keyword_data['quotations_corpus']['all_gendered_quotes']['all_gendered_quotes_overall'], 'All_Gendered_Quotes',
+         'pos', '2'],
+        [keyword_data['quotations_corpus']['female_quotes']['cfm_female_quotes'], 'CFM_Female_Quotes',
+         keyword_data['quotations_corpus']['male_quotes']['cfm_male_quotes'], 'CFM_Male_Quotes', 'pos', '2'],
+        [keyword_data['quotations_corpus']['female_quotes']['gd_female_quotes'], 'GD_Female_Quotes',
+         keyword_data['quotations_corpus']['male_quotes']['gd_male_quotes'], 'GD_Male_Quotes', 'pos', '2'],
+        [keyword_data['quotations_corpus']['female_quotes']['cfm_female_quotes'], 'CFM_Female_Quotes',
+         keyword_data['quotations_corpus']['female_quotes']['gd_female_quotes'], 'GD_Female_Quotes', 'sem', '2'],
+        [keyword_data['quotations_corpus']['all_gendered_quotes']['cfm_gendered_quotes'], 'CFM_Gendered_Quotes',
+         keyword_data['quotations_corpus']['all_gendered_quotes']['gd_gendered_quotes'], 'GD_Gendered_Quotes', 'sem',
+         '2'],
+        [keyword_data['quotations_corpus']['male_quotes']['cfm_male_quotes'], 'CFM_Male_Quotes',
+         keyword_data['quotations_corpus']['male_quotes']['gd_male_quotes'], 'GD_Male_Quotes', 'sem', '2'],
+        [keyword_data['quotations_corpus']['female_quotes']['all_female_quotes'], 'All_Female_Quotes',
+         keyword_data['quotations_corpus']['male_quotes']['all_male_quotes'], 'All_Male_Quotes', 'sem', '2'],
+        [keyword_data['all_text_corpus']['overall_text'], 'Overall_Text',
+         keyword_data['quotations_corpus']['all_gendered_quotes']['all_gendered_quotes_overall'], 'All_Gendered_Quotes',
+         'sem', '2'],
+        [keyword_data['quotations_corpus']['female_quotes']['cfm_female_quotes'], 'CFM_Female_Quotes',
+         keyword_data['quotations_corpus']['male_quotes']['cfm_male_quotes'], 'CFM_Male_Quotes', 'sem', '2'],
+        [keyword_data['quotations_corpus']['female_quotes']['gd_female_quotes'], 'GD_Female_Quotes',
+         keyword_data['quotations_corpus']['male_quotes']['gd_male_quotes'], 'GD_Male_Quotes', 'sem', '2']]
+    groups_data_ngrams3 = [
+        [keyword_data['quotations_corpus']['female_quotes']['cfm_female_quotes'], 'CFM_Female_Quotes',
+         keyword_data['quotations_corpus']['female_quotes']['gd_female_quotes'], 'GD_Female_Quotes', 'word', '3'],
+        [keyword_data['quotations_corpus']['all_gendered_quotes']['cfm_gendered_quotes'], 'CFM_Gendered_Quotes',
+         keyword_data['quotations_corpus']['all_gendered_quotes']['gd_gendered_quotes'], 'GD_Gendered_Quotes', 'word',
+         '3'],
+        [keyword_data['quotations_corpus']['male_quotes']['cfm_male_quotes'], 'CFM_Male_Quotes',
+         keyword_data['quotations_corpus']['male_quotes']['gd_male_quotes'], 'GD_Male_Quotes', 'word', '3'],
+        [keyword_data['quotations_corpus']['female_quotes']['all_female_quotes'], 'All_Female_Quotes',
+         keyword_data['quotations_corpus']['male_quotes']['all_male_quotes'], 'All_Male_Quotes', 'word', '3'],
+        [keyword_data['all_text_corpus']['overall_text'], 'Overall_Text',
+         keyword_data['quotations_corpus']['all_gendered_quotes']['all_gendered_quotes_overall'], 'All_Gendered_Quotes',
+         'word', '3'],
+        [keyword_data['quotations_corpus']['female_quotes']['cfm_female_quotes'], 'CFM_Female_Quotes',
+         keyword_data['quotations_corpus']['male_quotes']['cfm_male_quotes'], 'CFM_Male_Quotes', 'word', '3'],
+        [keyword_data['quotations_corpus']['female_quotes']['gd_female_quotes'], 'GD_Female_Quotes',
+         keyword_data['quotations_corpus']['male_quotes']['gd_male_quotes'], 'GD_Male_Quotes', 'word', '3'],
+        [keyword_data['quotations_corpus']['female_quotes']['cfm_female_quotes'], 'CFM_Female_Quotes',
+         keyword_data['quotations_corpus']['female_quotes']['gd_female_quotes'], 'GD_Female_Quotes', 'class', '3'],
+        [keyword_data['quotations_corpus']['all_gendered_quotes']['cfm_gendered_quotes'], 'CFM_Gendered_Quotes',
+         keyword_data['quotations_corpus']['all_gendered_quotes']['gd_gendered_quotes'], 'GD_Gendered_Quotes', 'class',
+         '3'],
+        [keyword_data['quotations_corpus']['male_quotes']['cfm_male_quotes'], 'CFM_Male_Quotes',
+         keyword_data['quotations_corpus']['male_quotes']['gd_male_quotes'], 'GD_Male_Quotes', 'class', '3'],
+        [keyword_data['quotations_corpus']['female_quotes']['all_female_quotes'], 'All_Female_Quotes',
+         keyword_data['quotations_corpus']['male_quotes']['all_male_quotes'], 'All_Male_Quotes', 'class', '3'],
+        [keyword_data['all_text_corpus']['overall_text'], 'Overall_Text',
+         keyword_data['quotations_corpus']['all_gendered_quotes']['all_gendered_quotes_overall'], 'All_Gendered_Quotes',
+         'class', '3'],
+        [keyword_data['quotations_corpus']['female_quotes']['cfm_female_quotes'], 'CFM_Female_Quotes',
+         keyword_data['quotations_corpus']['male_quotes']['cfm_male_quotes'], 'CFM_Male_Quotes', 'class', '3'],
+        [keyword_data['quotations_corpus']['female_quotes']['gd_female_quotes'], 'GD_Female_Quotes',
+         keyword_data['quotations_corpus']['male_quotes']['gd_male_quotes'], 'GD_Male_Quotes', 'class', '3'],
+        [keyword_data['quotations_corpus']['female_quotes']['cfm_female_quotes'], 'CFM_Female_Quotes',
+         keyword_data['quotations_corpus']['female_quotes']['gd_female_quotes'], 'GD_Female_Quotes', 'hw', '3'],
+        [keyword_data['quotations_corpus']['all_gendered_quotes']['cfm_gendered_quotes'], 'CFM_Gendered_Quotes',
+         keyword_data['quotations_corpus']['all_gendered_quotes']['gd_gendered_quotes'], 'GD_Gendered_Quotes', 'hw',
+         '3'],
+        [keyword_data['quotations_corpus']['male_quotes']['cfm_male_quotes'], 'CFM_Male_Quotes',
+         keyword_data['quotations_corpus']['male_quotes']['gd_male_quotes'], 'GD_Male_Quotes', 'hw', '3'],
+        [keyword_data['quotations_corpus']['female_quotes']['all_female_quotes'], 'All_Female_Quotes',
+         keyword_data['quotations_corpus']['male_quotes']['all_male_quotes'], 'All_Male_Quotes', 'hw', '3'],
+        [keyword_data['all_text_corpus']['overall_text'], 'Overall_Text',
+         keyword_data['quotations_corpus']['all_gendered_quotes']['all_gendered_quotes_overall'], 'All_Gendered_Quotes',
+         'hw', '3'],
+        [keyword_data['quotations_corpus']['female_quotes']['cfm_female_quotes'], 'CFM_Female_Quotes',
+         keyword_data['quotations_corpus']['male_quotes']['cfm_male_quotes'], 'CFM_Male_Quotes', 'hw', '3'],
+        [keyword_data['quotations_corpus']['female_quotes']['gd_female_quotes'], 'GD_Female_Quotes',
+         keyword_data['quotations_corpus']['male_quotes']['gd_male_quotes'], 'GD_Male_Quotes', 'hw', '3'],
+        [keyword_data['quotations_corpus']['female_quotes']['cfm_female_quotes'], 'CFM_Female_Quotes',
+         keyword_data['quotations_corpus']['female_quotes']['gd_female_quotes'], 'GD_Female_Quotes', 'pos', '3'],
+        [keyword_data['quotations_corpus']['all_gendered_quotes']['cfm_gendered_quotes'], 'CFM_Gendered_Quotes',
+         keyword_data['quotations_corpus']['all_gendered_quotes']['gd_gendered_quotes'], 'GD_Gendered_Quotes', 'pos',
+         '3'],
+        [keyword_data['quotations_corpus']['male_quotes']['cfm_male_quotes'], 'CFM_Male_Quotes',
+         keyword_data['quotations_corpus']['male_quotes']['gd_male_quotes'], 'GD_Male_Quotes', 'pos', '3'],
+        [keyword_data['quotations_corpus']['female_quotes']['all_female_quotes'], 'All_Female_Quotes',
+         keyword_data['quotations_corpus']['male_quotes']['all_male_quotes'], 'All_Male_Quotes', 'pos', '3'],
+        [keyword_data['all_text_corpus']['overall_text'], 'Overall_Text',
+         keyword_data['quotations_corpus']['all_gendered_quotes']['all_gendered_quotes_overall'], 'All_Gendered_Quotes',
+         'pos', '3'],
+        [keyword_data['quotations_corpus']['female_quotes']['cfm_female_quotes'], 'CFM_Female_Quotes',
+         keyword_data['quotations_corpus']['male_quotes']['cfm_male_quotes'], 'CFM_Male_Quotes', 'pos', '3'],
+        [keyword_data['quotations_corpus']['female_quotes']['gd_female_quotes'], 'GD_Female_Quotes',
+         keyword_data['quotations_corpus']['male_quotes']['gd_male_quotes'], 'GD_Male_Quotes', 'pos', '3'],
+        [keyword_data['quotations_corpus']['female_quotes']['cfm_female_quotes'], 'CFM_Female_Quotes',
+         keyword_data['quotations_corpus']['female_quotes']['gd_female_quotes'], 'GD_Female_Quotes', 'sem', '3'],
+        [keyword_data['quotations_corpus']['all_gendered_quotes']['cfm_gendered_quotes'], 'CFM_Gendered_Quotes',
+         keyword_data['quotations_corpus']['all_gendered_quotes']['gd_gendered_quotes'], 'GD_Gendered_Quotes', 'sem',
+         '3'],
+        [keyword_data['quotations_corpus']['male_quotes']['cfm_male_quotes'], 'CFM_Male_Quotes',
+         keyword_data['quotations_corpus']['male_quotes']['gd_male_quotes'], 'GD_Male_Quotes', 'sem', '3'],
+        [keyword_data['quotations_corpus']['female_quotes']['all_female_quotes'], 'All_Female_Quotes',
+         keyword_data['quotations_corpus']['male_quotes']['all_male_quotes'], 'All_Male_Quotes', 'sem', '3'],
+        [keyword_data['all_text_corpus']['overall_text'], 'Overall_Text',
+         keyword_data['quotations_corpus']['all_gendered_quotes']['all_gendered_quotes_overall'], 'All_Gendered_Quotes',
+         'sem', '3'],
+        [keyword_data['quotations_corpus']['female_quotes']['cfm_female_quotes'], 'CFM_Female_Quotes',
+         keyword_data['quotations_corpus']['male_quotes']['cfm_male_quotes'], 'CFM_Male_Quotes', 'sem', '3'],
+        [keyword_data['quotations_corpus']['female_quotes']['gd_female_quotes'], 'GD_Female_Quotes',
+         keyword_data['quotations_corpus']['male_quotes']['gd_male_quotes'], 'GD_Male_Quotes', 'sem', '3']]
 
-    with open('group_data.csv', encoding='utf-8') as csv_readfile:
-        csv_reader = csv.reader(csv_readfile)
-        for row in csv_reader:
-            groups_data.append(row)
-
-    for data in groups_data:
+    for data in groups_data_ngrams1:
         get_keywords(data)
+
+    for data in groups_data_ngrams2:
+        get_keywords_23(data)
+
+    for data in groups_data_ngrams3:
+        get_keywords_23(data)
+
     return
 
 
@@ -780,15 +1019,65 @@ def combine_csv_files():
             for new_data_line in new_csv_data:
                 csv_writer.writerow(new_data_line)
     return
+def combine_csv_ngram_files():
+    csv_filename_dict = {}
+    for filename in os.listdir('Generated_Keyword_Data/Combined_Files'):
+        if filename != 'Combined_Ngrams':
+            cleaned_filename = re.sub('_[0-9]-ngrams.csv','',filename)
+
+            if cleaned_filename not in csv_filename_dict:
+                csv_filename_dict[cleaned_filename] = []
+            csv_filename_dict[cleaned_filename].append(filename)
+
+
+    for csv_file in csv_filename_dict:
+        #print(csv_file)
+        new_csv_data = []
+        combined_csv_file = 'Generated_Keyword_Data/Combined_Files/Combined_Ngrams/' + csv_file + '.csv'
+        new_header_row = ['Ngrams','Unit_Type']
+        for partial_file in csv_filename_dict[csv_file]:
+           # print("\t",partial_file)
+            ngram_find = re.findall('[0-9]',partial_file)
+            ngram = ngram_find[0]
+
+            partial_file_name = 'Generated_Keyword_Data/Combined_Files/' + partial_file
+
+
+            row_num = 0
+            unit_type = ''
+            with open(partial_file_name,encoding='utf-8') as partial_csv:
+                csv_reader = csv.reader(partial_csv)
+                for row in csv_reader:
+                    if row_num == 0:
+                        unit_type = row[0]
+                        if len(new_header_row) == 2:
+                            new_header_row.extend(row[1:])
+                        row_num+=1
+                    else:
+                        new_row = [ngram]
+                        new_row.extend(row)
+                        new_csv_data.append(new_row)
+                        #print(new_row)
+                  #  print(row)
+
+        with open(combined_csv_file, 'w', newline='', encoding='utf-8') as new_csv:
+            csv_writer = csv.writer(new_csv)
+            # print(new_header_row)
+            csv_writer.writerow(new_header_row)
+            for new_data_line in new_csv_data:
+                csv_writer.writerow(new_data_line)
+
+    return
 
 def main():
-    import_keyword_folders()
+   # import_keyword_folders()
 
     # Okay, so this currently handles 1-grams, but not anything bigger.
     # that will be...tomorrow's problem
-    keyword_testing()
-    combine_csv_files()
-   # print_keyword_dict()
+   # keyword_testing()
+  #  combine_csv_files()
+    combine_csv_ngram_files()
+    #print_keyword_dict()
 
     #do the thing
     return
