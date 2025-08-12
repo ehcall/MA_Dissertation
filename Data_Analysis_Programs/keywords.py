@@ -635,7 +635,6 @@ def get_keywords(data):
     group_2_name = data[3]
     unit_type = data[4]
     ngrams = data[5]
-
     #print(group_1['size'])
     working_dict = {}
     group_1_word_list = group_1['unit_type'][unit_type]['ngrams'][ngrams]
@@ -651,7 +650,10 @@ def get_keywords(data):
                     'group_1_rf':calculate_rf(group_1['size'], int(actual_freq)),
                     'group_2_af':0,
                     'group_2_rf':0,
-                    'simple_maths':0,
+                    'simple_maths_1':0,
+                    'simple_maths_2':0,
+                    'group_1_rangeper':float(word_data[4]),
+                    'group_2_rangeper':0
                 }
     for word_data in group_2_word_list[1:]:
         word = word_data[0]
@@ -663,16 +665,21 @@ def get_keywords(data):
                     'group_2_rf':calculate_rf(group_2['size'], int(actual_freq)),
                     'group_1_af':0,
                     'group_1_rf':0,
-                    'simple_maths':0,
+                    'simple_maths_1':0,
+                    'simple_maths_2':0,
+                    'group_1_rangeper':0,
+                    'group_2_rangeper':float(word_data[4])
                 }
             else:
                 working_dict[word]['group_2_af'] = int(actual_freq)
+                working_dict[word]['group_2_rangeper'] = float(word_data[4])
                 working_dict[word]['group_2_rf'] = calculate_rf(group_2['size'], int(actual_freq))
 
     for word in working_dict:
         focus_rf =  working_dict[word]['group_1_rf']
         ref_rf =  working_dict[word]['group_2_rf']
-        working_dict[word]['simple_maths'] = calculate_simple_maths(focus_rf, ref_rf, 0.1)
+        working_dict[word]['simple_maths_1'] = calculate_simple_maths(focus_rf, ref_rf, 0.1)
+        working_dict[word]['simple_maths_2'] = calculate_simple_maths(ref_rf, focus_rf, 0.1)
 
     new_csv_filename = "Generated_Keyword_Data/" + group_1_name + "_vs_" + group_2_name + "_" + ngrams + "-ngrams" \
                        + "__" + unit_type + ".csv"
@@ -682,12 +689,14 @@ def get_keywords(data):
     group_2_rf_name = group_2_name + "_RF"
     with open(new_csv_filename, 'w', newline='',encoding='utf-8') as csv_writefile:
         csv_writer = csv.writer(csv_writefile)
-        csv_writer.writerow([unit_type, group_1_af_name, group_1_rf_name, group_2_af_name, group_2_rf_name, 'Simple Maths'])
+        csv_writer.writerow([unit_type, group_1_af_name, group_1_rf_name, group_2_af_name, group_2_rf_name, 
+                             'Simple Maths 1', 'Simple Maths 2', 'Range Per 1', 'Range Per 2'])
         for word in working_dict:
             if working_dict[word]['group_1_af'] > 5 or working_dict[word]['group_2_af'] > 5:
                 csv_writer.writerow([word, working_dict[word]['group_1_af'], working_dict[word]['group_1_rf'],
                                      working_dict[word]['group_2_af'], working_dict[word]['group_2_rf'],
-                                     working_dict[word]['simple_maths']])
+                                     working_dict[word]['simple_maths_1'],working_dict[word]['simple_maths_2'],
+                                     working_dict[word]['group_1_rangeper'],working_dict[word]['group_2_rangeper'],])
 
     return
 
@@ -703,47 +712,60 @@ def get_keywords_23(data):
 
     group_2_word_list = group_2['unit_type'][unit_type]['ngrams'][ngrams]
     for word_data in group_1_word_list[1:]:
-
+        range_per = 0
         combined_word = ''
         if ngrams == '2':
             combined_word = ' | '.join(word_data[0:2])
             actual_freq = word_data[2].replace(',', '')
+            range_per = word_data[5]
         elif ngrams == '3':
             combined_word = ' | '.join(word_data[0:3])
             actual_freq = word_data[3].replace(',', '')
+            range_per = word_data[6]
         if combined_word not in working_dict:
             working_dict[combined_word] = {
                 'group_1_af': int(actual_freq),
                 'group_1_rf': calculate_rf(group_1['size'], int(actual_freq)),
                 'group_2_af': 0,
                 'group_2_rf': 0,
-                'simple_maths': 0,
+                'simple_maths_1':0,
+                'simple_maths_2':0,
+                'group_1_rangeper':float(range_per),
+                'group_2_rangeper':0,
             }
     for word_data in group_2_word_list[1:]:
         combined_word = ''
+        range_per = 0
         if ngrams == '2':
             combined_word = ' | '.join(word_data[0:2])
             actual_freq = word_data[2].replace(',', '')
+            range_per = word_data[5]
         elif ngrams == '3':
             combined_word = ' | '.join(word_data[0:3])
             actual_freq = word_data[3].replace(',', '')
+            range_per = word_data[6]
         if combined_word not in working_dict:
             working_dict[combined_word] = {
                 'group_2_af': int(actual_freq),
                 'group_2_rf': calculate_rf(group_2['size'], int(actual_freq)),
                 'group_1_af': 0,
                 'group_1_rf': 0,
-                'simple_maths': 0,
+                'simple_maths_1':0,
+                'simple_maths_2':0,
+                'group_1_rangeper':0,
+                'group_2_rangeper':float(range_per),
             }
         else:
             working_dict[combined_word]['group_2_af'] = int(actual_freq)
+            working_dict[combined_word]['group_2_rangeper'] = float(range_per)
             working_dict[combined_word]['group_2_rf'] = calculate_rf(group_2['size'], int(actual_freq))
 
     for word in working_dict:
         #print(word)
         focus_rf = working_dict[word]['group_1_rf']
         ref_rf = working_dict[word]['group_2_rf']
-        working_dict[word]['simple_maths'] = calculate_simple_maths(focus_rf, ref_rf, 0.1)
+        working_dict[word]['simple_maths_1'] = calculate_simple_maths(focus_rf, ref_rf, 0.1)
+        working_dict[word]['simple_maths_2'] = calculate_simple_maths(ref_rf, focus_rf, 0.1)
 
     new_csv_filename = "Generated_Keyword_Data/" + group_1_name + "_vs_" + group_2_name + "_" + ngrams + "-ngrams" + "__" \
                        + unit_type + ".csv"
@@ -754,12 +776,14 @@ def get_keywords_23(data):
     with open(new_csv_filename, 'w', newline='', encoding='utf-8') as csv_writefile:
         csv_writer = csv.writer(csv_writefile)
         csv_writer.writerow(
-            [unit_type, group_1_af_name, group_1_rf_name, group_2_af_name, group_2_rf_name, 'Simple Maths'])
+            [unit_type, group_1_af_name, group_1_rf_name, group_2_af_name, group_2_rf_name, 
+             'Simple Maths 1', 'Simple Maths 2', 'Range Per 1', 'Range Per 2'])
         for word in working_dict:
             if working_dict[word]['group_1_af'] > 5 or working_dict[word]['group_2_af'] > 5:
                 csv_writer.writerow([word, working_dict[word]['group_1_af'], working_dict[word]['group_1_rf'],
                                      working_dict[word]['group_2_af'], working_dict[word]['group_2_rf'],
-                                     working_dict[word]['simple_maths']])
+                                     working_dict[word]['simple_maths_1'], working_dict[word]['simple_maths_2'],
+                                     working_dict[word]['group_1_rangeper'], working_dict[word]['group_2_rangeper']])
 
     return
 
@@ -1070,12 +1094,12 @@ def combine_csv_ngram_files():
     return
 
 def main():
-   # import_keyword_folders()
+    import_keyword_folders()
 
     # Okay, so this currently handles 1-grams, but not anything bigger.
     # that will be...tomorrow's problem
-   # keyword_testing()
-  #  combine_csv_files()
+    keyword_testing()
+    combine_csv_files()
     combine_csv_ngram_files()
     #print_keyword_dict()
 
