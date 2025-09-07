@@ -1,6 +1,6 @@
 import os
 import re
-import scripture_references
+from Data_Analysis_Programs import scripture_references
 from bs4 import BeautifulSoup
 import spacy
 from spacy.matcher import DependencyMatcher
